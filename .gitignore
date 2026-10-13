@@ -16,7 +16,6 @@ dist/
 .vscode/
 
 # Deploy artifacts (regenerated per release)
-dsa-deploy.zip
 work/
 
 # Scraper is separate work-in-progress, not part of this snapshot
@@ -27,3 +26,4 @@ backend/data/
 __pycache__/
 backend/src/main/resources/static/
 deploy/backend/src/main/resources/static/
+deploy/
