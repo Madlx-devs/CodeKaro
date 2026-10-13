@@ -1,0 +1,1776 @@
+[
+  {
+    "id": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+    "examples": [
+      {
+        "input": "s = \"()[]{}\"",
+        "output": "true",
+        "explanation": "Every opening bracket is closed by the correct type in the correct order."
+      },
+      {
+        "input": "s = \"(]\"",
+        "output": "false",
+        "explanation": "A square bracket cannot close a parenthesis."
+      },
+      {
+        "input": "s = \"([)]\"",
+        "output": "false",
+        "explanation": "Brackets close in the wrong order: ')' appears while '[' is the most recent unmatched opener."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^4",
+      "s consists of parentheses only: ()[]{}"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "isValid",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean isValid(String s) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "()[]{}",
+        "expected": "true"
+      },
+      {
+        "input": "(]",
+        "expected": "false"
+      },
+      {
+        "input": "{[]}",
+        "expected": "true"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "([)]",
+        "expected": "false"
+      },
+      {
+        "input": "{[()]}",
+        "expected": "true"
+      },
+      {
+        "input": "(",
+        "expected": "false"
+      },
+      {
+        "input": "{[()]}",
+        "expected": "true"
+      },
+      {
+        "input": "]]",
+        "expected": "false"
+      },
+      {
+        "input": "(){}}{",
+        "expected": "false"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "A closing bracket must match the most recent unmatched opening bracket.",
+      "Which data structure gives you the most recent unmatched opener in O(1)?",
+      "If the structure is empty when you see a closer, or non-empty at the end, the string is invalid."
+    ]
+  },
+  {
+    "id": "next-greater-element-i",
+    "title": "Next Greater Element I",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.\n\nYou are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2.\n\nFor each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater element, then the answer for this query is -1.\n\nReturn an array ans of length nums1.length such that ans[i] is the next greater element as described above.",
+    "examples": [
+      {
+        "input": "nums1 = [4,1,2], nums2 = [1,3,4,2]",
+        "output": "[-1,3,-1]",
+        "explanation": "For 4 in nums2, there is no greater element to its right, so -1. For 1, the next greater is 3. For 2, there is no greater element to its right, so -1."
+      },
+      {
+        "input": "nums1 = [2,4], nums2 = [1,2,3,4]",
+        "output": "[3,-1]",
+        "explanation": "For 2, the next greater element is 3. For 4, there is no greater element to its right, so -1."
+      }
+    ],
+    "constraints": [
+      "1 <= nums1.length <= nums2.length <= 1000",
+      "0 <= nums1[i], nums2[i] <= 10^4",
+      "All the integers of nums1 are unique.",
+      "All the integers of nums2 are unique.",
+      "nums1 is a subset of nums2"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "nextGreaterElement",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "nums1",
+          "type": "int[]"
+        },
+        {
+          "name": "nums2",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] nextGreaterElement(int[] nums1, int[] nums2) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[4, 1, 2]\n[1, 3, 4, 2]",
+        "expected": "[-1, 3, -1]"
+      },
+      {
+        "input": "[2, 4]\n[1, 2, 3, 4]",
+        "expected": "[3, -1]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1]\n[1]",
+        "expected": "[-1]"
+      },
+      {
+        "input": "[3, 2, 1]\n[3, 2, 1]",
+        "expected": "[-1, -1, -1]"
+      },
+      {
+        "input": "[1, 2, 3]\n[1, 2, 3]",
+        "expected": "[2, 3, -1]"
+      },
+      {
+        "input": "[5]\n[5, 4, 3]",
+        "expected": "[-1]"
+      },
+      {
+        "input": "[4, 3]\n[1, 4, 3, 2]",
+        "expected": "[-1, -1]"
+      },
+      {
+        "input": "[1, 3, 5, 2, 4]\n[6, 5, 4, 3, 2, 1, 7]",
+        "expected": "[7, 7, 7, 7, 7]"
+      }
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack",
+      "array",
+      "hash-table"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "For each element in nums2, you want the first element to its right that is larger.",
+      "Process nums2 left to right, keeping candidates whose next greater element has not been found yet.",
+      "A decreasing stack lets each new element resolve every smaller element waiting before it."
+    ]
+  },
+  {
+    "id": "baseball-game",
+    "title": "Baseball Game",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.\n\nYou are given a list of strings operations, where operations[i] is the ith operation you must apply to the record and is one of the following:\n- An integer x: record a new score of x.\n- \"+\": record a new score that is the sum of the previous two scores.\n- \"D\": record a new score that is the double of the previous score.\n- \"C\": invalidate the previous score, removing it from the record.\n\nReturn the sum of all the scores on the record after applying all the operations. The test cases are generated such that the answer and all intermediate calculations fit in a 32-bit integer.",
+    "examples": [
+      {
+        "input": "operations = [\"5\",\"2\",\"C\",\"D\",\"+\"]",
+        "output": "30",
+        "explanation": "\"5\" -> [5]. \"2\" -> [5, 2]. \"C\" -> [5]. \"D\" -> [5, 10]. \"+\" -> [5, 10, 15]. Sum = 30."
+      },
+      {
+        "input": "operations = [\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]",
+        "output": "27",
+        "explanation": "\"5\" -> [5]. \"-2\" -> [5, -2]. \"4\" -> [5, -2, 4]. \"C\" -> [5, -2]. \"D\" -> [5, -2, -4]. \"9\" -> [5, -2, -4, 9]. \"+\" -> [5, -2, -4, 9, 5]. \"+\" -> [5, -2, -4, 9, 5, 14]. Sum = 27."
+      }
+    ],
+    "constraints": [
+      "1 <= operations.length <= 1000",
+      "operations[i] is \"C\", \"D\", \"+\", or a string representing an integer in the range [-3 * 10^4, 3 * 10^4].",
+      "For operation \"+\", there will always be at least two previous scores on the record.",
+      "For operations \"C\" and \"D\", there will always be at least one previous score on the record."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "calPoints",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "operations",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int calPoints(String[] operations) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"5\", \"2\", \"C\", \"D\", \"+\"]",
+        "expected": "30"
+      },
+      {
+        "input": "[\"5\", \"-2\", \"4\", \"C\", \"D\", \"9\", \"+\", \"+\"]",
+        "expected": "27"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"1\"]",
+        "expected": "1"
+      },
+      {
+        "input": "[\"1\", \"C\"]",
+        "expected": "0"
+      },
+      {
+        "input": "[\"1\", \"2\", \"3\", \"4\", \"5\"]",
+        "expected": "15"
+      },
+      {
+        "input": "[\"-3\", \"-2\", \"D\", \"D\", \"+\"]",
+        "expected": "-29"
+      },
+      {
+        "input": "[\"10\", \"20\", \"D\", \"+\"]",
+        "expected": "130"
+      },
+      {
+        "input": "[\"3\", \"1\", \"+\", \"D\", \"C\", \"5\"]",
+        "expected": "13"
+      }
+    ],
+    "tags": [
+      "stack",
+      "array",
+      "simulation"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Keep a record of the valid scores so far; each operation only needs the last one or two.",
+      "Which structure lets you push new scores and remove the most recent one in O(1)?",
+      "For \"+\", add the top two values; for \"D\", double the top; for \"C\", drop the top."
+    ]
+  },
+  {
+    "id": "remove-outermost-parentheses",
+    "title": "Remove Outermost Parentheses",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "A valid parentheses string is either empty \"\", \"(\" + A + \")\", or A + B, where A and B are valid parentheses strings, and + represents string concatenation. For example, \"\", \"()\", \"(())()\", and \"(()(()))\" are all valid parentheses strings.\n\nA valid parentheses string s can be decomposed as s = A + B + ..., where each part is a primitive valid parentheses string (it cannot be split into two non-empty valid strings).\n\nGiven a valid parentheses string s, consider its primitive decomposition. Return s after removing the outermost parentheses of every primitive string in the primitive decomposition of s.",
+    "examples": [
+      {
+        "input": "s = \"(()())(())\"",
+        "output": "\"()()()\"",
+        "explanation": "The input string is \"(()())(())\", which can be decomposed as \"(()())\" + \"(())\". Removing the outer parentheses of each gives \"()()\" + \"()\" = \"()()()\"."
+      },
+      {
+        "input": "s = \"()()\"",
+        "output": "\"\"",
+        "explanation": "The primitives are \"()\" + \"()\"; removing the outer parentheses of each leaves an empty string."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s is a valid parentheses string"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "removeOuterParentheses",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String removeOuterParentheses(String s) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "(()())(())",
+        "expected": "()()()"
+      },
+      {
+        "input": "()()",
+        "expected": ""
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "(()())(())(()(()))",
+        "expected": "()()()()(())"
+      },
+      {
+        "input": "()",
+        "expected": ""
+      },
+      {
+        "input": "((()))",
+        "expected": "(())"
+      },
+      {
+        "input": "()()()",
+        "expected": ""
+      },
+      {
+        "input": "(()(()))",
+        "expected": "()(())"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Track the current nesting depth as you scan the string.",
+      "A \"(\" at depth 0 starts a new primitive; a \")\" that returns the depth to 0 ends one.",
+      "Append a parenthesis only when it is not the outermost one of its primitive."
+    ]
+  },
+  {
+    "id": "final-prices-with-a-special-discount",
+    "title": "Final Prices With a Special Discount",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "You are given an integer array prices where prices[i] is the price of the ith item in a shop.\n\nThere is a special discount for items in the shop. If you buy the ith item, then you will receive a discount equivalent to prices[j] where j is the minimum index such that j > i and prices[j] <= prices[i]. Otherwise, you will not receive any discount at all.\n\nReturn an integer array answer where answer[i] is the final price you will pay for the ith item of the shop, considering the special discount.",
+    "examples": [
+      {
+        "input": "prices = [8,4,6,2,3]",
+        "output": "[4,2,4,2,3]",
+        "explanation": "For item 0 the discount is prices[1] = 4, so 8 - 4 = 4. For item 1 the discount is prices[3] = 2, so 4 - 2 = 2. For item 2 the discount is prices[3] = 2, so 6 - 2 = 4. Items 3 and 4 get no discount."
+      },
+      {
+        "input": "prices = [10,1,1,6]",
+        "output": "[9,0,1,6]",
+        "explanation": "For item 0 the discount is prices[1] = 1, so 10 - 1 = 9. For item 1 the discount is prices[2] = 1, so 1 - 1 = 0. Item 2 gets no discount. Item 3 gets no discount."
+      }
+    ],
+    "constraints": [
+      "1 <= prices.length <= 500",
+      "1 <= prices[i] <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "finalPrices",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "prices",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] finalPrices(int[] prices) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[8, 4, 6, 2, 3]",
+        "expected": "[4, 2, 4, 2, 3]"
+      },
+      {
+        "input": "[10, 1, 1, 6]",
+        "expected": "[9, 0, 1, 6]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "[1, 2, 3, 4, 5]"
+      },
+      {
+        "input": "[5]",
+        "expected": "[5]"
+      },
+      {
+        "input": "[5, 5, 5]",
+        "expected": "[0, 0, 5]"
+      },
+      {
+        "input": "[2, 1]",
+        "expected": "[1, 1]"
+      },
+      {
+        "input": "[8, 7, 4, 2, 8, 1, 7, 7, 10, 1]",
+        "expected": "[1, 3, 2, 1, 7, 0, 0, 6, 9, 1]"
+      },
+      {
+        "input": "[4, 4, 4, 4]",
+        "expected": "[0, 0, 0, 4]"
+      }
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "For each price, you need the first price to its right that is less than or equal to it.",
+      "Scan left to right keeping the indices whose discount is still unknown.",
+      "When a new price arrives, it becomes the discount for every waiting index whose price is >= it."
+    ]
+  },
+  {
+    "id": "remove-all-adjacent-duplicates-in-string",
+    "title": "Remove All Adjacent Duplicates In String",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing two adjacent and equal letters and removing them.\n\nWe repeatedly make duplicate removals on s until we no longer can.\n\nReturn the final string after all such duplicate removals have been made. It can be proven that the answer is unique.",
+    "examples": [
+      {
+        "input": "s = \"abbaca\"",
+        "output": "\"ca\"",
+        "explanation": "In \"abbaca\" we could remove \"bb\" since the letters are adjacent and equal, and this is the only possible move. The result of this move is that the string is \"aaca\", of which we can remove \"aa\", leaving \"ca\"."
+      },
+      {
+        "input": "s = \"azxxzy\"",
+        "output": "\"ay\"",
+        "explanation": "Remove \"xx\" to get \"azzy\", then remove \"zz\" to get \"ay\"."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s consists of lowercase English letters"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "removeDuplicates",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String removeDuplicates(String s) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "abbaca",
+        "expected": "ca"
+      },
+      {
+        "input": "azxxzy",
+        "expected": "ay"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "abba",
+        "expected": ""
+      },
+      {
+        "input": "aababaab",
+        "expected": "ba"
+      },
+      {
+        "input": "a",
+        "expected": "a"
+      },
+      {
+        "input": "aa",
+        "expected": ""
+      },
+      {
+        "input": "abcddcba",
+        "expected": ""
+      },
+      {
+        "input": "aaaaaaaa",
+        "expected": ""
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Scan the string and keep track of the characters that survived so far.",
+      "When the current character equals the last surviving one, both disappear.",
+      "After processing, the survivors in order are the answer."
+    ]
+  },
+  {
+    "id": "make-the-string-great",
+    "title": "Make The String Great",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "Given a string s of lower and upper case English letters.\n\nA good string is a string which doesn't have two adjacent characters s[i] and s[i + 1] where:\n- 0 <= i <= s.length - 2\n- s[i] is a lower-case and s[i + 1] is the same character but in upper-case or vice-versa.\n\nTo make the string good, you can choose two adjacent characters that make the string bad and remove them. You can keep doing this until the string becomes good.\n\nReturn the string after making it good. The answer is guaranteed to be unique under the given constraints.",
+    "examples": [
+      {
+        "input": "s = \"leEeetcode\"",
+        "output": "\"leetcode\"",
+        "explanation": "In the first step, take the substring \"eE\" and remove it, getting \"leetcde\"? No: \"leEeetcode\" -> remove \"eE\" -> \"leetcode\", which is good."
+      },
+      {
+        "input": "s = \"abBAcC\"",
+        "output": "\"\"",
+        "explanation": "First remove \"bB\" to get \"aAcC\", then remove \"aA\" to get \"cC\", then remove \"cC\" to get \"\"."
+      },
+      {
+        "input": "s = \"s\"",
+        "output": "\"s\"",
+        "explanation": "The string \"s\" is already good."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 100",
+      "s contains only lower and upper case English letters"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "makeGood",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String makeGood(String s) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "leEeetcode",
+        "expected": "leetcode"
+      },
+      {
+        "input": "abBAcC",
+        "expected": ""
+      },
+      {
+        "input": "s",
+        "expected": "s"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "aA",
+        "expected": ""
+      },
+      {
+        "input": "AaBbCcDd",
+        "expected": ""
+      },
+      {
+        "input": "Pp",
+        "expected": ""
+      },
+      {
+        "input": "mC",
+        "expected": "mC"
+      },
+      {
+        "input": "abBA",
+        "expected": ""
+      },
+      {
+        "input": "aAbBcC",
+        "expected": ""
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Two adjacent characters are 'bad' when they are the same letter in different cases.",
+      "Keep the processed prefix; a new character only ever interacts with the last kept one.",
+      "Removing a bad pair can create a new bad pair across the gap, so re-check after each removal."
+    ]
+  },
+  {
+    "id": "daily-temperatures",
+    "title": "Daily Temperatures",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "Given an array of integers temperatures representing the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.",
+    "examples": [
+      {
+        "input": "temperatures = [73,74,75,71,69,72,76,73]",
+        "output": "[1,1,4,2,1,1,0,0]",
+        "explanation": "Day 0 (73) waits 1 day for 74. Day 2 (75) waits 4 days for 76. Days 6 and 7 have no warmer future day."
+      },
+      {
+        "input": "temperatures = [30,40,50,60]",
+        "output": "[1,1,1,0]",
+        "explanation": "Each day is followed by a warmer day except the last one."
+      }
+    ],
+    "constraints": [
+      "1 <= temperatures.length <= 10^5",
+      "30 <= temperatures[i] <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "dailyTemperatures",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "temperatures",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] dailyTemperatures(int[] temperatures) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[73, 74, 75, 71, 69, 72, 76, 73]",
+        "expected": "[1, 1, 4, 2, 1, 1, 0, 0]"
+      },
+      {
+        "input": "[30, 40, 50, 60]",
+        "expected": "[1, 1, 1, 0]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[30, 60, 90]",
+        "expected": "[1, 1, 0]"
+      },
+      {
+        "input": "[90, 80, 70]",
+        "expected": "[0, 0, 0]"
+      },
+      {
+        "input": "[55]",
+        "expected": "[0]"
+      },
+      {
+        "input": "[30, 30, 30]",
+        "expected": "[0, 0, 0]"
+      },
+      {
+        "input": "[73, 72, 71, 70, 75]",
+        "expected": "[4, 3, 2, 1, 0]"
+      },
+      {
+        "input": "[100, 90, 80, 70, 60, 70, 80]",
+        "expected": "[0, 0, 0, 3, 1, 1, 0]"
+      }
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "For each day, you need the first future day with a higher temperature.",
+      "Scan left to right, keeping the indices that are still waiting for a warmer day.",
+      "When a warmer temperature arrives, it answers every waiting day with a lower temperature."
+    ]
+  },
+  {
+    "id": "evaluate-reverse-polish-notation",
+    "title": "Evaluate Reverse Polish Notation",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "You are given an array of strings tokens that represents an arithmetic expression in Reverse Polish Notation.\n\nEvaluate the expression. Return an integer that represents the value of the expression.\n\nNote that:\n- The valid operators are '+', '-', '*', and '/'.\n- Each operand may be an integer or another expression.\n- The division between two integers always truncates toward zero.\n- There will not be any division by zero.\n- The input represents a valid arithmetic expression in reverse polish notation.\n- The answer and all the intermediate calculations can be represented in a 32-bit integer.",
+    "examples": [
+      {
+        "input": "tokens = [\"2\",\"1\",\"+\",\"3\",\"*\"]",
+        "output": "9",
+        "explanation": "((2 + 1) * 3) = 9."
+      },
+      {
+        "input": "tokens = [\"4\",\"13\",\"5\",\"/\",\"+\"]",
+        "output": "6",
+        "explanation": "(4 + (13 / 5)) = 6."
+      },
+      {
+        "input": "tokens = [\"10\",\"6\",\"9\",\"3\",\"+\",\"-11\",\"*\",\"/\",\"*\",\"17\",\"+\",\"5\",\"+\"]",
+        "output": "22",
+        "explanation": "((10 * (6 / ((9 + 3) * -11))) + 17) + 5 = ((10 * (6 / -132)) + 17) + 5 = ((10 * 0) + 17) + 5 = 22."
+      }
+    ],
+    "constraints": [
+      "1 <= tokens.length <= 10^4",
+      "tokens[i] is either an operator: \"+\", \"-\", \"*\", or \"/\", or an integer in the range [-200, 200]"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "evalRPN",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "tokens",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int evalRPN(String[] tokens) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"2\", \"1\", \"+\", \"3\", \"*\"]",
+        "expected": "9"
+      },
+      {
+        "input": "[\"4\", \"13\", \"5\", \"/\", \"+\"]",
+        "expected": "6"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"10\", \"6\", \"9\", \"3\", \"+\", \"-11\", \"*\", \"/\", \"*\", \"17\", \"+\", \"5\", \"+\"]",
+        "expected": "22"
+      },
+      {
+        "input": "[\"3\", \"11\", \"+\", \"5\", \"-\"]",
+        "expected": "9"
+      },
+      {
+        "input": "[\"18\"]",
+        "expected": "18"
+      },
+      {
+        "input": "[\"-4\", \"13\", \"5\", \"/\", \"+\"]",
+        "expected": "-2"
+      },
+      {
+        "input": "[\"4\", \"-2\", \"/\", \"2\", \"*\", \"-7\", \"+\"]",
+        "expected": "-11"
+      },
+      {
+        "input": "[\"0\", \"3\", \"/\"]",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "stack",
+      "math",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Evaluate using a stack of numbers.",
+      "When you see an operator, pop the two most recent operands, apply the operator, and push the result.",
+      "Remember integer division truncates toward zero, and the second popped value is the left operand."
+    ]
+  },
+  {
+    "id": "simplify-path",
+    "title": "Simplify Path",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "You are given an absolute path for a Unix-style file system, which always begins with a slash '/'. Your task is to transform this absolute path into its simplified canonical path.\n\nThe rules of a Unix-style file system are as follows:\n- A single period '.' represents the current directory.\n- A double period '..' represents the previous/parent directory.\n- Multiple consecutive slashes such as '//' and '///' are treated as a single slash '/'.\n- Any sequence of periods that does not match the rules above should be treated as a valid directory or file name. For example, '...' and '....' are valid directory or file names.\n\nThe simplified canonical path should follow these rules:\n- The path must start with a single slash '/'.\n- Directories within the path must be separated by exactly one slash '/'.\n- The path must not end with a slash '/', unless it is the root directory.\n- The path must not have any single or double periods ('.' and '..') used to denote current or parent directories.\n\nReturn the simplified canonical path.",
+    "examples": [
+      {
+        "input": "path = \"/home/\"",
+        "output": "\"/home\"",
+        "explanation": "The trailing slash should be removed."
+      },
+      {
+        "input": "path = \"/../\"",
+        "output": "\"/\"",
+        "explanation": "The parent directory of root is root itself."
+      },
+      {
+        "input": "path = \"/home//foo/\"",
+        "output": "\"/home/foo\"",
+        "explanation": "Multiple consecutive slashes are treated as a single slash."
+      }
+    ],
+    "constraints": [
+      "1 <= path.length <= 3000",
+      "path consists of English letters, digits, period '.', slash '/' or '_'.",
+      "path is a valid absolute Unix path"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "simplifyPath",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "path",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String simplifyPath(String path) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "/home/",
+        "expected": "/home"
+      },
+      {
+        "input": "/../",
+        "expected": "/"
+      },
+      {
+        "input": "/home//foo/",
+        "expected": "/home/foo"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "/a/./b/../../c/",
+        "expected": "/c"
+      },
+      {
+        "input": "/a//b////c/d//././/..",
+        "expected": "/a/b/c"
+      },
+      {
+        "input": "/...",
+        "expected": "/..."
+      },
+      {
+        "input": "/a/../../b/../c//.//",
+        "expected": "/c"
+      },
+      {
+        "input": "/hello../world",
+        "expected": "/hello../world"
+      },
+      {
+        "input": "/./a/b/../c/.",
+        "expected": "/a/c"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Split the path on '/' and process each component in order.",
+      "Skip empty components and '.', and pop the last directory for '..' (if there is one).",
+      "Join the remaining components with '/', prefix a single '/'; treat '...' as a normal name."
+    ]
+  },
+  {
+    "id": "decode-string",
+    "title": "Decode String",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "Given an encoded string, return its decoded string.\n\nThe encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.\n\nYou may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there will not be input like 3a or 2[4].\n\nThe test cases are generated so that the length of the output will never exceed 10^5.",
+    "examples": [
+      {
+        "input": "s = \"3[a]2[bc]\"",
+        "output": "\"aaabcbc\"",
+        "explanation": "\"a\" repeated 3 times, then \"bc\" repeated 2 times."
+      },
+      {
+        "input": "s = \"3[a2[c]]\"",
+        "output": "\"accaccacc\"",
+        "explanation": "Inner \"2[c]\" decodes to \"cc\", so \"a2[c]\" is \"acc\", repeated 3 times."
+      },
+      {
+        "input": "s = \"2[abc]3[cd]ef\"",
+        "output": "\"abcabccdcdcdef\"",
+        "explanation": "\"abc\" repeated 2 times, \"cd\" repeated 3 times, then \"ef\"."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 30",
+      "s consists of lowercase English letters, digits, and square brackets '[]'.",
+      "s is guaranteed to be a valid input.",
+      "All the integers in s are in the range [1, 300]"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "decodeString",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String decodeString(String s) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "3[a]2[bc]",
+        "expected": "aaabcbc"
+      },
+      {
+        "input": "3[a2[c]]",
+        "expected": "accaccacc"
+      },
+      {
+        "input": "2[abc]3[cd]ef",
+        "expected": "abcabccdcdcdef"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "100[leetcode]",
+        "expected": "leetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcode"
+      },
+      {
+        "input": "3[a]2[b4[c]d]",
+        "expected": "aaabccccdbccccd"
+      },
+      {
+        "input": "2[2[ab]]",
+        "expected": "abababab"
+      },
+      {
+        "input": "abc3[cd]xyz",
+        "expected": "abccdcdcdxyz"
+      },
+      {
+        "input": "2[a2[b]c]",
+        "expected": "abbcabbc"
+      },
+      {
+        "input": "10[a]",
+        "expected": "aaaaaaaaaa"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string",
+      "recursion"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Use one stack for repeat counts and one for the strings built so far.",
+      "On '[', push the current count and start a fresh current string.",
+      "On ']', pop the count, repeat the current string, and append it to the previous level."
+    ]
+  },
+  {
+    "id": "asteroid-collision",
+    "title": "Asteroid Collision",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "We are given an array asteroids of integers representing asteroids in a row. The indices of the asteroids in the array represent their relative position in space.\n\nFor each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.\n\nFind out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.",
+    "examples": [
+      {
+        "input": "asteroids = [5,10,-5]",
+        "output": "[5,10]",
+        "explanation": "The 10 and -5 collide resulting in 10. The 5 and 10 never collide."
+      },
+      {
+        "input": "asteroids = [8,-8]",
+        "output": "[]",
+        "explanation": "The 8 and -8 collide and explode."
+      },
+      {
+        "input": "asteroids = [10,2,-5]",
+        "output": "[10]",
+        "explanation": "The 2 and -5 collide resulting in -5. The 10 and -5 collide resulting in 10."
+      }
+    ],
+    "constraints": [
+      "2 <= asteroids.length <= 10^4",
+      "-1000 <= asteroids[i] <= 1000",
+      "asteroids[i] != 0"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "asteroidCollision",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "asteroids",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] asteroidCollision(int[] asteroids) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[5, 10, -5]",
+        "expected": "[5, 10]"
+      },
+      {
+        "input": "[8, -8]",
+        "expected": "[]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[10, 2, -5]",
+        "expected": "[10]"
+      },
+      {
+        "input": "[-2, -1, 1, 2]",
+        "expected": "[-2, -1, 1, 2]"
+      },
+      {
+        "input": "[1, -2, -2, -2]",
+        "expected": "[-2, -2, -2]"
+      },
+      {
+        "input": "[5, -5]",
+        "expected": "[]"
+      },
+      {
+        "input": "[-5, 5]",
+        "expected": "[-5, 5]"
+      },
+      {
+        "input": "[3, 2, 1, -5]",
+        "expected": "[-5]"
+      }
+    ],
+    "tags": [
+      "stack",
+      "array",
+      "simulation"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Only a right-moving asteroid followed by a left-moving one can collide.",
+      "Keep the surviving asteroids; each new asteroid only ever interacts with the last survivor.",
+      "Compare sizes: the smaller explodes, equal sizes both explode, and a surviving left-mover may keep colliding."
+    ]
+  },
+  {
+    "id": "remove-k-digits",
+    "title": "Remove K Digits",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "Given string num representing a non-negative integer num, and an integer k, return the smallest possible integer after removing k digits from num.",
+    "examples": [
+      {
+        "input": "num = \"1432219\", k = 3",
+        "output": "\"1219\"",
+        "explanation": "Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest."
+      },
+      {
+        "input": "num = \"10200\", k = 1",
+        "output": "\"200\"",
+        "explanation": "Remove the leading 1 and the number is 200. Note that the output must not contain leading zeroes."
+      },
+      {
+        "input": "num = \"10\", k = 2",
+        "output": "\"0\"",
+        "explanation": "Remove all the digits from the number and it is left with nothing which is 0."
+      }
+    ],
+    "constraints": [
+      "1 <= k <= num.length <= 10^5",
+      "num consists of only digits.",
+      "num does not have any leading zeros except for the zero itself"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "removeKdigits",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "num",
+          "type": "String"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String removeKdigits(String num, int k) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "1432219\n3",
+        "expected": "1219"
+      },
+      {
+        "input": "10200\n1",
+        "expected": "200"
+      },
+      {
+        "input": "10\n2",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "10\n1",
+        "expected": "0"
+      },
+      {
+        "input": "112\n1",
+        "expected": "11"
+      },
+      {
+        "input": "9\n1",
+        "expected": "0"
+      },
+      {
+        "input": "10001\n4",
+        "expected": "0"
+      },
+      {
+        "input": "1234567890\n9",
+        "expected": "0"
+      },
+      {
+        "input": "1173\n2",
+        "expected": "11"
+      },
+      {
+        "input": "5337\n2",
+        "expected": "33"
+      }
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack",
+      "string",
+      "greedy"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "To get the smallest number, remove digits that are larger than a digit to their right.",
+      "Scan left to right, dropping previously kept larger digits while you still have removals left.",
+      "After the scan, drop any remaining k from the end, then strip leading zeros (empty means \"0\")."
+    ]
+  },
+  {
+    "id": "score-of-parentheses",
+    "title": "Score of Parentheses",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "Given a balanced parentheses string s, return the score of the string.\n\nThe score of a balanced parentheses string is defined based on the following rule:\n- \"()\" has score 1.\n- AB has score A + B, where A and B are balanced parentheses strings.\n- (A) has score 2 * A, where A is a balanced parentheses string.",
+    "examples": [
+      {
+        "input": "s = \"()\"",
+        "output": "1",
+        "explanation": "\"()\" scores 1 by the base rule."
+      },
+      {
+        "input": "s = \"(())\"",
+        "output": "2",
+        "explanation": "\"(())\" = \"(\" + \"()\" + \")\" so the score is 2 * 1 = 2."
+      },
+      {
+        "input": "s = \"()()\"",
+        "output": "2",
+        "explanation": "\"()\" + \"()\" scores 1 + 1 = 2."
+      }
+    ],
+    "constraints": [
+      "2 <= s.length <= 50",
+      "s is a balanced parentheses string"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "scoreOfParentheses",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int scoreOfParentheses(String s) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "()",
+        "expected": "1"
+      },
+      {
+        "input": "(())",
+        "expected": "2"
+      },
+      {
+        "input": "()()",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "(()(()))",
+        "expected": "6"
+      },
+      {
+        "input": "(((())))",
+        "expected": "8"
+      },
+      {
+        "input": "()(())",
+        "expected": "3"
+      },
+      {
+        "input": "(()())",
+        "expected": "4"
+      },
+      {
+        "input": "(()()())",
+        "expected": "6"
+      },
+      {
+        "input": "()()()",
+        "expected": "3"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Think of the score accumulating as you close parentheses.",
+      "A \"(\" starts a new frame with score 0; a \")\" closing an empty frame scores 1, otherwise it doubles the frame.",
+      "Keep a stack of frame scores and add each completed frame's score into its parent."
+    ]
+  },
+  {
+    "id": "car-fleet",
+    "title": "Car Fleet",
+    "pattern": "stacks",
+    "difficulty": "Medium",
+    "description": "There are n cars at given miles away from the starting mile 0, traveling to reach the mile target.\n\nYou are given two integer arrays position and speed, both of length n, where position[i] is the starting mile of the ith car and speed[i] is the speed of the ith car in miles per hour.\n\nA car cannot pass another car, but it can catch up and then travel next to it at the speed of the slower car.\n\nA car fleet is a set of cars driving at the same position and same speed. Note that a single car is also a car fleet.\n\nIf a car catches up to a car fleet right at the mile target, it will still be considered as part of the car fleet.\n\nReturn the number of car fleets that will arrive at the destination.",
+    "examples": [
+      {
+        "input": "target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]",
+        "output": "3",
+        "explanation": "The cars starting at 10 (speed 2) and 8 (speed 4) become a fleet, meeting at 12. The car starting at 0 does not catch up to any other car, so it is a fleet by itself. The cars starting at 5 (speed 1) and 3 (speed 3) become a fleet, meeting at 6. The fleet never catches up to any other cars, so there are 3 fleets in total."
+      },
+      {
+        "input": "target = 10, position = [3], speed = [3]",
+        "output": "1",
+        "explanation": "There is only one car, hence there is only one fleet."
+      }
+    ],
+    "constraints": [
+      "n == position.length == speed.length",
+      "1 <= n <= 10^5",
+      "0 < target <= 10^6",
+      "0 <= position[i] < target",
+      "All the values of position are unique.",
+      "1 <= speed[i] <= 10^6"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "carFleet",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "target",
+          "type": "int"
+        },
+        {
+          "name": "position",
+          "type": "int[]"
+        },
+        {
+          "name": "speed",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int carFleet(int target, int[] position, int[] speed) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "12\n[10, 8, 0, 5, 3]\n[2, 4, 1, 1, 3]",
+        "expected": "3"
+      },
+      {
+        "input": "10\n[3]\n[3]",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "100\n[0, 2, 4]\n[4, 2, 1]",
+        "expected": "1"
+      },
+      {
+        "input": "10\n[6, 8]\n[3, 2]",
+        "expected": "2"
+      },
+      {
+        "input": "10\n[0, 4, 2]\n[2, 1, 3]",
+        "expected": "1"
+      },
+      {
+        "input": "10\n[0, 5, 9]\n[1, 1, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "15\n[1, 4, 7, 10]\n[3, 2, 1, 1]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "stack",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Each car's arrival time is (target - position) / speed; a faster car behind may catch up to a slower one ahead.",
+      "Sort the cars by starting position, nearest to the target first.",
+      "A car joins the fleet ahead of it if its arrival time is <= that fleet's time; otherwise it starts a new fleet."
+    ]
+  },
+  {
+    "id": "largest-rectangle-in-histogram",
+    "title": "Largest Rectangle in Histogram",
+    "pattern": "stacks",
+    "difficulty": "Hard",
+    "description": "Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.",
+    "examples": [
+      {
+        "input": "heights = [2,1,5,6,2,3]",
+        "output": "10",
+        "explanation": "The largest rectangle is formed by bars of height 5 and 6, with area 2 * 5 = 10."
+      },
+      {
+        "input": "heights = [2,1,2]",
+        "output": "3",
+        "explanation": "The largest rectangle uses all three bars with the minimum height 1, giving area 3 * 1 = 3."
+      }
+    ],
+    "constraints": [
+      "1 <= heights.length <= 10^5",
+      "0 <= heights[i] <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "largestRectangleArea",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "heights",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int largestRectangleArea(int[] heights) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[2, 1, 5, 6, 2, 3]",
+        "expected": "10"
+      },
+      {
+        "input": "[2, 1, 2]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[2, 4]",
+        "expected": "4"
+      },
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[2, 2, 2]",
+        "expected": "6"
+      },
+      {
+        "input": "[6, 5, 4, 3, 2, 1]",
+        "expected": "12"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "9"
+      },
+      {
+        "input": "[3, 6, 5, 7, 4, 8, 1, 0]",
+        "expected": "20"
+      }
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "For each bar, figure out how far it can extend left and right while remaining the shortest bar.",
+      "Keep a stack of increasing bar indices; when a shorter bar arrives, the taller bars on the stack end here.",
+      "Each popped bar's width spans from the new top of the stack to the current index."
+    ]
+  },
+  {
+    "id": "maximal-rectangle",
+    "title": "Maximal Rectangle",
+    "pattern": "stacks",
+    "difficulty": "Hard",
+    "description": "Given a rows x cols binary matrix filled with '0's and '1's, find the largest rectangle containing only '1's and return its area.",
+    "examples": [
+      {
+        "input": "matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]",
+        "output": "6",
+        "explanation": "The largest rectangle of 1s covers rows 1-2 and columns 2-4 (0-indexed), with area 2 * 3 = 6."
+      },
+      {
+        "input": "matrix = [[\"1\",\"0\"],[\"1\",\"1\"]]",
+        "output": "2",
+        "explanation": "The largest rectangle of 1s is the bottom row, with area 2."
+      }
+    ],
+    "constraints": [
+      "rows == matrix.length",
+      "cols == matrix[i].length",
+      "1 <= rows, cols <= 200",
+      "matrix[i][j] is '0' or '1'"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maximalRectangle",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "char[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int maximalRectangle(char[][] matrix) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 0, 1, 0, 0], [1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [1, 0, 0, 1, 0]]",
+        "expected": "6"
+      },
+      {
+        "input": "[[1, 0], [1, 1]]",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[0]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 1], [1, 1]]",
+        "expected": "4"
+      },
+      {
+        "input": "[[0, 0], [0, 0]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 0, 1, 0], [1, 0, 1, 1]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[1, 1, 0, 1, 1]]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "stack",
+      "array",
+      "matrix",
+      "dynamic-programming"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Treat each row as the base of a histogram of consecutive '1's rising above it.",
+      "Update the column heights row by row, then solve largest-rectangle-in-histogram for each row.",
+      "Track the maximum area seen across all rows."
+    ]
+  },
+  {
+    "id": "sum-of-subarray-minimums",
+    "title": "Sum of Subarray Minimums",
+    "pattern": "stacks",
+    "difficulty": "Hard",
+    "description": "Given an integer array arr, find the sum of min(b) for every (contiguous) subarray b of arr.\n\nSince the answer may be large, return the answer modulo 10^9 + 7.",
+    "examples": [
+      {
+        "input": "arr = [3,1,2,4]",
+        "output": "17",
+        "explanation": "Subarrays are [3],[1],[2],[4],[3,1],[1,2],[2,4],[3,1,2],[1,2,4],[3,1,2,4]. Minimums are 3,1,2,4,1,1,2,1,1,1. Sum = 17."
+      },
+      {
+        "input": "arr = [11,81,94,43,3]",
+        "output": "444",
+        "explanation": "The sum of the minimum of every subarray is 444."
+      }
+    ],
+    "constraints": [
+      "1 <= arr.length <= 3 * 10^4",
+      "1 <= arr[i] <= 3 * 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "sumSubarrayMins",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "arr",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int sumSubarrayMins(int[] arr) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[3, 1, 2, 4]",
+        "expected": "17"
+      },
+      {
+        "input": "[1, 1, 1]",
+        "expected": "6"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[11, 81, 94, 43, 3]",
+        "expected": "444"
+      },
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[2, 2, 2]",
+        "expected": "12"
+      },
+      {
+        "input": "[5, 4, 3, 2, 1]",
+        "expected": "35"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "35"
+      },
+      {
+        "input": "[3, 1, 2, 4, 1]",
+        "expected": "22"
+      }
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack",
+      "array",
+      "dynamic-programming"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Each element is the minimum of exactly the subarrays where it is the chosen minimum.",
+      "For each position, find the distance to the previous strictly smaller element and to the next smaller-or-equal element.",
+      "Its contribution is arr[i] * left * right; sum over i modulo 10^9 + 7."
+    ]
+  },
+  {
+    "id": "clear-digits",
+    "title": "Clear Digits",
+    "pattern": "stacks",
+    "difficulty": "Easy",
+    "description": "You are given a string s. Repeatedly perform the following operation until no digits remain: delete the first digit in the string and the closest non-digit character to its left. Every digit in s is guaranteed to have a non-digit character somewhere to its left at the moment it is deleted. Return the resulting string after all digits are removed.",
+    "examples": [
+      {
+        "input": "s = \"abc\"",
+        "output": "abc",
+        "explanation": "There are no digits, so nothing is removed."
+      },
+      {
+        "input": "s = \"cb34\"",
+        "output": "",
+        "explanation": "Delete '3' and 'b' to get \"c4\", then delete '4' and 'c' to get \"\"."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 100",
+      "s consists of lowercase English letters and digits."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "clearDigits",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String clearDigits(String s) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "abc",
+        "expected": "abc"
+      },
+      {
+        "input": "cb34",
+        "expected": ""
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "a1b2c3",
+        "expected": ""
+      },
+      {
+        "input": "abc123",
+        "expected": ""
+      },
+      {
+        "input": "a8b4",
+        "expected": ""
+      },
+      {
+        "input": "xyz",
+        "expected": "xyz"
+      },
+      {
+        "input": "a1",
+        "expected": ""
+      },
+      {
+        "input": "ab12",
+        "expected": ""
+      },
+      {
+        "input": "mnp4q5r6",
+        "expected": "mn"
+      },
+      {
+        "input": "hello1",
+        "expected": "hell"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Process the string left to right and remember the characters you have kept.",
+      "When you meet a digit, which kept character must disappear with it?",
+      "A stack lets you remove the most recently kept character in O(1)."
+    ]
+  },
+  {
+    "id": "longest-valid-parentheses",
+    "title": "Longest Valid Parentheses",
+    "pattern": "stacks",
+    "difficulty": "Hard",
+    "description": "Given a string s containing just the characters '(' and ')', return the length of the longest valid (well-formed) parentheses substring.",
+    "examples": [
+      {
+        "input": "s = \"(()\"",
+        "output": "2",
+        "explanation": "The longest valid parentheses substring is \"()\"."
+      },
+      {
+        "input": "s = \")()())\"",
+        "output": "4",
+        "explanation": "The longest valid parentheses substring is \"()()\"."
+      },
+      {
+        "input": "s = \"\"",
+        "output": "0",
+        "explanation": "The empty string has no valid substring."
+      }
+    ],
+    "constraints": [
+      "0 <= s.length <= 3 * 10^4",
+      "s consists of '(' and ')' only."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "longestValidParentheses",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int longestValidParentheses(String s) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "(()",
+        "expected": "2"
+      },
+      {
+        "input": ")()())",
+        "expected": "4"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "()(())",
+        "expected": "6"
+      },
+      {
+        "input": ")()())()()(",
+        "expected": "4"
+      },
+      {
+        "input": "((()))",
+        "expected": "6"
+      },
+      {
+        "input": ")(",
+        "expected": "0"
+      },
+      {
+        "input": "(",
+        "expected": "0"
+      },
+      {
+        "input": ")",
+        "expected": "0"
+      },
+      {
+        "input": "()(()",
+        "expected": "2"
+      },
+      {
+        "input": "()()()",
+        "expected": "6"
+      },
+      {
+        "input": ")()()(",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "stack",
+      "string",
+      "dynamic-programming"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "A brute-force check of every substring is too slow — think about what information a single scan can keep.",
+      "Keep indices of unmatched '(' characters; the distance between consecutive unmatched positions bounds a valid block.",
+      "A stack holding a 'base' index plus unmatched '(' indices yields the answer in one pass."
+    ]
+  }
+]
