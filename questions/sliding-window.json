@@ -1,0 +1,1801 @@
+[
+  {
+    "id": "maximum-average-subarray-i",
+    "title": "Maximum Average Subarray I",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "You are given an integer array nums consisting of n elements, and an integer k. Find a contiguous subarray whose length is exactly k that has the maximum average value, and return this value.",
+    "examples": [
+      {
+        "input": "nums = [1, 12, -5, -6, 50, 3], k = 4",
+        "output": "12.75",
+        "explanation": "Subarray [12, -5, -6, 50] averages 12.75."
+      },
+      {
+        "input": "nums = [5], k = 1",
+        "output": "5.0",
+        "explanation": "Only one subarray."
+      }
+    ],
+    "constraints": [
+      "1 <= k <= nums.length <= 10^5",
+      "-10^4 <= nums[i] <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "findMaxAverage",
+      "returnType": "double",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public double findMaxAverage(int[] nums, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 12, -5, -6, 50, 3]\n4",
+        "expected": "12.75"
+      },
+      {
+        "input": "[5]\n1",
+        "expected": "5.0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[0, 1, 1, 3, 3]\n4",
+        "expected": "2.0"
+      },
+      {
+        "input": "[-1]\n1",
+        "expected": "-1.0"
+      },
+      {
+        "input": "[4, 2, 1, 3, 3]\n2",
+        "expected": "3.0"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]\n5",
+        "expected": "3.0"
+      },
+      {
+        "input": "[-3, -2, -1]\n2",
+        "expected": "-1.5"
+      },
+      {
+        "input": "[8, 0]\n2",
+        "expected": "4.0"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "The average is maximized exactly when the window sum is maximized.",
+      "Slide a fixed-size window of length k across the array.",
+      "Update the sum in O(1) by adding the new element and subtracting the one that leaves."
+    ]
+  },
+  {
+    "id": "defuse-the-bomb",
+    "title": "Defuse the Bomb",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "You have a circular array code of n integers. To defuse the bomb, replace every number with the sum of the next k numbers if k is positive, the sum of the previous k numbers if k is negative, or 0 if k is zero. The array is circular, so indices wrap around. Return the resulting array.",
+    "examples": [
+      {
+        "input": "code = [5, 7, 1, 4], k = 3",
+        "output": "[12, 10, 16, 13]",
+        "explanation": "Each element becomes the sum of the next 3 (wrapping around)."
+      },
+      {
+        "input": "code = [1, 2, 3, 4], k = 0",
+        "output": "[0, 0, 0, 0]",
+        "explanation": "k = 0 replaces everything with 0."
+      },
+      {
+        "input": "code = [2, 4, 9, 3], k = -2",
+        "output": "[12, 5, 6, 13]",
+        "explanation": "Each element becomes the sum of the previous 2 (wrapping around)."
+      }
+    ],
+    "constraints": [
+      "1 <= code.length <= 100",
+      "1 <= code[i] <= 100",
+      "-100 <= k <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "decrypt",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "code",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] decrypt(int[] code, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[5, 7, 1, 4]\n3",
+        "expected": "[12, 10, 16, 13]"
+      },
+      {
+        "input": "[1, 2, 3, 4]\n0",
+        "expected": "[0, 0, 0, 0]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[2, 4, 9, 3]\n-2",
+        "expected": "[12, 5, 6, 13]"
+      },
+      {
+        "input": "[10, 20, 30]\n1",
+        "expected": "[20, 30, 10]"
+      },
+      {
+        "input": "[10, 20, 30]\n-1",
+        "expected": "[30, 10, 20]"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]\n2",
+        "expected": "[5, 7, 9, 6, 3]"
+      },
+      {
+        "input": "[3, 1, 2]\n-3",
+        "expected": "[6, 6, 6]"
+      },
+      {
+        "input": "[7, 7, 7]\n2",
+        "expected": "[14, 14, 14]"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n * |k|)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Handle k = 0 as a special case returning all zeros.",
+      "For k > 0, index (i + j) % n wraps around the circular array.",
+      "A sliding window can compute all sums in O(n), but the direct O(n*|k|) simulation is fine for n <= 100."
+    ]
+  },
+  {
+    "id": "minimum-recolors-to-get-k-consecutive-black-blocks",
+    "title": "Minimum Recolors to Get K Consecutive Black Blocks",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "You are given a string blocks of length n, where blocks[i] is either \"W\" (white) or \"B\" (black), and an integer k. In one operation you can recolor a white block black. Return the minimum number of operations needed so that there are at least k consecutive black blocks.",
+    "examples": [
+      {
+        "input": "blocks = \"WBBWWBBWBW\", k = 7",
+        "output": "3",
+        "explanation": "Recolor 3 whites inside the best window of 7."
+      },
+      {
+        "input": "blocks = \"WBWBBBW\", k = 2",
+        "output": "0",
+        "explanation": "\"BB\" already exists at indices 3-4."
+      }
+    ],
+    "constraints": [
+      "1 <= blocks.length <= 100",
+      "blocks[i] is \"W\" or \"B\".",
+      "1 <= k <= blocks.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minimumRecolors",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "blocks",
+          "type": "String"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minimumRecolors(String blocks, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "WBBWWBBWBW\n7",
+        "expected": "3"
+      },
+      {
+        "input": "WBWBBBW\n2",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "B\n1",
+        "expected": "0"
+      },
+      {
+        "input": "W\n1",
+        "expected": "1"
+      },
+      {
+        "input": "WWWW\n2",
+        "expected": "2"
+      },
+      {
+        "input": "BBBB\n3",
+        "expected": "0"
+      },
+      {
+        "input": "WBWBWB\n4",
+        "expected": "2"
+      },
+      {
+        "input": "BWWB\n2",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "string",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Any valid answer corresponds to some window of k consecutive positions.",
+      "The cost of a window equals its number of white blocks.",
+      "Slide the window and track the minimum white count."
+    ]
+  },
+  {
+    "id": "contains-duplicate-ii",
+    "title": "Contains Duplicate II",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.",
+    "examples": [
+      {
+        "input": "nums = [1, 2, 3, 1], k = 3",
+        "output": "true",
+        "explanation": "Indices 0 and 3: same value, distance 3."
+      },
+      {
+        "input": "nums = [1, 0, 1, 1], k = 1",
+        "output": "true",
+        "explanation": "Indices 2 and 3: same value, distance 1."
+      },
+      {
+        "input": "nums = [1, 2, 3, 1, 2, 3], k = 2",
+        "output": "false",
+        "explanation": "No equal values within distance 2."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "-10^9 <= nums[i] <= 10^9",
+      "0 <= k <= 10^5"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "containsNearbyDuplicate",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean containsNearbyDuplicate(int[] nums, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 2, 3, 1]\n3",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 0, 1, 1]\n1",
+        "expected": "true"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 2, 3, 1, 2, 3]\n2",
+        "expected": "false"
+      },
+      {
+        "input": "[1, 2, 3, 4]\n3",
+        "expected": "false"
+      },
+      {
+        "input": "[1, 1]\n0",
+        "expected": "false"
+      },
+      {
+        "input": "[5, 5, 5]\n2",
+        "expected": "true"
+      },
+      {
+        "input": "[99, 99]\n2",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 2, 3, 1]\n2",
+        "expected": "false"
+      }
+    ],
+    "tags": [
+      "array",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(k)",
+    "hints": [
+      "Only the last k elements can pair with the current one.",
+      "Maintain a sliding window of at most k recent values in a hash set.",
+      "If the current value is already in the set, return true; otherwise add it and evict the element falling out of the window."
+    ]
+  },
+  {
+    "id": "diet-plan-performance",
+    "title": "Diet Plan Performance",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "A dieter consumes calories[i] calories on day i. For every consecutive sequence of k days, they gain 1 point if the total exceeds upper, lose 1 point if the total is below lower, and gain/lose nothing otherwise. Return the total points after evaluating every k-day window.",
+    "examples": [
+      {
+        "input": "calories = [1, 2, 3, 4, 5], k = 1, lower = 3, upper = 3",
+        "output": "0",
+        "explanation": "Windows: 1<3 (-1), 2<3 (-1), 3 (=0), 4>3 (+1), 5>3 (+1): total 0."
+      },
+      {
+        "input": "calories = [3, 2], k = 2, lower = 0, upper = 1",
+        "output": "1",
+        "explanation": "Total 5 > 1: +1 point."
+      },
+      {
+        "input": "calories = [6, 5, 0, 0], k = 2, lower = 1, upper = 5",
+        "output": "0",
+        "explanation": "Windows 11 (>5: +1) and 0 (<1: -1): total 0."
+      }
+    ],
+    "constraints": [
+      "1 <= k <= calories.length <= 10^5",
+      "0 <= calories[i] <= 30000",
+      "0 <= lower <= upper"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "dietPlanPerformance",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "calories",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        },
+        {
+          "name": "lower",
+          "type": "int"
+        },
+        {
+          "name": "upper",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 2, 3, 4, 5]\n1\n3\n3",
+        "expected": "0"
+      },
+      {
+        "input": "[3, 2]\n2\n0\n1",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[6, 5, 0, 0]\n2\n1\n5",
+        "expected": "0"
+      },
+      {
+        "input": "[6, 13, 8, 7, 10, 1, 12, 11]\n6\n5\n37",
+        "expected": "3"
+      },
+      {
+        "input": "[1, 1, 1, 1]\n4\n4\n4",
+        "expected": "0"
+      },
+      {
+        "input": "[1, 100, 1, 100]\n2\n50\n150",
+        "expected": "0"
+      },
+      {
+        "input": "[100, 200, 300]\n1\n50\n150",
+        "expected": "2"
+      },
+      {
+        "input": "[20, 20, 20]\n2\n30\n50",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Each k-day window contributes -1, 0, or +1 based on its sum.",
+      "A fixed-size sliding window maintains each window sum in O(1).",
+      "Add the new day's calories and subtract the day leaving the window."
+    ]
+  },
+  {
+    "id": "find-the-k-beauty-of-a-number",
+    "title": "Find the K-Beauty of a Number",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "The k-beauty of an integer num is the number of substrings of its decimal representation, of length k, that are divisors of num (substrings equal to 0 are not divisors). Return the k-beauty of num.",
+    "examples": [
+      {
+        "input": "num = 240, k = 2",
+        "output": "2",
+        "explanation": "Substrings \"24\" and \"40\": 240 % 24 = 0 and 240 % 40 = 0."
+      },
+      {
+        "input": "num = 430043, k = 2",
+        "output": "2",
+        "explanation": "Substrings: \"43\",\"30\",\"00\",\"04\",\"43\": divisors of 430043 are the two \"43\"s."
+      }
+    ],
+    "constraints": [
+      "1 <= num <= 10^9",
+      "1 <= k <= number of digits of num"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "divisorSubstrings",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "num",
+          "type": "int"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int divisorSubstrings(int num, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "240\n2",
+        "expected": "2"
+      },
+      {
+        "input": "430043\n2",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "30003\n3",
+        "expected": "1"
+      },
+      {
+        "input": "1\n1",
+        "expected": "1"
+      },
+      {
+        "input": "10\n1",
+        "expected": "1"
+      },
+      {
+        "input": "101\n2",
+        "expected": "1"
+      },
+      {
+        "input": "1000\n2",
+        "expected": "1"
+      },
+      {
+        "input": "999\n1",
+        "expected": "3"
+      }
+    ],
+    "tags": [
+      "string",
+      "sliding-window",
+      "math"
+    ],
+    "timeComplexity": "O(d)",
+    "spaceComplexity": "O(d)",
+    "hints": [
+      "Convert num to a string and slide a window of length k over its digits.",
+      "Parse each window as an integer; skip zeros.",
+      "Count the windows whose value divides num evenly."
+    ]
+  },
+  {
+    "id": "substrings-of-size-three-with-distinct-characters",
+    "title": "Substrings of Size Three with Distinct Characters",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "A string is good if there are no repeated characters. Given a string s, return the number of good substrings of length three in s. Note that if there are multiple occurrences of the same substring, every occurrence counts.",
+    "examples": [
+      {
+        "input": "s = \"xyzzaz\"",
+        "output": "1",
+        "explanation": "Only \"xyz\"? No: substrings are \"xyz\",\"yzz\",\"zza\",\"zaz\": only \"xyz\" has all distinct characters."
+      },
+      {
+        "input": "s = \"aababcabc\"",
+        "output": "4",
+        "explanation": "Good length-3 windows: \"abc\" (index 3), \"bca\" (4), \"cab\" (5), \"abc\" (6)."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 100",
+      "s consists of lowercase English letters."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "countGoodSubstrings",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int countGoodSubstrings(String s) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "xyzzaz",
+        "expected": "1"
+      },
+      {
+        "input": "aababcabc",
+        "expected": "4"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "abc",
+        "expected": "1"
+      },
+      {
+        "input": "aaa",
+        "expected": "0"
+      },
+      {
+        "input": "ab",
+        "expected": "0"
+      },
+      {
+        "input": "abcd",
+        "expected": "2"
+      },
+      {
+        "input": "xyxyxy",
+        "expected": "0"
+      },
+      {
+        "input": "abcabc",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "string",
+      "sliding-window",
+      "hash-table"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "The window size is fixed at 3.",
+      "Slide it across the string one step at a time.",
+      "A window is good when its 3 characters are all different; a small set or frequency check decides that."
+    ]
+  },
+  {
+    "id": "minimum-difference-between-highest-and-lowest-of-k-scores",
+    "title": "Minimum Difference Between Highest and Lowest of K Scores",
+    "pattern": "sliding-window",
+    "difficulty": "Easy",
+    "description": "You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student. Pick k students and return the minimum possible difference between the highest and lowest of their scores.",
+    "examples": [
+      {
+        "input": "nums = [90], k = 1",
+        "output": "0",
+        "explanation": "One student: difference 0."
+      },
+      {
+        "input": "nums = [9, 4, 1, 7], k = 2",
+        "output": "2",
+        "explanation": "Pick 7 and 9: difference 2."
+      }
+    ],
+    "constraints": [
+      "1 <= k <= nums.length <= 1000",
+      "0 <= nums[i] <= 10^5"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minimumDifference",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minimumDifference(int[] nums, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[90]\n1",
+        "expected": "0"
+      },
+      {
+        "input": "[9, 4, 1, 7]\n2",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 2, 3, 4, 5]\n3",
+        "expected": "2"
+      },
+      {
+        "input": "[5, 5, 5, 5]\n2",
+        "expected": "0"
+      },
+      {
+        "input": "[10, 100, 300, 200, 1000, 20, 30]\n3",
+        "expected": "20"
+      },
+      {
+        "input": "[1, 1000000]\n1",
+        "expected": "0"
+      },
+      {
+        "input": "[4, 9, 3, 7, 1]\n4",
+        "expected": "6"
+      },
+      {
+        "input": "[8, 8, 8, 8, 8]\n5",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "array",
+      "sorting",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Sort the scores first; the optimal k students will be consecutive in sorted order.",
+      "Then the problem is a fixed-size sliding window.",
+      "The answer is the minimum of a[i + k - 1] - a[i] over all windows."
+    ]
+  },
+  {
+    "id": "longest-substring-without-repeating-characters",
+    "title": "Longest Substring Without Repeating Characters",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "Given a string s, find the length of the longest substring without repeating characters.",
+    "examples": [
+      {
+        "input": "s = \"abcabcbb\"",
+        "output": "3",
+        "explanation": "\"abc\" is the longest; \"bca\" also qualifies."
+      },
+      {
+        "input": "s = \"bbbbb\"",
+        "output": "1",
+        "explanation": "\"b\" is the longest."
+      },
+      {
+        "input": "s = \"pwwkew\"",
+        "output": "3",
+        "explanation": "\"wke\" is the longest."
+      }
+    ],
+    "constraints": [
+      "0 <= s.length <= 5 * 10^4",
+      "s consists of English letters, digits, symbols and spaces."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "lengthOfLongestSubstring",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int lengthOfLongestSubstring(String s) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "abcabcbb",
+        "expected": "3"
+      },
+      {
+        "input": "bbbbb",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "pwwkew",
+        "expected": "3"
+      },
+      {
+        "input": "a",
+        "expected": "1"
+      },
+      {
+        "input": "abcdef",
+        "expected": "6"
+      },
+      {
+        "input": "abba",
+        "expected": "2"
+      },
+      {
+        "input": "tmmzuxt",
+        "expected": "5"
+      },
+      {
+        "input": "dvdf",
+        "expected": "3"
+      }
+    ],
+    "tags": [
+      "string",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(min(n, alphabet))",
+    "hints": [
+      "Expand the right end of the window one character at a time.",
+      "Keep the last index of each character in a hash map.",
+      "When a repeat appears inside the window, jump the left edge past the previous occurrence."
+    ]
+  },
+  {
+    "id": "minimum-size-subarray-sum",
+    "title": "Minimum Size Subarray Sum",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray whose sum is greater than or equal to target. If there is no such subarray, return 0.",
+    "examples": [
+      {
+        "input": "target = 7, nums = [2, 3, 1, 2, 4, 3]",
+        "output": "2",
+        "explanation": "Subarray [4, 3] sums to 7."
+      },
+      {
+        "input": "target = 4, nums = [1, 4, 4]",
+        "output": "1",
+        "explanation": "Subarray [4] sums to 4."
+      },
+      {
+        "input": "target = 11, nums = [1, 1, 1, 1, 1, 1, 1, 1]",
+        "output": "0",
+        "explanation": "Total sum is only 8."
+      }
+    ],
+    "constraints": [
+      "1 <= target <= 10^9",
+      "1 <= nums.length <= 10^5",
+      "1 <= nums[i] <= 10^5"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minSubArrayLen",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "target",
+          "type": "int"
+        },
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minSubArrayLen(int target, int[] nums) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "7\n[2, 3, 1, 2, 4, 3]",
+        "expected": "2"
+      },
+      {
+        "input": "4\n[1, 4, 4]",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "11\n[1, 1, 1, 1, 1, 1, 1, 1]",
+        "expected": "0"
+      },
+      {
+        "input": "15\n[1, 2, 3, 4, 5]",
+        "expected": "5"
+      },
+      {
+        "input": "100\n[1, 2, 3]",
+        "expected": "0"
+      },
+      {
+        "input": "3\n[1, 1, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "6\n[10, 2, 3]",
+        "expected": "1"
+      },
+      {
+        "input": "5\n[2, 3, 1, 2, 4, 3]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window",
+      "binary-search",
+      "prefix-sum"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Because all numbers are positive, the window sum grows monotonically as the window expands.",
+      "Expand the right edge; while the sum reaches target, record the length and shrink from the left.",
+      "Each element enters and leaves the window once: O(n)."
+    ]
+  },
+  {
+    "id": "longest-repeating-character-replacement",
+    "title": "Longest Repeating Character Replacement",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times. Return the length of the longest substring containing the same letter you can get after performing the operations.",
+    "examples": [
+      {
+        "input": "s = \"ABAB\", k = 2",
+        "output": "4",
+        "explanation": "Replace the two \"B\"s with \"A\"s to get \"AAAA\"."
+      },
+      {
+        "input": "s = \"AABABBA\", k = 1",
+        "output": "4",
+        "explanation": "Replace one \"A\" with \"B\" to get \"BBBB\" inside \"ABBA\"? The best window \"AABA\" -> \"AAAA\" has length 4."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s consists of only uppercase English letters.",
+      "0 <= k <= s.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "characterReplacement",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int characterReplacement(String s, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "ABAB\n2",
+        "expected": "4"
+      },
+      {
+        "input": "AABABBA\n1",
+        "expected": "4"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "AAAA\n2",
+        "expected": "4"
+      },
+      {
+        "input": "ABCDE\n1",
+        "expected": "2"
+      },
+      {
+        "input": "ABBB\n2",
+        "expected": "4"
+      },
+      {
+        "input": "AABABBA\n0",
+        "expected": "2"
+      },
+      {
+        "input": "aabccbb\n2",
+        "expected": "5"
+      },
+      {
+        "input": "EOEMQLL\n2",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "string",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "A window is valid when (window length - most frequent char count) <= k.",
+      "Expand the right edge and track character frequencies.",
+      "When the window becomes invalid, move the left edge forward until it is valid again; track the maximum valid length."
+    ]
+  },
+  {
+    "id": "permutation-in-string",
+    "title": "Permutation in String",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1's permutations is a substring of s2.",
+    "examples": [
+      {
+        "input": "s1 = \"ab\", s2 = \"eidbaooo\"",
+        "output": "true",
+        "explanation": "\"ba\" is a substring of s2."
+      },
+      {
+        "input": "s1 = \"ab\", s2 = \"eidboaoo\"",
+        "output": "false",
+        "explanation": "No length-2 window is a permutation of ab."
+      }
+    ],
+    "constraints": [
+      "1 <= s1.length, s2.length <= 10^4",
+      "s1 and s2 consist of lowercase English letters."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "checkInclusion",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "s1",
+          "type": "String"
+        },
+        {
+          "name": "s2",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean checkInclusion(String s1, String s2) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "ab\neidbaooo",
+        "expected": "true"
+      },
+      {
+        "input": "ab\neidboaoo",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "a\na",
+        "expected": "true"
+      },
+      {
+        "input": "ab\na",
+        "expected": "false"
+      },
+      {
+        "input": "abc\nccccbbbbaaaa",
+        "expected": "false"
+      },
+      {
+        "input": "adc\ndcda",
+        "expected": "true"
+      },
+      {
+        "input": "ab\nab",
+        "expected": "true"
+      },
+      {
+        "input": "abcdxabcde\nabcdeabcdx",
+        "expected": "true"
+      }
+    ],
+    "tags": [
+      "string",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "A permutation of s1 is any window of s2 with the same character counts.",
+      "Slide a fixed window of length s1.length() over s2.",
+      "Compare frequency maps (or a matches-counter) instead of rebuilding them each step."
+    ]
+  },
+  {
+    "id": "fruit-into-baskets",
+    "title": "Fruit Into Baskets",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "You are visiting a row of trees where fruits[i] is the type of fruit the ith tree produces. You have two baskets, each holding one type of fruit. Starting at any tree, you move right picking one fruit per tree, but must stop when a third fruit type appears. Return the maximum number of fruits you can pick: the length of the longest subarray containing at most 2 distinct values.",
+    "examples": [
+      {
+        "input": "fruits = [1, 2, 1]",
+        "output": "3",
+        "explanation": "Pick all three trees."
+      },
+      {
+        "input": "fruits = [0, 1, 2, 2]",
+        "output": "3",
+        "explanation": "Pick [1, 2, 2]."
+      },
+      {
+        "input": "fruits = [1, 2, 3, 2, 2]",
+        "output": "4",
+        "explanation": "Pick [2, 3, 2, 2]."
+      }
+    ],
+    "constraints": [
+      "1 <= fruits.length <= 10^5",
+      "0 <= fruits[i] < fruits.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "totalFruit",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "fruits",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int totalFruit(int[] fruits) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 2, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "[0, 1, 2, 2]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 2, 3, 2, 2]",
+        "expected": "4"
+      },
+      {
+        "input": "[3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]",
+        "expected": "5"
+      },
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[1, 1, 1, 1]",
+        "expected": "4"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "2"
+      },
+      {
+        "input": "[0, 0, 1, 1]",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "array",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "This is the longest subarray with at most 2 distinct numbers.",
+      "Expand right, tracking each fruit type's latest index in a hash map.",
+      "When a third type appears, move the left edge past the type whose last occurrence is earliest."
+    ]
+  },
+  {
+    "id": "maximum-number-of-vowels-in-a-substring-of-given-length",
+    "title": "Maximum Number of Vowels in a Substring of Given Length",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "Given a string s and an integer k, return the maximum number of vowel letters ('a', 'e', 'i', 'o', 'u') in any substring of s with length k.",
+    "examples": [
+      {
+        "input": "s = \"abciiidef\", k = 3",
+        "output": "3",
+        "explanation": "\"iii\" contains 3 vowels."
+      },
+      {
+        "input": "s = \"aeiou\", k = 2",
+        "output": "2",
+        "explanation": "Any length-2 window has 2 vowels."
+      },
+      {
+        "input": "s = \"leetcode\", k = 3",
+        "output": "2",
+        "explanation": "\"lee\" and \"eet\" each have 2 vowels."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s consists of lowercase English letters.",
+      "1 <= k <= s.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maxVowels",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int maxVowels(String s, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "abciiidef\n3",
+        "expected": "3"
+      },
+      {
+        "input": "aeiou\n2",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "leetcode\n3",
+        "expected": "2"
+      },
+      {
+        "input": "a\n1",
+        "expected": "1"
+      },
+      {
+        "input": "b\n1",
+        "expected": "0"
+      },
+      {
+        "input": "aaa\n3",
+        "expected": "3"
+      },
+      {
+        "input": "bbb\n2",
+        "expected": "0"
+      },
+      {
+        "input": "ibpbhix\n2",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "string",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Only whether each character is a vowel matters.",
+      "Slide a fixed window of length k.",
+      "Add 1 when a vowel enters, subtract 1 when a vowel leaves; track the max."
+    ]
+  },
+  {
+    "id": "longest-subarray-of-1s-after-deleting-one-element",
+    "title": "Longest Subarray of 1s After Deleting One Element",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "Given a binary array nums, delete exactly one element from it and return the size of the longest non-empty subarray containing only 1s in the resulting array. If the resulting array has no 1s, return 0.",
+    "examples": [
+      {
+        "input": "nums = [1, 1, 0, 1]",
+        "output": "3",
+        "explanation": "Delete the 0 to get [1, 1, 1]."
+      },
+      {
+        "input": "nums = [0, 1, 1, 1, 0, 1, 1, 0, 1]",
+        "output": "5",
+        "explanation": "Delete a 0 to join five 1s."
+      },
+      {
+        "input": "nums = [1, 1, 1]",
+        "output": "2",
+        "explanation": "You must delete one element even though all are 1."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "nums[i] is 0 or 1."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "longestSubarray",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int longestSubarray(int[] nums) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 1, 0, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "[0, 1, 1, 1, 0, 1, 1, 0, 1]",
+        "expected": "5"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 1, 1]",
+        "expected": "2"
+      },
+      {
+        "input": "[0, 0, 0]",
+        "expected": "0"
+      },
+      {
+        "input": "[1, 0, 1]",
+        "expected": "2"
+      },
+      {
+        "input": "[1, 1, 0, 0, 1, 1, 1, 0, 1]",
+        "expected": "4"
+      },
+      {
+        "input": "[0, 1]",
+        "expected": "1"
+      },
+      {
+        "input": "[1, 0]",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Deleting one element lets the window contain at most one zero.",
+      "Find the longest window with at most one zero.",
+      "The answer is that window length minus 1 (the deleted element); handle the all-ones edge case."
+    ]
+  },
+  {
+    "id": "grumpy-bookstore-owner",
+    "title": "Grumpy Bookstore Owner",
+    "pattern": "sliding-window",
+    "difficulty": "Medium",
+    "description": "A bookstore owner has customers[i] customers entering on minute i, and grumpy[i] = 1 if the owner is grumpy that minute (those customers leave unsatisfied) or 0 if not. The owner can use a secret technique to stay calm for exactly minutes consecutive minutes, making all customers in that window satisfied. Return the maximum number of satisfied customers.",
+    "examples": [
+      {
+        "input": "customers = [1, 0, 1, 2, 1, 1, 7, 5], grumpy = [0, 1, 0, 1, 0, 1, 0, 1], minutes = 3",
+        "output": "16",
+        "explanation": "Use the technique on minutes 3-5: customers 2, 1, 1 become satisfied."
+      },
+      {
+        "input": "customers = [1], grumpy = [0], minutes = 1",
+        "output": "1",
+        "explanation": "The single customer is already satisfied."
+      }
+    ],
+    "constraints": [
+      "1 <= customers.length <= 2 * 10^4",
+      "0 <= customers[i] <= 1000",
+      "grumpy[i] is 0 or 1.",
+      "1 <= minutes <= customers.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maxSatisfied",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "customers",
+          "type": "int[]"
+        },
+        {
+          "name": "grumpy",
+          "type": "int[]"
+        },
+        {
+          "name": "minutes",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 0, 1, 2, 1, 1, 7, 5]\n[0, 1, 0, 1, 0, 1, 0, 1]\n3",
+        "expected": "16"
+      },
+      {
+        "input": "[1]\n[0]\n1",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1]\n[1]\n1",
+        "expected": "1"
+      },
+      {
+        "input": "[4, 10, 10]\n[1, 1, 0]\n2",
+        "expected": "24"
+      },
+      {
+        "input": "[2, 6, 6, 9]\n[0, 0, 1, 1]\n1",
+        "expected": "17"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]\n[1, 1, 1, 1, 1]\n5",
+        "expected": "15"
+      },
+      {
+        "input": "[5, 8]\n[0, 1]\n1",
+        "expected": "13"
+      },
+      {
+        "input": "[10, 1, 7]\n[1, 0, 1]\n2",
+        "expected": "11"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Customers during non-grumpy minutes are always satisfied: sum those first.",
+      "The technique only helps grumpy minutes, so slide a window maximizing the extra grumpy-minute customers covered.",
+      "Add the base satisfied count to the best window gain."
+    ]
+  },
+  {
+    "id": "minimum-window-substring",
+    "title": "Minimum Window Substring",
+    "pattern": "sliding-window",
+    "difficulty": "Hard",
+    "description": "Given two strings s and t, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. Every test case in this problem has at least one valid window, so the answer is never empty.",
+    "examples": [
+      {
+        "input": "s = \"ADOBECODEBANC\", t = \"ABC\"",
+        "output": "\"BANC\"",
+        "explanation": "The smallest window containing A, B, C."
+      },
+      {
+        "input": "s = \"a\", t = \"a\"",
+        "output": "\"a\"",
+        "explanation": "The whole string."
+      },
+      {
+        "input": "s = \"ab\", t = \"b\"",
+        "output": "\"b\"",
+        "explanation": "The window is just the last character."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length, t.length <= 10^5",
+      "s and t consist of uppercase and lowercase English letters."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minWindow",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        },
+        {
+          "name": "t",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String minWindow(String s, String t) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "ADOBECODEBANC\nABC",
+        "expected": "BANC"
+      },
+      {
+        "input": "a\na",
+        "expected": "a"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "ab\nb",
+        "expected": "b"
+      },
+      {
+        "input": "abc\ncba",
+        "expected": "abc"
+      },
+      {
+        "input": "aab\naab",
+        "expected": "aab"
+      },
+      {
+        "input": "bdab\nab",
+        "expected": "ab"
+      },
+      {
+        "input": "cabwefgewcwaefgcf\ncae",
+        "expected": "cwae"
+      },
+      {
+        "input": "aa\naa",
+        "expected": "aa"
+      }
+    ],
+    "tags": [
+      "string",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n + m)",
+    "spaceComplexity": "O(n + m)",
+    "hints": [
+      "Expand the right edge until the window contains all of t's characters.",
+      "Track how many required characters are still missing.",
+      "Once valid, shrink from the left as far as possible, recording the smallest valid window."
+    ]
+  },
+  {
+    "id": "sliding-window-maximum",
+    "title": "Sliding Window Maximum",
+    "pattern": "sliding-window",
+    "difficulty": "Hard",
+    "description": "You are given an array of integers nums and an integer k. There is a sliding window of size k moving from left to right over the array. At each position, return the maximum value inside the current window. Return the results as an array.",
+    "examples": [
+      {
+        "input": "nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3",
+        "output": "[3, 3, 5, 5, 6, 7]",
+        "explanation": "Maximum of each window of size 3."
+      },
+      {
+        "input": "nums = [1], k = 1",
+        "output": "[1]",
+        "explanation": "A single window."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "-10^4 <= nums[i] <= 10^4",
+      "1 <= k <= nums.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maxSlidingWindow",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] maxSlidingWindow(int[] nums, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 3, -1, -3, 5, 3, 6, 7]\n3",
+        "expected": "[3, 3, 5, 5, 6, 7]"
+      },
+      {
+        "input": "[1]\n1",
+        "expected": "[1]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[9, 11]\n2",
+        "expected": "[11]"
+      },
+      {
+        "input": "[4, -2]\n2",
+        "expected": "[4]"
+      },
+      {
+        "input": "[1, 3, 1, 2, 0, 5]\n3",
+        "expected": "[3, 3, 2, 5]"
+      },
+      {
+        "input": "[7, 2, 4]\n1",
+        "expected": "[7, 2, 4]"
+      },
+      {
+        "input": "[-7, -8, 7, 5, 7, 1, 6, 0]\n4",
+        "expected": "[7, 7, 7, 7, 7]"
+      },
+      {
+        "input": "[1, -1]\n1",
+        "expected": "[1, -1]"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window",
+      "deque",
+      "heap"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(k)",
+    "hints": [
+      "A brute-force scan of each window is O(n*k).",
+      "Maintain a deque of candidate indices in decreasing value order.",
+      "Drop indices that fall out of the window from the front; the front always holds the current maximum."
+    ]
+  },
+  {
+    "id": "substring-with-concatenation-of-all-words",
+    "title": "Substring with Concatenation of All Words",
+    "pattern": "sliding-window",
+    "difficulty": "Hard",
+    "description": "You are given a string s and an array of strings words. All the strings in words are of the same length. A concatenated substring is a substring of s formed by concatenating each word in words exactly once, in any order, with no intervening characters. Return all starting indices of concatenated substrings in s, sorted in ascending order.",
+    "examples": [
+      {
+        "input": "s = \"barfoothefoobarman\", words = [\"foo\", \"bar\"]",
+        "output": "[0, 9]",
+        "explanation": "\"barfoo\" at 0 and \"foobar\" at 9."
+      },
+      {
+        "input": "s = \"wordgoodgoodgoodbestword\", words = [\"word\", \"good\", \"best\", \"word\"]",
+        "output": "[]",
+        "explanation": "No concatenation of all words appears."
+      },
+      {
+        "input": "s = \"barfoofoobarthefoobarman\", words = [\"bar\", \"foo\", \"the\"]",
+        "output": "[6, 9, 12]",
+        "explanation": "Three valid windows."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^4",
+      "1 <= words.length <= 5000",
+      "1 <= words[i].length <= 30",
+      "All words have the same length."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "findSubstring",
+      "returnType": "List<Integer>",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        },
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "import java.util.*;\n\nclass Solution {\n    public List<Integer> findSubstring(String s, String[] words) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "barfoothefoobarman\n[\"foo\", \"bar\"]",
+        "expected": "[0, 9]"
+      },
+      {
+        "input": "barfoofoobarthefoobarman\n[\"bar\", \"foo\", \"the\"]",
+        "expected": "[6, 9, 12]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "a\n[\"a\"]",
+        "expected": "[0]"
+      },
+      {
+        "input": "aaa\n[\"a\", \"a\"]",
+        "expected": "[0, 1]"
+      },
+      {
+        "input": "lingmindraboofooowingdingbarrwingmonkeypoundcake\n[\"fooo\", \"barr\", \"wing\", \"ding\", \"wing\"]",
+        "expected": "[13]"
+      },
+      {
+        "input": "ababaab\n[\"ab\", \"ba\", \"ab\"]",
+        "expected": "[]"
+      },
+      {
+        "input": "mississippi\n[\"is\"]",
+        "expected": "[1, 4]"
+      },
+      {
+        "input": "abcd\n[\"ab\", \"cd\"]",
+        "expected": "[0]"
+      }
+    ],
+    "tags": [
+      "string",
+      "hash-table",
+      "sliding-window"
+    ],
+    "timeComplexity": "O(n * w)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "All words share one length L; any valid window has length L * words.length.",
+      "Run a sliding window over word-aligned chunks for each offset 0..L-1.",
+      "Compare word-frequency maps between the window and the target multiset."
+    ]
+  },
+  {
+    "id": "minimum-number-of-k-consecutive-bit-flips",
+    "title": "Minimum Number of K Consecutive Bit Flips",
+    "pattern": "sliding-window",
+    "difficulty": "Hard",
+    "description": "You are given a binary array nums and an integer k. A k-bit flip chooses a subarray of length k and flips every bit in it (0 becomes 1, 1 becomes 0). Return the minimum number of k-bit flips required so that every bit in the array is 1. If it is not possible, return -1.",
+    "examples": [
+      {
+        "input": "nums = [0, 1, 0], k = 1",
+        "output": "2",
+        "explanation": "Flip each 0 individually."
+      },
+      {
+        "input": "nums = [1, 1, 0], k = 2",
+        "output": "-1",
+        "explanation": "Flipping [1, 1] gives [0, 0, 0]; flipping [1, 0] gives [1, 0, 1]; impossible."
+      },
+      {
+        "input": "nums = [0, 0, 0, 1, 0, 1, 1, 0], k = 3",
+        "output": "3",
+        "explanation": "Three flips suffice."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "1 <= k <= nums.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minKBitFlips",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minKBitFlips(int[] nums, int k) {\n        \n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[0, 1, 0]\n1",
+        "expected": "2"
+      },
+      {
+        "input": "[1, 1, 0]\n2",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[0, 0, 0, 1, 0, 1, 1, 0]\n3",
+        "expected": "3"
+      },
+      {
+        "input": "[1, 1, 1]\n2",
+        "expected": "0"
+      },
+      {
+        "input": "[0, 0, 0]\n1",
+        "expected": "3"
+      },
+      {
+        "input": "[0, 1, 1, 1]\n2",
+        "expected": "-1"
+      },
+      {
+        "input": "[1, 0, 0]\n2",
+        "expected": "1"
+      },
+      {
+        "input": "[0, 0, 1, 0]\n2",
+        "expected": "-1"
+      }
+    ],
+    "tags": [
+      "array",
+      "sliding-window",
+      "greedy",
+      "difference-array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Greedy works: scan left to right, and whenever the current bit is effectively 0, flip starting here.",
+      "An earlier decision never needs revisiting because no later flip can fix position i.",
+      "Track active flips with a difference array (or a queue of flip end positions) for O(n) time."
+    ]
+  }
+]

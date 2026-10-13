@@ -1,0 +1,1712 @@
+[
+  {
+    "id": "count-connected-components",
+    "title": "Count Connected Components",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges, where each edge is [u, v]. Return the number of connected components in the graph. Two nodes are in the same component if there is a path between them.",
+    "examples": [
+      {
+        "input": "n = 5, edges = [[0,1],[1,2],[3,4]]",
+        "output": "2",
+        "explanation": "The components are {0, 1, 2} and {3, 4}."
+      },
+      {
+        "input": "n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]",
+        "output": "1",
+        "explanation": "All nodes are connected into one component."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 1000",
+      "0 <= edges.length <= 10^4",
+      "0 <= u, v < n"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "countComponents",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[[0, 1], [1, 2], [3, 4]]",
+        "expected": "2"
+      },
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1\n[]",
+        "expected": "1"
+      },
+      {
+        "input": "4\n[]",
+        "expected": "4"
+      },
+      {
+        "input": "6\n[[0, 1], [2, 3], [4, 5]]",
+        "expected": "3"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2], [0, 2]]",
+        "expected": "1"
+      },
+      {
+        "input": "7\n[[0, 1], [1, 2], [3, 4]]",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "bfs",
+      "union-find"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Start a graph search from any unvisited node and mark everything you can reach.",
+      "Each time you start a new search from an unvisited node, you have found one more component.",
+      "Union-Find also works: union every edge, then count distinct roots."
+    ]
+  },
+  {
+    "id": "has-path-in-graph",
+    "title": "Find If Path Exists in Graph",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges. Given a source node and a destination node, return true if there is a path between them, and false otherwise.",
+    "examples": [
+      {
+        "input": "n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2",
+        "output": "true",
+        "explanation": "There is a direct edge from 0 to 2."
+      },
+      {
+        "input": "n = 6, edges = [[0,1],[0,2],[3,5],[5,4],[4,3]], source = 0, destination = 5",
+        "output": "false",
+        "explanation": "Nodes 0 and 5 are in different components."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 2000",
+      "0 <= edges.length <= 2000",
+      "0 <= source, destination < n"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "validPath",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        },
+        {
+          "name": "source",
+          "type": "int"
+        },
+        {
+          "name": "destination",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean validPath(int n, int[][] edges, int source, int destination) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "3\n[[0, 1], [1, 2], [2, 0]]\n0\n2",
+        "expected": "true"
+      },
+      {
+        "input": "6\n[[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]]\n0\n5",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1\n[]\n0\n0",
+        "expected": "true"
+      },
+      {
+        "input": "4\n[[0, 1], [2, 3]]\n0\n3",
+        "expected": "false"
+      },
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]\n0\n4",
+        "expected": "true"
+      },
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]\n4\n0",
+        "expected": "true"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [3, 4]]\n2\n3",
+        "expected": "false"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "bfs"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Run a BFS or DFS starting from the source node.",
+      "If you ever visit the destination, the answer is true.",
+      "You can stop the search early once the destination is found."
+    ]
+  },
+  {
+    "id": "largest-connected-component",
+    "title": "Largest Connected Component Size",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges. Return the size (number of nodes) of the largest connected component.",
+    "examples": [
+      {
+        "input": "n = 6, edges = [[0,1],[1,2],[3,4]]",
+        "output": "3",
+        "explanation": "The largest component is {0, 1, 2} with size 3."
+      },
+      {
+        "input": "n = 4, edges = []",
+        "output": "1",
+        "explanation": "Every node is alone, so the largest component has size 1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 1000",
+      "0 <= edges.length <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "largestComponent",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int largestComponent(int n, int[][] edges) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "6\n[[0, 1], [1, 2], [3, 4]]",
+        "expected": "3"
+      },
+      {
+        "input": "4\n[]",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "5\n[[0, 1], [2, 3], [3, 4]]",
+        "expected": "3"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2], [0, 2]]",
+        "expected": "3"
+      },
+      {
+        "input": "8\n[[0, 1], [2, 3], [4, 5], [6, 7]]",
+        "expected": "2"
+      },
+      {
+        "input": "1\n[]",
+        "expected": "1"
+      },
+      {
+        "input": "10\n[[0, 9], [1, 9], [2, 9], [3, 9]]",
+        "expected": "5"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "bfs"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Find every connected component with BFS or DFS.",
+      "Count the nodes in each component and keep the maximum.",
+      "This is the same traversal as counting components, plus a size counter."
+    ]
+  },
+  {
+    "id": "nodes-at-distance-k",
+    "title": "Count Nodes at Distance K",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1, a list of undirected edges, a source node, and an integer k. Return the number of nodes whose shortest-path distance from the source is exactly k. The source itself is at distance 0.",
+    "examples": [
+      {
+        "input": "n = 6, edges = [[0,1],[0,2],[1,3],[2,3],[3,4],[4,5]], source = 0, k = 2",
+        "output": "1",
+        "explanation": "Only node 3 is at distance 2 from node 0."
+      },
+      {
+        "input": "n = 5, edges = [[0,1],[1,2],[2,3],[3,4]], source = 2, k = 1",
+        "output": "2",
+        "explanation": "Nodes 1 and 3 are at distance 1 from node 2."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 1000",
+      "0 <= edges.length <= 10^4",
+      "0 <= source < n",
+      "0 <= k <= n"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "nodesAtDistanceK",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        },
+        {
+          "name": "source",
+          "type": "int"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int nodesAtDistanceK(int n, int[][] edges, int source, int k) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "6\n[[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [4, 5]]\n0\n2",
+        "expected": "1"
+      },
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]\n2\n1",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 3]]\n0\n3",
+        "expected": "1"
+      },
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 3]]\n0\n5",
+        "expected": "0"
+      },
+      {
+        "input": "1\n[]\n0\n0",
+        "expected": "1"
+      },
+      {
+        "input": "7\n[[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]]\n0\n2",
+        "expected": "4"
+      },
+      {
+        "input": "5\n[[0, 1], [0, 2], [0, 3], [0, 4]]\n0\n1",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "BFS naturally visits nodes in order of increasing distance.",
+      "Record the distance of each node when you first visit it.",
+      "Count how many nodes ended up with distance exactly k."
+    ]
+  },
+  {
+    "id": "is-valid-tree",
+    "title": "Graph Valid Tree",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges. Return true if the edges form a valid tree, i.e. the graph is connected and contains no cycles.",
+    "examples": [
+      {
+        "input": "n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]",
+        "output": "true",
+        "explanation": "The graph is connected and has no cycles."
+      },
+      {
+        "input": "n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]",
+        "output": "false",
+        "explanation": "There is a cycle 1-2-3-1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 2000",
+      "0 <= edges.length <= 5000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "validTree",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean validTree(int n, int[][] edges) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[[0, 1], [0, 2], [0, 3], [1, 4]]",
+        "expected": "true"
+      },
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1\n[]",
+        "expected": "true"
+      },
+      {
+        "input": "2\n[]",
+        "expected": "false"
+      },
+      {
+        "input": "4\n[[0, 1], [2, 3]]",
+        "expected": "false"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2]]",
+        "expected": "true"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [2, 0], [3, 4], [4, 5]]",
+        "expected": "false"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "bfs",
+      "union-find"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "A tree with n nodes must have exactly n-1 edges.",
+      "Edges alone are not enough: the graph must also be connected.",
+      "Check both conditions: edge count and a single connected component."
+    ]
+  },
+  {
+    "id": "dfs-visit-order",
+    "title": "DFS Visit Order",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges. Perform a depth-first search starting from node 0, always visiting neighbors in ascending order, and return the order in which nodes are first visited. Only nodes reachable from node 0 are included.",
+    "examples": [
+      {
+        "input": "n = 5, edges = [[0,1],[0,2],[1,3],[1,4]]",
+        "output": "[0, 1, 3, 4, 2]",
+        "explanation": "Visit 0, then neighbor 1, then 1's neighbors 3 and 4, then backtrack to 2."
+      },
+      {
+        "input": "n = 4, edges = [[0,1],[2,3]]",
+        "output": "[0, 1]",
+        "explanation": "Only nodes 0 and 1 are reachable from node 0."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 1000",
+      "0 <= edges.length <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "dfsOrder",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] dfsOrder(int n, int[][] edges) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[[0, 1], [0, 2], [1, 3], [1, 4]]",
+        "expected": "[0, 1, 3, 4, 2]"
+      },
+      {
+        "input": "4\n[[0, 1], [2, 3]]",
+        "expected": "[0, 1]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1\n[]",
+        "expected": "[0]"
+      },
+      {
+        "input": "3\n[[0, 2], [0, 1]]",
+        "expected": "[0, 1, 2]"
+      },
+      {
+        "input": "6\n[[0, 1], [0, 2], [1, 3], [2, 4], [3, 5]]",
+        "expected": "[0, 1, 3, 5, 2, 4]"
+      },
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 3]]",
+        "expected": "[0, 1, 2, 3]"
+      },
+      {
+        "input": "5\n[[1, 2], [3, 4]]",
+        "expected": "[0]"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Build an adjacency list and sort each neighbor list.",
+      "Use recursion or an explicit stack, marking nodes visited.",
+      "Append a node to the answer the first time you visit it."
+    ]
+  },
+  {
+    "id": "bfs-visit-order",
+    "title": "BFS Visit Order",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges. Perform a breadth-first search starting from node 0, always enqueuing neighbors in ascending order, and return the order in which nodes are first visited. Only nodes reachable from node 0 are included.",
+    "examples": [
+      {
+        "input": "n = 5, edges = [[0,1],[0,2],[1,3],[1,4]]",
+        "output": "[0, 1, 2, 3, 4]",
+        "explanation": "Level 0: {0}; level 1: {1, 2}; level 2: {3, 4}."
+      },
+      {
+        "input": "n = 4, edges = [[0,1],[2,3]]",
+        "output": "[0, 1]",
+        "explanation": "Only nodes 0 and 1 are reachable from node 0."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 1000",
+      "0 <= edges.length <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "bfsOrder",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] bfsOrder(int n, int[][] edges) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[[0, 1], [0, 2], [1, 3], [1, 4]]",
+        "expected": "[0, 1, 2, 3, 4]"
+      },
+      {
+        "input": "4\n[[0, 1], [2, 3]]",
+        "expected": "[0, 1]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1\n[]",
+        "expected": "[0]"
+      },
+      {
+        "input": "4\n[[0, 3], [0, 2], [0, 1]]",
+        "expected": "[0, 1, 2, 3]"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]]",
+        "expected": "[0, 1, 2, 3, 4, 5]"
+      },
+      {
+        "input": "5\n[[0, 4], [0, 3], [0, 2], [0, 1]]",
+        "expected": "[0, 1, 2, 3, 4]"
+      },
+      {
+        "input": "3\n[]",
+        "expected": "[0]"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Use a queue: push the start node, then repeatedly pop and push unvisited neighbors.",
+      "Sort each adjacency list so neighbors are enqueued in ascending order.",
+      "Mark nodes visited when enqueued to avoid duplicates."
+    ]
+  },
+  {
+    "id": "reachable-nodes-from-source",
+    "title": "Reachable Nodes from Source",
+    "pattern": "graph-traversal",
+    "difficulty": "Easy",
+    "description": "You are given n nodes labeled from 0 to n-1, a list of undirected edges, and a source node. Return all nodes reachable from the source (including the source itself), sorted in ascending order.",
+    "examples": [
+      {
+        "input": "n = 5, edges = [[0,1],[1,2],[3,4]], source = 0",
+        "output": "[0, 1, 2]",
+        "explanation": "Nodes 0, 1 and 2 are reachable from node 0."
+      },
+      {
+        "input": "n = 4, edges = [[0,1],[2,3]], source = 3",
+        "output": "[2, 3]",
+        "explanation": "Nodes 2 and 3 form the component containing node 3."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 1000",
+      "0 <= edges.length <= 10^4",
+      "0 <= source < n"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "reachableNodes",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        },
+        {
+          "name": "source",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] reachableNodes(int n, int[][] edges, int source) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[[0, 1], [1, 2], [3, 4]]\n0",
+        "expected": "[0, 1, 2]"
+      },
+      {
+        "input": "4\n[[0, 1], [2, 3]]\n3",
+        "expected": "[2, 3]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "3\n[]\n1",
+        "expected": "[1]"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [2, 0], [3, 4], [4, 5], [5, 3]]\n4",
+        "expected": "[3, 4, 5]"
+      },
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]\n2",
+        "expected": "[0, 1, 2, 3, 4]"
+      },
+      {
+        "input": "4\n[[0, 1], [0, 2], [0, 3]]\n0",
+        "expected": "[0, 1, 2, 3]"
+      },
+      {
+        "input": "7\n[[0, 1], [2, 3]]\n5",
+        "expected": "[5]"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "bfs"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Run a BFS or DFS from the source node.",
+      "Collect every node you visit.",
+      "Sort the collected nodes before returning."
+    ]
+  },
+  {
+    "id": "shortest-path-unweighted",
+    "title": "Shortest Path in Unweighted Graph",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "You are given n nodes labeled from 0 to n-1, a list of undirected edges, a source node and a destination node. Return the length (number of edges) of the shortest path from source to destination, or -1 if no path exists.",
+    "examples": [
+      {
+        "input": "n = 6, edges = [[0,1],[0,2],[1,3],[2,3],[3,4],[4,5]], source = 0, destination = 5",
+        "output": "4",
+        "explanation": "One shortest path is 0-1-3-4-5 with 4 edges."
+      },
+      {
+        "input": "n = 4, edges = [[0,1],[2,3]], source = 0, destination = 3",
+        "output": "-1",
+        "explanation": "No path exists between the two components."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 2000",
+      "0 <= edges.length <= 10^4",
+      "0 <= source, destination < n"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "shortestPath",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        },
+        {
+          "name": "source",
+          "type": "int"
+        },
+        {
+          "name": "destination",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int shortestPath(int n, int[][] edges, int source, int destination) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "6\n[[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [4, 5]]\n0\n5",
+        "expected": "4"
+      },
+      {
+        "input": "4\n[[0, 1], [2, 3]]\n0\n3",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]\n0\n4",
+        "expected": "4"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2], [0, 2]]\n0\n2",
+        "expected": "1"
+      },
+      {
+        "input": "1\n[]\n0\n0",
+        "expected": "0"
+      },
+      {
+        "input": "7\n[[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 6]]\n5\n6",
+        "expected": "6"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [3, 4], [4, 5]]\n2\n5",
+        "expected": "-1"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs",
+      "shortest-path"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "In an unweighted graph, BFS finds shortest paths.",
+      "Track the distance of each node from the source.",
+      "Return -1 if the destination is never reached."
+    ]
+  },
+  {
+    "id": "is-graph-bipartite",
+    "title": "Is Graph Bipartite?",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "You are given an undirected graph as an adjacency list: graph[i] lists all neighbors of node i. Return true if the graph is bipartite, i.e. its nodes can be colored with two colors so that no edge connects two nodes of the same color. The graph may be disconnected.",
+    "examples": [
+      {
+        "input": "graph = [[1,3],[0,2],[1,3],[0,2]]",
+        "output": "true",
+        "explanation": "Color {0, 2} red and {1, 3} blue."
+      },
+      {
+        "input": "graph = [[1,2,3],[0,2],[0,1,3],[0,2]]",
+        "output": "false",
+        "explanation": "Nodes 0, 1, 2 form a triangle, which is not 2-colorable."
+      }
+    ],
+    "constraints": [
+      "1 <= graph.length <= 100",
+      "0 <= graph[i].length <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "isBipartite",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "graph",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean isBipartite(int[][] graph) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 3], [0, 2], [1, 3], [0, 2]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]]",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1], [0]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1], [0], [3], [2]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1, 2], [0, 2], [0, 1]]",
+        "expected": "false"
+      },
+      {
+        "input": "[[1], [0], [1]]",
+        "expected": "true"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs",
+      "dfs",
+      "coloring"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Try 2-coloring the graph with BFS: color each neighbor the opposite color.",
+      "If you ever need to color a node with a color different from its current one, it is not bipartite.",
+      "Remember to start a new BFS for each disconnected component."
+    ]
+  },
+  {
+    "id": "time-to-inform-all-employees",
+    "title": "Time Needed to Inform All Employees",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "A company has n employees labeled 0 to n-1. manager[i] is the manager of employee i (manager[headID] = -1 for the head). informTime[i] is the minutes employee i needs to inform all direct subordinates. Informing happens in parallel down the hierarchy. Return the total minutes needed for the head to inform everyone.",
+    "examples": [
+      {
+        "input": "n = 1, headID = 0, manager = [-1], informTime = [0]",
+        "output": "0",
+        "explanation": "There is only the head employee."
+      },
+      {
+        "input": "n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]",
+        "output": "1",
+        "explanation": "The head (employee 2) informs everyone directly in 1 minute."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 10^5",
+      "0 <= headID < n",
+      "manager[headID] = -1"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "numOfMinutes",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "headID",
+          "type": "int"
+        },
+        {
+          "name": "manager",
+          "type": "int[]"
+        },
+        {
+          "name": "informTime",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "1\n0\n[-1]\n[0]",
+        "expected": "0"
+      },
+      {
+        "input": "6\n2\n[2, 2, -1, 2, 2, 2]\n[0, 0, 1, 0, 0, 0]",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "7\n6\n[1, 2, 3, 4, 5, 6, -1]\n[0, 6, 5, 4, 3, 2, 1]",
+        "expected": "21"
+      },
+      {
+        "input": "4\n0\n[-1, 0, 0, 1]\n[3, 2, 0, 0]",
+        "expected": "5"
+      },
+      {
+        "input": "3\n0\n[-1, 0, 0]\n[1, 0, 0]",
+        "expected": "1"
+      },
+      {
+        "input": "5\n4\n[4, 4, 4, 4, -1]\n[0, 0, 0, 0, 7]",
+        "expected": "7"
+      },
+      {
+        "input": "2\n1\n[1, -1]\n[0, 5]",
+        "expected": "5"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs",
+      "dfs",
+      "tree"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Build the hierarchy as an adjacency list from manager to subordinates.",
+      "The answer is the maximum over all root-to-leaf paths of the informTime sums.",
+      "DFS or BFS from the head, accumulating time along each path."
+    ]
+  },
+  {
+    "id": "all-paths-source-target",
+    "title": "All Paths From Source to Target",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "You are given a directed acyclic graph (DAG) of n nodes labeled 0 to n-1 as an adjacency list graph[i]. Return all possible paths from node 0 to node n-1. Return the paths sorted in lexicographical order.",
+    "examples": [
+      {
+        "input": "graph = [[1,2],[3],[3],[]]",
+        "output": "[[0, 1, 3], [0, 2, 3]]",
+        "explanation": "The paths are [0,1,3] and [0,2,3]."
+      },
+      {
+        "input": "graph = [[4,3,1],[3,2,4],[3],[4],[]]",
+        "output": "[[0, 1, 2, 3, 4], [0, 1, 3, 4], [0, 1, 4], [0, 3, 4], [0, 4]]",
+        "explanation": "Five paths exist from 0 to 4; they are returned in sorted order."
+      }
+    ],
+    "constraints": [
+      "2 <= n <= 15",
+      "graph[i] contains nodes in increasing order",
+      "The graph is a DAG"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "allPathsSourceTarget",
+      "returnType": "List<List<Integer>>",
+      "params": [
+        {
+          "name": "graph",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2], [3], [3], []]",
+        "expected": "[[0, 1, 3], [0, 2, 3]]"
+      },
+      {
+        "input": "[[4, 3, 1], [3, 2, 4], [3], [4], []]",
+        "expected": "[[0, 1, 2, 3, 4], [0, 1, 3, 4], [0, 1, 4], [0, 3, 4], [0, 4]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1], []]",
+        "expected": "[[0, 1]]"
+      },
+      {
+        "input": "[[1, 2], [], []]",
+        "expected": "[[0, 2]]"
+      },
+      {
+        "input": "[[1], [2], [3], []]",
+        "expected": "[[0, 1, 2, 3]]"
+      },
+      {
+        "input": "[[1, 2, 3], [4], [4], [4], [5], []]",
+        "expected": "[[0, 1, 4, 5], [0, 2, 4, 5], [0, 3, 4, 5]]"
+      },
+      {
+        "input": "[[2], [2], []]",
+        "expected": "[[0, 2]]"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "backtracking"
+    ],
+    "timeComplexity": "O(2^n * n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Use DFS from node 0, keeping the current path.",
+      "When you reach node n-1, save a copy of the path.",
+      "Sort the collected paths lexicographically before returning."
+    ]
+  },
+  {
+    "id": "cycle-in-undirected-graph",
+    "title": "Detect Cycle in Undirected Graph",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of undirected edges. Return true if the graph contains at least one cycle, and false otherwise. A duplicate edge between the same pair of nodes counts as a cycle.",
+    "examples": [
+      {
+        "input": "n = 4, edges = [[0,1],[1,2],[2,3]]",
+        "output": "false",
+        "explanation": "This is a simple path with no cycle."
+      },
+      {
+        "input": "n = 4, edges = [[0,1],[1,2],[2,0]]",
+        "output": "true",
+        "explanation": "Nodes 0-1-2 form a cycle."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 2000",
+      "0 <= edges.length <= 5000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "hasCycle",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean hasCycle(int n, int[][] edges) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 3]]",
+        "expected": "false"
+      },
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 0]]",
+        "expected": "true"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1\n[]",
+        "expected": "false"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2], [0, 2]]",
+        "expected": "true"
+      },
+      {
+        "input": "5\n[[0, 1], [0, 2], [0, 3], [0, 4]]",
+        "expected": "false"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0]]",
+        "expected": "true"
+      },
+      {
+        "input": "2\n[[0, 1]]",
+        "expected": "false"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "union-find"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "With Union-Find, an edge whose endpoints are already connected closes a cycle.",
+      "With DFS, encountering an already-visited node that is not your parent means a cycle.",
+      "Handle disconnected graphs by checking every component."
+    ]
+  },
+  {
+    "id": "word-ladder",
+    "title": "Word Ladder",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "You are given a beginWord, an endWord, and a word list. A transformation sequence changes exactly one letter at a time, and every intermediate word must exist in the word list. Return the number of words in the shortest such sequence from beginWord to endWord (including both ends), or 0 if no sequence exists.",
+    "examples": [
+      {
+        "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+        "output": "5",
+        "explanation": "One shortest sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> \"cog\"."
+      },
+      {
+        "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]",
+        "output": "0",
+        "explanation": "The endWord \"cog\" is not in the word list."
+      }
+    ],
+    "constraints": [
+      "1 <= beginWord.length <= 10",
+      "1 <= wordList.length <= 5000",
+      "All words have the same length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "ladderLength",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "beginWord",
+          "type": "String"
+        },
+        {
+          "name": "endWord",
+          "type": "String"
+        },
+        {
+          "name": "wordList",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int ladderLength(String beginWord, String endWord, String[] wordList) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "hit\ncog\n[\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cog\"]",
+        "expected": "5"
+      },
+      {
+        "input": "hit\ncog\n[\"hot\", \"dot\", \"dog\", \"lot\", \"log\"]",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "a\nc\n[\"a\", \"b\", \"c\"]",
+        "expected": "2"
+      },
+      {
+        "input": "hot\ndog\n[\"hot\", \"dog\"]",
+        "expected": "0"
+      },
+      {
+        "input": "talk\ntail\n[\"tall\", \"talk\", \"tail\"]",
+        "expected": "3"
+      },
+      {
+        "input": "red\ntax\n[\"ted\", \"tex\", \"red\", \"tax\", \"tad\", \"den\", \"rex\", \"pee\"]",
+        "expected": "4"
+      },
+      {
+        "input": "lost\ncost\n[\"most\", \"mist\", \"miss\", \"lost\", \"fost\", \"cost\"]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs",
+      "string"
+    ],
+    "timeComplexity": "O(n * L^2)",
+    "spaceComplexity": "O(n * L)",
+    "hints": [
+      "Model each word as a node; edges connect words differing by one letter.",
+      "BFS from beginWord gives the shortest sequence length.",
+      "Group words by wildcard patterns like h*t to find neighbors fast."
+    ]
+  },
+  {
+    "id": "open-the-lock",
+    "title": "Open the Lock",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "A lock has 4 wheels, each showing a digit 0-9, starting at \"0000\". In one move you can turn one wheel one step forward or backward (9 wraps to 0). Given a list of deadend combinations that freeze the lock and a target combination, return the minimum number of moves to reach the target, or -1 if it is impossible.",
+    "examples": [
+      {
+        "input": "deadends = [\"0201\",\"0101\",\"0102\",\"1212\",\"2002\"], target = \"0202\"",
+        "output": "-1",
+        "explanation": "A shortest path takes 6 moves."
+      },
+      {
+        "input": "deadends = [\"8888\"], target = \"0009\"",
+        "output": "-1",
+        "explanation": "Turn the last wheel backward once: \"0000\" -> \"0009\"."
+      }
+    ],
+    "constraints": [
+      "1 <= deadends.length <= 500",
+      "deadends[i].length = 4",
+      "target.length = 4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "openLock",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "deadends",
+          "type": "String[]"
+        },
+        {
+          "name": "target",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int openLock(String[] deadends, String target) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"0201\", \"0101\", \"0102\", \"1212\", \"2002\"]\n\"0202\"",
+        "expected": "-1"
+      },
+      {
+        "input": "[\"8888\"]\n\"0009\"",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"8887\", \"8889\", \"8878\", \"8898\", \"8788\", \"8988\", \"7888\", \"9888\"]\n\"8888\"",
+        "expected": "-1"
+      },
+      {
+        "input": "[\"0000\"]\n\"8888\"",
+        "expected": "-1"
+      },
+      {
+        "input": "[]\n\"0000\"",
+        "expected": "-1"
+      },
+      {
+        "input": "[]\n\"0009\"",
+        "expected": "-1"
+      },
+      {
+        "input": "[\"0201\"]\n\"0102\"",
+        "expected": "-1"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs"
+    ],
+    "timeComplexity": "O(10^4)",
+    "spaceComplexity": "O(10^4)",
+    "hints": [
+      "Treat each 4-digit combination as a node in an unweighted graph.",
+      "BFS from \"0000\" gives the minimum number of moves.",
+      "Skip deadends and already-visited combinations."
+    ]
+  },
+  {
+    "id": "jump-game-iii",
+    "title": "Jump Game III (Can Reach Zero)",
+    "pattern": "graph-traversal",
+    "difficulty": "Medium",
+    "description": "You are given an array arr of non-negative integers and a start index. From index i you can jump to i + arr[i] or i - arr[i] (staying inside the array). Return true if you can reach any index whose value is 0, starting from start.",
+    "examples": [
+      {
+        "input": "arr = [4,2,3,0,3,1,2], start = 5",
+        "output": "true",
+        "explanation": "5 -> 1 -> 3, and arr[3] = 0."
+      },
+      {
+        "input": "arr = [3,0,2,1,2], start = 2",
+        "output": "false",
+        "explanation": "From index 2 you can only reach indices 4, 0, 3, none of which is 0."
+      }
+    ],
+    "constraints": [
+      "1 <= arr.length <= 5*10^4",
+      "0 <= arr[i] <= arr.length",
+      "0 <= start < arr.length"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "canReach",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "arr",
+          "type": "int[]"
+        },
+        {
+          "name": "start",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean canReach(int[] arr, int start) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[4, 2, 3, 0, 3, 1, 2]\n5",
+        "expected": "true"
+      },
+      {
+        "input": "[3, 0, 2, 1, 2]\n2",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[0]\n0",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 1, 1, 1, 0]\n0",
+        "expected": "true"
+      },
+      {
+        "input": "[2, 2, 2, 2, 2]\n0",
+        "expected": "false"
+      },
+      {
+        "input": "[5, 4, 3, 2, 1, 0]\n0",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 0, 1]\n2",
+        "expected": "true"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs",
+      "dfs",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Model indices as graph nodes with edges to i+arr[i] and i-arr[i].",
+      "BFS or DFS from start; stop when you land on a 0.",
+      "Mark visited indices to avoid infinite loops."
+    ]
+  },
+  {
+    "id": "critical-connections",
+    "title": "Critical Connections in a Network",
+    "pattern": "graph-traversal",
+    "difficulty": "Hard",
+    "description": "A network has n servers labeled 0 to n-1 connected by undirected connections. A connection is critical if removing it disconnects some part of the network. Return all critical connections. Return each connection as a sorted pair [u, v] with u < v, and sort the list of connections lexicographically.",
+    "examples": [
+      {
+        "input": "n = 4, connections = [[0,1],[1,2],[2,0],[1,3]]",
+        "output": "[[1, 3]]",
+        "explanation": "Removing [1,3] disconnects server 3; the triangle edges are not critical."
+      },
+      {
+        "input": "n = 2, connections = [[0,1]]",
+        "output": "[[0, 1]]",
+        "explanation": "The only connection is critical."
+      }
+    ],
+    "constraints": [
+      "2 <= n <= 10^5",
+      "n-1 <= connections.length <= 10^5",
+      "The graph is connected"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "criticalConnections",
+      "returnType": "List<List<Integer>>",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "connections",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<List<Integer>> criticalConnections(int n, int[][] connections) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 0], [1, 3]]",
+        "expected": "[[1, 3]]"
+      },
+      {
+        "input": "2\n[[0, 1]]",
+        "expected": "[[0, 1]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 3], [3, 4]]",
+        "expected": "[[0, 1], [1, 2], [2, 3], [3, 4]]"
+      },
+      {
+        "input": "6\n[[0, 1], [1, 2], [2, 0], [1, 3], [3, 4], [4, 5], [5, 3]]",
+        "expected": "[[1, 3]]"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2], [2, 0]]",
+        "expected": "[]"
+      },
+      {
+        "input": "6\n[[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]",
+        "expected": "[[2, 3]]"
+      },
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 3], [3, 0]]",
+        "expected": "[]"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "tarjan"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "A critical connection is a bridge: an edge not lying on any cycle.",
+      "Tarjan's algorithm tracks discovery times and low-link values in one DFS.",
+      "Edge (u,v) is a bridge when low[v] > disc[u]."
+    ]
+  },
+  {
+    "id": "bus-routes",
+    "title": "Bus Routes",
+    "pattern": "graph-traversal",
+    "difficulty": "Hard",
+    "description": "You are given routes where routes[i] lists the stops served by bus i. You start at stop source and want to reach stop target. Each bus you board counts as 1, and you can transfer freely between buses sharing a stop. Return the minimum number of buses needed, or -1 if impossible. If source equals target, the answer is 0.",
+    "examples": [
+      {
+        "input": "routes = [[1,2,7],[3,6,7]], source = 1, target = 6",
+        "output": "2",
+        "explanation": "Take bus 0 to stop 7, transfer to bus 1, ride to stop 6."
+      },
+      {
+        "input": "routes = [[7,12],[4,5,15],[6],[15,19],[9,12,13]], source = 15, target = 12",
+        "output": "-1",
+        "explanation": "No sequence of transfers connects stop 15 to stop 12."
+      }
+    ],
+    "constraints": [
+      "1 <= routes.length <= 500",
+      "1 <= routes[i].length <= 10^5"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "numBusesToDestination",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "routes",
+          "type": "int[][]"
+        },
+        {
+          "name": "source",
+          "type": "int"
+        },
+        {
+          "name": "target",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int numBusesToDestination(int[][] routes, int source, int target) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 7], [3, 6, 7]]\n1\n6",
+        "expected": "2"
+      },
+      {
+        "input": "[[7, 12], [4, 5, 15], [6], [15, 19], [9, 12, 13]]\n15\n12",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 2, 7], [3, 6, 7]]\n1\n7",
+        "expected": "1"
+      },
+      {
+        "input": "[[1], [2], [3]]\n1\n1",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 2], [2, 3], [3, 4]]\n1\n4",
+        "expected": "3"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]\n1\n6",
+        "expected": "-1"
+      },
+      {
+        "input": "[[1, 2, 3, 4, 5]]\n1\n5",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "graph",
+      "bfs"
+    ],
+    "timeComplexity": "O(total stops)",
+    "spaceComplexity": "O(total stops)",
+    "hints": [
+      "BFS over buses instead of stops: from a bus, reach all buses sharing any stop.",
+      "Map each stop to the list of buses serving it.",
+      "Count BFS layers as the number of buses taken."
+    ]
+  },
+  {
+    "id": "minimize-malware-spread",
+    "title": "Minimize Malware Spread",
+    "pattern": "graph-traversal",
+    "difficulty": "Hard",
+    "description": "A network of n nodes is given as an adjacency matrix graph, where graph[i][j] = 1 means nodes i and j are connected. Some nodes in initial are infected. You may remove exactly one node from initial (it and its incident edges disappear). Return the node whose removal minimizes the total number of infected nodes afterwards; break ties by choosing the smallest index.",
+    "examples": [
+      {
+        "input": "graph = [[1,1,0],[1,1,0],[0,0,1]], initial = [0,1]",
+        "output": "0",
+        "explanation": "Removing either node leaves exactly one infected node; pick the smaller index 0."
+      },
+      {
+        "input": "graph = [[1,0,0],[0,1,0],[0,0,1]], initial = [0,2]",
+        "output": "0",
+        "explanation": "No edges exist, so removing any node leaves one infected node; pick 0."
+      }
+    ],
+    "constraints": [
+      "2 <= n <= 300",
+      "1 <= initial.length < n",
+      "graph[i][i] = 1"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minMalwareSpread",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "graph",
+          "type": "int[][]"
+        },
+        {
+          "name": "initial",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minMalwareSpread(int[][] graph, int[] initial) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 1, 0], [1, 1, 0], [0, 0, 1]]\n[0, 1]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 0, 0], [0, 1, 0], [0, 0, 1]]\n[0, 2]",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 1, 1], [1, 1, 1], [1, 1, 1]]\n[1, 2]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 1, 0, 0], [1, 1, 1, 0], [0, 1, 1, 1], [0, 0, 1, 1]]\n[3, 1]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 1], [0, 0, 1, 1]]\n[3, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "[[1, 1], [1, 1]]\n[0]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 0], [0, 1]]\n[1, 0]",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "bfs"
+    ],
+    "timeComplexity": "O(k * n^2)",
+    "spaceComplexity": "O(n^2)",
+    "hints": [
+      "Try removing each candidate and simulate the spread with BFS.",
+      "Count how many nodes end up infected for each choice.",
+      "Pick the minimum count; ties go to the smaller index."
+    ]
+  },
+  {
+    "id": "count-strongly-connected-components",
+    "title": "Count Strongly Connected Components",
+    "pattern": "graph-traversal",
+    "difficulty": "Hard",
+    "description": "You are given n nodes labeled from 0 to n-1 and a list of directed edges. A strongly connected component (SCC) is a maximal set of nodes where every node can reach every other node via directed paths. Return the number of SCCs in the graph.",
+    "examples": [
+      {
+        "input": "n = 5, edges = [[0,1],[1,2],[2,0],[1,3],[3,4]]",
+        "output": "3",
+        "explanation": "The SCCs are {0,1,2}, {3} and {4}."
+      },
+      {
+        "input": "n = 3, edges = [[0,1],[1,2]]",
+        "output": "3",
+        "explanation": "No cycles exist, so each node is its own SCC."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 5000",
+      "0 <= edges.length <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "countSCC",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "edges",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int countSCC(int n, int[][] edges) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[[0, 1], [1, 2], [2, 0], [1, 3], [3, 4]]",
+        "expected": "3"
+      },
+      {
+        "input": "3\n[[0, 1], [1, 2]]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "4\n[[0, 1], [1, 0], [2, 3], [3, 2]]",
+        "expected": "2"
+      },
+      {
+        "input": "1\n[]",
+        "expected": "1"
+      },
+      {
+        "input": "4\n[[0, 1], [1, 2], [2, 3], [3, 0]]",
+        "expected": "1"
+      },
+      {
+        "input": "6\n[[0, 1], [2, 0], [1, 2], [3, 4]]",
+        "expected": "4"
+      },
+      {
+        "input": "5\n[]",
+        "expected": "5"
+      }
+    ],
+    "tags": [
+      "graph",
+      "dfs",
+      "kosaraju",
+      "tarjan"
+    ],
+    "timeComplexity": "O(n + e)",
+    "spaceComplexity": "O(n + e)",
+    "hints": [
+      "Kosaraju's algorithm: order nodes by DFS finish time, then DFS on the reversed graph.",
+      "Each DFS tree in the second pass is one SCC.",
+      "Tarjan's single-pass algorithm also works."
+    ]
+  }
+]

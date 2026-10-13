@@ -1,0 +1,9 @@
+# Reverse proxy: public web -> DSA app.
+# To enable automatic HTTPS, replace :80 with your domain name, e.g.:
+#   dsa.example.com {
+#       reverse_proxy localhost:8080
+#   }
+# then: systemctl reload caddy
+:80 {
+    reverse_proxy localhost:8080
+}

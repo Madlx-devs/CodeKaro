@@ -1,0 +1,1770 @@
+[
+  {
+    "id": "assign-cookies",
+    "title": "Assign Cookies",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "You are a teacher with n children and m cookies. Each child i has a greed factor g[i] (the minimum cookie size they will accept), and each cookie j has a size s[j]. A child is content when given a cookie whose size is at least their greed factor. Each child gets at most one cookie and each cookie goes to at most one child. Return the maximum number of content children.",
+    "examples": [
+      {
+        "input": "g = [1,2,3], s = [1,1]",
+        "output": "1",
+        "explanation": "Child 1 (greed 1) gets a size-1 cookie; children 2 and 3 stay hungry."
+      },
+      {
+        "input": "g = [1,2], s = [1,2,3]",
+        "output": "2",
+        "explanation": "Give the size-1 cookie to child 1 and the size-2 cookie to child 2; both are content."
+      }
+    ],
+    "constraints": [
+      "1 <= g.length <= 3 * 10^4",
+      "0 <= s.length <= 3 * 10^4",
+      "1 <= g[i], s[j] <= 2^31 - 1"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "findContentChildren",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "g",
+          "type": "int[]"
+        },
+        {
+          "name": "s",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int findContentChildren(int[] g, int[] s) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 2, 3]\n[1, 1]",
+        "expected": "1"
+      },
+      {
+        "input": "[1, 2]\n[1, 2, 3]",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[5]\n[1]",
+        "expected": "0"
+      },
+      {
+        "input": "[1, 1, 1]\n[1, 1, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "[10, 9, 8, 7]\n[5, 6, 7, 8]",
+        "expected": "2"
+      },
+      {
+        "input": "[2, 3]\n[1, 1]",
+        "expected": "0"
+      },
+      {
+        "input": "[1, 2, 3]\n[3]",
+        "expected": "1"
+      },
+      {
+        "input": "[4]\n[4, 4, 4]",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Sort both the children's greed factors and the cookie sizes.",
+      "Give the smallest cookie that can satisfy the currently hungriest child you can feed."
+    ]
+  },
+  {
+    "id": "lemonade-change",
+    "title": "Lemonade Change",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "At a lemonade stand, each lemonade costs $5. Customers pay with $5, $10, or $20 bills. You start with no change. You must give correct change to each customer in order. Return true if you can serve every customer, otherwise return false.",
+    "examples": [
+      {
+        "input": "bills = [5,5,5,10,20]",
+        "output": "true",
+        "explanation": "The first three customers pay with $5. The fourth pays $10 and gets $5 back. The fifth pays $20 and gets $10 + $5 back."
+      },
+      {
+        "input": "bills = [5,5,10,10,20]",
+        "output": "false",
+        "explanation": "The last customer needs $15 change, but you hold only $10 bills by then."
+      }
+    ],
+    "constraints": [
+      "1 <= bills.length <= 10^5",
+      "bills[i] is one of 5, 10, or 20"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "lemonadeChange",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "bills",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean lemonadeChange(int[] bills) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[5, 5, 5, 10, 20]",
+        "expected": "true"
+      },
+      {
+        "input": "[5, 5, 10, 10, 20]",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[5, 10, 20]",
+        "expected": "false"
+      },
+      {
+        "input": "[20]",
+        "expected": "false"
+      },
+      {
+        "input": "[5, 5, 20]",
+        "expected": "false"
+      },
+      {
+        "input": "[5, 10, 5, 20]",
+        "expected": "true"
+      },
+      {
+        "input": "[5, 5, 5, 5, 10, 20, 10]",
+        "expected": "true"
+      },
+      {
+        "input": "[5, 5, 10, 20]",
+        "expected": "true"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "You only need to track how many $5 and $10 bills you hold.",
+      "For a $20 bill, prefer giving $10 + $5 as change over three $5 bills."
+    ]
+  },
+  {
+    "id": "maximum-units-on-a-truck",
+    "title": "Maximum Units on a Truck",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "You have boxTypes where boxTypes[i] = [numberOfBoxes_i, numberOfUnitsPerBox_i]. You can load at most truckSize boxes onto the truck. Return the maximum total number of units you can load.",
+    "examples": [
+      {
+        "input": "boxTypes = [[1,3],[2,2],[3,1]], truckSize = 4",
+        "output": "8",
+        "explanation": "Take 1 box with 3 units, 2 boxes with 2 units each, and 1 box with 1 unit: 3 + 4 + 1 = 8."
+      },
+      {
+        "input": "boxTypes = [[5,10],[2,5],[4,7],[3,9]], truckSize = 10",
+        "output": "91",
+        "explanation": "Take 5 boxes of 10, 3 boxes of 9, and 2 boxes of 7: 50 + 27 + 14 = 91."
+      }
+    ],
+    "constraints": [
+      "1 <= boxTypes.length <= 1000",
+      "1 <= numberOfBoxes_i, numberOfUnitsPerBox_i <= 1000",
+      "1 <= truckSize <= 10^6"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maximumUnits",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "boxTypes",
+          "type": "int[][]"
+        },
+        {
+          "name": "truckSize",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int maximumUnits(int[][] boxTypes, int truckSize) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 3], [2, 2], [3, 1]]\n4",
+        "expected": "8"
+      },
+      {
+        "input": "[[5, 10], [2, 5], [4, 7], [3, 9]]\n10",
+        "expected": "91"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 5]]\n10",
+        "expected": "5"
+      },
+      {
+        "input": "[[2, 1], [4, 4], [3, 1], [4, 3]]\n2",
+        "expected": "8"
+      },
+      {
+        "input": "[[3, 2], [1, 4]]\n0",
+        "expected": "0"
+      },
+      {
+        "input": "[[10, 10]]\n5",
+        "expected": "50"
+      },
+      {
+        "input": "[[1, 1], [2, 2], [3, 3]]\n6",
+        "expected": "14"
+      },
+      {
+        "input": "[[5, 1]]\n100",
+        "expected": "5"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Sort the box types by units per box, most valuable first.",
+      "Fill the truck from the most valuable box type downward."
+    ]
+  },
+  {
+    "id": "maximum-69-number",
+    "title": "Maximum 69 Number",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "You are given a positive integer num consisting only of digits 6 and 9. You may change at most one digit (6 to 9 or 9 to 6). Return the maximum number you can obtain.",
+    "examples": [
+      {
+        "input": "num = 9669",
+        "output": "9969",
+        "explanation": "Changing the first 6 to 9 gives the largest result."
+      },
+      {
+        "input": "num = 9996",
+        "output": "9999",
+        "explanation": "Change the only 6 to 9: 9999."
+      },
+      {
+        "input": "num = 9999",
+        "output": "9999",
+        "explanation": "No beneficial change exists."
+      }
+    ],
+    "constraints": [
+      "1 <= num <= 10^4",
+      "num consists only of digits 6 and 9"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maximum69Number",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "num",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int maximum69Number(int num) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "9669",
+        "expected": "9969"
+      },
+      {
+        "input": "9996",
+        "expected": "9999"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "9999",
+        "expected": "9999"
+      },
+      {
+        "input": "6",
+        "expected": "9"
+      },
+      {
+        "input": "69",
+        "expected": "99"
+      },
+      {
+        "input": "96",
+        "expected": "99"
+      },
+      {
+        "input": "6699",
+        "expected": "9699"
+      },
+      {
+        "input": "9666",
+        "expected": "9966"
+      },
+      {
+        "input": "666",
+        "expected": "966"
+      },
+      {
+        "input": "99",
+        "expected": "99"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "math"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "The leftmost digit matters the most.",
+      "Changing the first 6 you see (from the left) to 9 maximizes the result."
+    ]
+  },
+  {
+    "id": "largest-odd-number-in-string",
+    "title": "Largest Odd Number in String",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "You are given a string num representing a large integer. Return the largest-valued odd integer that is a non-empty substring of num, or an empty string if no odd integer exists. The answer must not contain leading zeros.",
+    "examples": [
+      {
+        "input": "num = \"52\"",
+        "output": "5",
+        "explanation": "Odd substrings are \"5\" and \"52\"; \"52\" is even, so the largest odd one is \"5\"."
+      },
+      {
+        "input": "num = \"4206\"",
+        "output": "",
+        "explanation": "No odd digit exists in the string."
+      },
+      {
+        "input": "num = \"35427\"",
+        "output": "35427",
+        "explanation": "The whole string is already odd."
+      }
+    ],
+    "constraints": [
+      "1 <= num.length <= 10^5",
+      "num consists only of digits 0-9"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "largestOddNumber",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "num",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String largestOddNumber(String num) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "52",
+        "expected": "5"
+      },
+      {
+        "input": "4206",
+        "expected": ""
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "35427",
+        "expected": "35427"
+      },
+      {
+        "input": "12345678",
+        "expected": "1234567"
+      },
+      {
+        "input": "2",
+        "expected": ""
+      },
+      {
+        "input": "7",
+        "expected": "7"
+      },
+      {
+        "input": "10133890",
+        "expected": "1013389"
+      },
+      {
+        "input": "24680",
+        "expected": ""
+      }
+    ],
+    "tags": [
+      "greedy",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "A number is odd exactly when its last digit is odd.",
+      "Scan from the right and drop trailing even digits; what remains is the longest odd prefix."
+    ]
+  },
+  {
+    "id": "split-a-string-in-balanced-strings",
+    "title": "Split a String in Balanced Strings",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "Balanced strings are those with equal counts of 'L' and 'R'. Given a balanced string s, split it into the maximum number of balanced substrings. Return the count.",
+    "examples": [
+      {
+        "input": "s = \"RLRRLLRLRL\"",
+        "output": "4",
+        "explanation": "Split as \"RL\", \"RRLL\", \"RL\", \"RL\" — 4 balanced substrings."
+      },
+      {
+        "input": "s = \"LLLLRRRR\"",
+        "output": "1",
+        "explanation": "The whole string is one balanced substring."
+      }
+    ],
+    "constraints": [
+      "2 <= s.length <= 1000",
+      "s[i] is 'L' or 'R'",
+      "s is a balanced string"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "balancedStringSplit",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int balancedStringSplit(String s) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "RLRRLLRLRL",
+        "expected": "4"
+      },
+      {
+        "input": "LLLLRRRR",
+        "expected": "1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "RLRRRLLRLL",
+        "expected": "2"
+      },
+      {
+        "input": "RRRLLL",
+        "expected": "1"
+      },
+      {
+        "input": "RRLL",
+        "expected": "1"
+      },
+      {
+        "input": "RL",
+        "expected": "1"
+      },
+      {
+        "input": "LRLRLR",
+        "expected": "3"
+      },
+      {
+        "input": "RRRRLLLL",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "string"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Keep a running balance: +1 for 'R', -1 for 'L'.",
+      "Whenever the balance returns to zero, you have found the shortest balanced prefix — cut there."
+    ]
+  },
+  {
+    "id": "minimum-cost-of-buying-candies-with-discount",
+    "title": "Minimum Cost of Buying Candies With Discount",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "A shop offers a \"buy 2, get 1 free\" discount: for every 3 candies you take, you pay only for the 2 most expensive of the 3. Given cost[i], the price of each candy, return the minimum total cost to buy all candies.",
+    "examples": [
+      {
+        "input": "cost = [1,2,3]",
+        "output": "5",
+        "explanation": "Buy the candies costing 3 and 2, get the 1 for free: 3 + 2 = 5."
+      },
+      {
+        "input": "cost = [6,5,7,9,2,2]",
+        "output": "23",
+        "explanation": "Group as (9,7,6), (5,2,2): pay 9 + 7 for the first group and 5 + 2 for the second: 23."
+      }
+    ],
+    "constraints": [
+      "1 <= cost.length <= 100",
+      "1 <= cost[i] <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minimumCost",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "cost",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minimumCost(int[] cost) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 2, 3]",
+        "expected": "5"
+      },
+      {
+        "input": "[6, 5, 7, 9, 2, 2]",
+        "expected": "23"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[5, 5]",
+        "expected": "10"
+      },
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[4, 4, 4, 4]",
+        "expected": "12"
+      },
+      {
+        "input": "[10, 20]",
+        "expected": "30"
+      },
+      {
+        "input": "[1, 1, 1, 1, 1]",
+        "expected": "4"
+      },
+      {
+        "input": "[9, 8, 7, 6, 5, 4, 3, 2, 1]",
+        "expected": "33"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "You want the free candies to be as expensive as possible.",
+      "Sort the prices in descending order, then group them in threes — the third in each group is free."
+    ]
+  },
+  {
+    "id": "jump-game",
+    "title": "Jump Game",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "You are given an integer array nums where nums[i] is the maximum jump length from index i. Starting at index 0, return true if you can reach the last index, otherwise false.",
+    "examples": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "output": "true",
+        "explanation": "Jump 1 step from index 0 to 1, then 3 steps to the last index."
+      },
+      {
+        "input": "nums = [3,2,1,0,4]",
+        "output": "false",
+        "explanation": "Index 3 is a dead end: every path funnels through it and it jumps 0."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^4",
+      "0 <= nums[i] <= 10^5"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "canJump",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean canJump(int[] nums) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[2, 3, 1, 1, 4]",
+        "expected": "true"
+      },
+      {
+        "input": "[3, 2, 1, 0, 4]",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[0]",
+        "expected": "true"
+      },
+      {
+        "input": "[1]",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 0]",
+        "expected": "true"
+      },
+      {
+        "input": "[0, 1]",
+        "expected": "false"
+      },
+      {
+        "input": "[1, 1, 1, 0]",
+        "expected": "true"
+      },
+      {
+        "input": "[2, 0, 0]",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 1, 0, 1]",
+        "expected": "false"
+      },
+      {
+        "input": "[2, 5, 0, 0]",
+        "expected": "true"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Track the farthest index you can reach as you scan.",
+      "If the current index is beyond your farthest reach, you are stuck."
+    ]
+  },
+  {
+    "id": "jump-game-ii",
+    "title": "Jump Game II",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "You are given an integer array nums where nums[i] is the maximum jump length from index i. You are guaranteed that you can reach the last index. Return the minimum number of jumps to reach the last index.",
+    "examples": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "output": "2",
+        "explanation": "Jump 1 step from index 0 to 1, then 3 steps to the last index."
+      },
+      {
+        "input": "nums = [2,3,0,1,4]",
+        "output": "2",
+        "explanation": "Jump 1 step from index 0 to 1, then 3 steps to the last index."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^4",
+      "0 <= nums[i] <= 1000",
+      "You can always reach the last index."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "jump",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int jump(int[] nums) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[2, 3, 1, 1, 4]",
+        "expected": "2"
+      },
+      {
+        "input": "[1, 1, 1, 1, 1]",
+        "expected": "4"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[0]",
+        "expected": "0"
+      },
+      {
+        "input": "[1]",
+        "expected": "0"
+      },
+      {
+        "input": "[1, 2]",
+        "expected": "1"
+      },
+      {
+        "input": "[3, 2, 1]",
+        "expected": "1"
+      },
+      {
+        "input": "[2, 3, 0, 1, 4]",
+        "expected": "2"
+      },
+      {
+        "input": "[7, 0, 9, 6, 9, 6, 1, 7, 9, 0, 1, 2, 9, 0, 3]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Think in layers: the current jump can land anywhere within the current window.",
+      "Only count a new jump when you have exhausted the reach of the previous one."
+    ]
+  },
+  {
+    "id": "gas-station",
+    "title": "Gas Station",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "There are n gas stations on a circle. gas[i] is the fuel gained at station i, and cost[i] is the fuel needed to drive from station i to station i+1. The tank starts empty with unlimited capacity. Return the starting station index that lets you complete the circuit, or -1 if it is impossible.",
+    "examples": [
+      {
+        "input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]",
+        "output": "3",
+        "explanation": "Start at station 3 and keep a non-negative tank all the way around."
+      },
+      {
+        "input": "gas = [2,3,4], cost = [3,4,3]",
+        "output": "-1",
+        "explanation": "Total fuel 9 is less than total cost 10, so no start works."
+      }
+    ],
+    "constraints": [
+      "n == gas.length == cost.length",
+      "1 <= n <= 10^5",
+      "0 <= gas[i], cost[i] <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "canCompleteCircuit",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "gas",
+          "type": "int[]"
+        },
+        {
+          "name": "cost",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int canCompleteCircuit(int[] gas, int[] cost) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 2, 3, 4, 5]\n[3, 4, 5, 1, 2]",
+        "expected": "3"
+      },
+      {
+        "input": "[2, 3, 4]\n[3, 4, 3]",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[5, 1, 2, 3, 4]\n[4, 4, 1, 5, 1]",
+        "expected": "4"
+      },
+      {
+        "input": "[1]\n[2]",
+        "expected": "-1"
+      },
+      {
+        "input": "[5]\n[4]",
+        "expected": "0"
+      },
+      {
+        "input": "[3, 1, 1]\n[1, 2, 2]",
+        "expected": "0"
+      },
+      {
+        "input": "[4, 6, 7, 4]\n[6, 5, 3, 5]",
+        "expected": "1"
+      },
+      {
+        "input": "[1, 2, 3, 4, 3, 2, 4, 1, 5, 3, 4]\n[2, 4, 3, 2, 6, 4, 1, 2, 4, 3, 5]",
+        "expected": "-1"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "If total fuel is less than total cost, no starting station works.",
+      "When the tank goes negative at station i, no station at or before i can be the answer."
+    ]
+  },
+  {
+    "id": "partition-labels",
+    "title": "Partition Labels",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "You are given a string s. Partition it into as many parts as possible so that each letter appears in at most one part. Return the sizes of the parts in order.",
+    "examples": [
+      {
+        "input": "s = \"ababcbacadefegdehijhklij\"",
+        "output": "[9, 7, 8]",
+        "explanation": "Partitions are \"ababcbaca\", \"defegde\", \"hijhklij\"."
+      },
+      {
+        "input": "s = \"eccbbbbdec\"",
+        "output": "[10]",
+        "explanation": "The whole string must stay together because 'e', 'c', 'b', and 'd' interleave."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 500",
+      "s consists of lowercase English letters"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "partitionLabels",
+      "returnType": "List<Integer>",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public java.util.List<Integer> partitionLabels(String s) {\n        return new java.util.ArrayList<Integer>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "ababcbacadefegdehijhklij",
+        "expected": "[9, 7, 8]"
+      },
+      {
+        "input": "eccbbbbdec",
+        "expected": "[10]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "abac",
+        "expected": "[3, 1]"
+      },
+      {
+        "input": "a",
+        "expected": "[1]"
+      },
+      {
+        "input": "abc",
+        "expected": "[1, 1, 1]"
+      },
+      {
+        "input": "aaaa",
+        "expected": "[4]"
+      },
+      {
+        "input": "caedbdedda",
+        "expected": "[1, 9]"
+      },
+      {
+        "input": "qvmwtmzzse",
+        "expected": "[1, 1, 4, 2, 1, 1]"
+      },
+      {
+        "input": "abcda",
+        "expected": "[5]"
+      },
+      {
+        "input": "abccaddbeffe",
+        "expected": "[8, 4]"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "string",
+      "hashmap"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Record the last occurrence of every character first.",
+      "Extend the current part to the farthest last-occurrence of any character inside it."
+    ]
+  },
+  {
+    "id": "non-overlapping-intervals",
+    "title": "Non-overlapping Intervals",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "Given an array of intervals where intervals[i] = [start_i, end_i], return the minimum number of intervals to remove so that the remaining intervals do not overlap.",
+    "examples": [
+      {
+        "input": "intervals = [[1,2],[2,3],[3,4],[1,3]]",
+        "output": "1",
+        "explanation": "Remove [1,3]; the rest touch at endpoints but do not overlap."
+      },
+      {
+        "input": "intervals = [[1,2],[1,2],[1,2]]",
+        "output": "2",
+        "explanation": "Remove any two of the three identical intervals."
+      }
+    ],
+    "constraints": [
+      "1 <= intervals.length <= 10^5",
+      "-5 * 10^4 <= start_i < end_i <= 5 * 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "eraseOverlapIntervals",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "intervals",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int eraseOverlapIntervals(int[][] intervals) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2], [2, 3], [3, 4], [1, 3]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 2], [1, 2], [1, 2]]",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 2]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 100], [11, 22], [1, 11], [2, 12]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[-5, -4], [-3, -2]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 3], [2, 4], [3, 5], [4, 6]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[0, 2], [1, 3], [2, 4], [3, 5], [4, 6]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[1, 2], [3, 4], [5, 6]]",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Sorting by end time makes the greedy choice obvious.",
+      "Keep an interval only if it starts at or after the last kept interval ends."
+    ]
+  },
+  {
+    "id": "minimum-number-of-arrows-to-burst-balloons",
+    "title": "Minimum Number of Arrows to Burst Balloons",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "There are spherical balloons on a wall given as intervals points[i] = [x_start, x_end]. An arrow shot vertically at position x bursts every balloon with x_start <= x <= x_end. Return the minimum number of arrows needed to burst all balloons.",
+    "examples": [
+      {
+        "input": "points = [[10,16],[2,8],[1,6],[7,12]]",
+        "output": "2",
+        "explanation": "Shoot at x = 6 (bursts [2,8] and [1,6]) and x = 11 (bursts [10,16] and [7,12])."
+      },
+      {
+        "input": "points = [[1,2],[3,4],[5,6],[7,8]]",
+        "output": "4",
+        "explanation": "No two balloons overlap, so each needs its own arrow."
+      }
+    ],
+    "constraints": [
+      "1 <= points.length <= 10^5",
+      "-2^31 <= x_start < x_end <= 2^31 - 1"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "findMinArrowShots",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "points",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int findMinArrowShots(int[][] points) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[10, 16], [2, 8], [1, 6], [7, 12]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[1, 2], [3, 4], [5, 6], [7, 8]]",
+        "expected": "4"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 2]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 2], [2, 3], [3, 4], [4, 5]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[3, 9], [7, 12], [3, 8], [6, 8], [9, 10], [2, 9], [0, 9], [3, 9], [0, 6], [2, 8]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[2, 3], [2, 3]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 9], [7, 16], [2, 5], [7, 12]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[-100, -50], [0, 50], [60, 100]]",
+        "expected": "3"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Sort the balloons by their right endpoint.",
+      "Shoot one arrow at the earliest right endpoint that is not already covered."
+    ]
+  },
+  {
+    "id": "bag-of-tokens",
+    "title": "Bag of Tokens",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "You start with power P and a score of 0. You have a bag of tokens; each token can be played face-up (costs its value in power, +1 score) or face-down (gains its value in power, -1 score). Each token is usable at most once. Maximize your final score.",
+    "examples": [
+      {
+        "input": "tokens = [100], power = 50",
+        "output": "0",
+        "explanation": "You cannot afford any token face-up and have no score to spend."
+      },
+      {
+        "input": "tokens = [100,200], power = 150",
+        "output": "1",
+        "explanation": "Play token 100 face-up: power 50, score 1. Token 200 is unaffordable."
+      },
+      {
+        "input": "tokens = [100,200,300,400], power = 200",
+        "output": "2",
+        "explanation": "Play 100 face-up (power 100, score 1), play 400 face-down (power 500, score 0), then play 200 and 300 face-up: score 2."
+      }
+    ],
+    "constraints": [
+      "0 <= tokens.length <= 1000",
+      "0 <= tokens[i], power < 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "bagOfTokensScore",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "tokens",
+          "type": "int[]"
+        },
+        {
+          "name": "power",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int bagOfTokensScore(int[] tokens, int power) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[100, 200]\n150",
+        "expected": "1"
+      },
+      {
+        "input": "[100, 200, 300, 400]\n200",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[100]\n50",
+        "expected": "0"
+      },
+      {
+        "input": "[25, 75]\n100",
+        "expected": "2"
+      },
+      {
+        "input": "[81, 91, 31, 73, 27]\n96",
+        "expected": "2"
+      },
+      {
+        "input": "[10]\n5",
+        "expected": "0"
+      },
+      {
+        "input": "[200, 100]\n150",
+        "expected": "1"
+      },
+      {
+        "input": "[26]\n51",
+        "expected": "1"
+      },
+      {
+        "input": "[71, 55, 82]\n54",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting",
+      "two-pointers"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Sort the tokens and use two pointers.",
+      "Play the cheapest token face-up; when you run out of power, sacrifice score on the costliest token face-down.",
+      "Track the maximum score seen — it may peak before you run out of moves."
+    ]
+  },
+  {
+    "id": "candy",
+    "title": "Candy",
+    "pattern": "greedy",
+    "difficulty": "Hard",
+    "description": "There are n children standing in a line, each with a rating ratings[i]. You must give each child at least 1 candy, and a child with a higher rating than an immediate neighbor must get more candies than that neighbor. Return the minimum total number of candies you must give.",
+    "examples": [
+      {
+        "input": "ratings = [1,0,2]",
+        "output": "5",
+        "explanation": "Give 2, 1, and 2 candies respectively."
+      },
+      {
+        "input": "ratings = [1,2,2]",
+        "output": "4",
+        "explanation": "Give 1, 2, and 1 candies respectively."
+      }
+    ],
+    "constraints": [
+      "n == ratings.length",
+      "1 <= n <= 2 * 10^4",
+      "0 <= ratings[i] <= 2 * 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "candy",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "ratings",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int candy(int[] ratings) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 0, 2]",
+        "expected": "5"
+      },
+      {
+        "input": "[1, 2, 2]",
+        "expected": "4"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 3, 2]",
+        "expected": "4"
+      },
+      {
+        "input": "[1, 3, 4, 5, 2]",
+        "expected": "11"
+      },
+      {
+        "input": "[2, 2, 1]",
+        "expected": "4"
+      },
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "15"
+      },
+      {
+        "input": "[5, 4, 3, 2, 1]",
+        "expected": "15"
+      },
+      {
+        "input": "[1, 2, 2, 3, 2, 1]",
+        "expected": "10"
+      },
+      {
+        "input": "[1, 3, 2, 2, 1]",
+        "expected": "7"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Do one left-to-right pass, then one right-to-left pass.",
+      "Take the maximum of the two passes for each child.",
+      "A single pass misses one direction's constraints."
+    ]
+  },
+  {
+    "id": "minimum-refueling-stops",
+    "title": "Minimum Number of Refueling Stops",
+    "pattern": "greedy",
+    "difficulty": "Hard",
+    "description": "A car travels toward target miles away, starting with startFuel. stations[i] = [position_i, fuel_i] gives the fuel available at that position. The car consumes 1 unit of fuel per mile. Each stop refuels the car by fuel_i. Return the minimum number of refueling stops needed to reach target, or -1 if it is impossible.",
+    "examples": [
+      {
+        "input": "target = 1, startFuel = 1, stations = []",
+        "output": "0",
+        "explanation": "You can reach the target without refueling."
+      },
+      {
+        "input": "target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]",
+        "output": "2",
+        "explanation": "Stop at position 10 and position 60 to reach the target."
+      }
+    ],
+    "constraints": [
+      "1 <= target, startFuel <= 10^9",
+      "0 <= stations.length <= 500",
+      "0 < position_i < target",
+      "1 <= fuel_i <= 100",
+      "stations are sorted by position and have distinct positions"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minRefuelStops",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "target",
+          "type": "int"
+        },
+        {
+          "name": "startFuel",
+          "type": "int"
+        },
+        {
+          "name": "stations",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minRefuelStops(int target, int startFuel, int[][] stations) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "1\n1\n[]",
+        "expected": "0"
+      },
+      {
+        "input": "100\n10\n[[10, 60], [20, 30], [30, 30], [60, 40]]",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "100\n1\n[]",
+        "expected": "-1"
+      },
+      {
+        "input": "100\n100\n[]",
+        "expected": "0"
+      },
+      {
+        "input": "100\n50\n[[25, 25], [50, 50]]",
+        "expected": "1"
+      },
+      {
+        "input": "100\n25\n[[25, 25], [50, 25], [75, 25]]",
+        "expected": "3"
+      },
+      {
+        "input": "10\n1\n[]",
+        "expected": "-1"
+      },
+      {
+        "input": "20\n10\n[[5, 10]]",
+        "expected": "1"
+      },
+      {
+        "input": "100\n50\n[[50, 25], [75, 25]]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "heap"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "At every reachable station, push its fuel into a max-heap.",
+      "When you cannot reach the target or the next station, refuel from the richest station you have passed."
+    ]
+  },
+  {
+    "id": "largest-number",
+    "title": "Largest Number",
+    "pattern": "greedy",
+    "difficulty": "Hard",
+    "description": "Given an array of non-negative integers nums, arrange them to form the largest possible number and return it as a string. Since the result may be very large, return a string. If the result consists only of zeros, return \"0\".",
+    "examples": [
+      {
+        "input": "nums = [10,2]",
+        "output": "210",
+        "explanation": "\"210\" is larger than \"102\"."
+      },
+      {
+        "input": "nums = [3,30,34,5,9]",
+        "output": "9534330",
+        "explanation": "The ordering 9, 5, 34, 3, 30 forms the largest number."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 100",
+      "0 <= nums[i] <= 10^9"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "largestNumber",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String largestNumber(int[] nums) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[10, 2]",
+        "expected": "210"
+      },
+      {
+        "input": "[3, 30, 34, 5, 9]",
+        "expected": "9534330"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[0, 0]",
+        "expected": "0"
+      },
+      {
+        "input": "[0]",
+        "expected": "0"
+      },
+      {
+        "input": "[20, 1]",
+        "expected": "201"
+      },
+      {
+        "input": "[824, 8247]",
+        "expected": "8248247"
+      },
+      {
+        "input": "[0, 0, 0]",
+        "expected": "0"
+      },
+      {
+        "input": "[12, 121]",
+        "expected": "12121"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Compare two numbers by which concatenation is larger: a + b versus b + a.",
+      "Handle the all-zeros edge case before joining the parts."
+    ]
+  },
+  {
+    "id": "minimum-number-of-taps-to-open-to-water-a-garden",
+    "title": "Minimum Number of Taps to Open to Water a Garden",
+    "pattern": "greedy",
+    "difficulty": "Hard",
+    "description": "A garden is the line segment [0, n]. There is a tap at every integer position i from 0 to n. Tap i waters the interval [i - ranges[i], i + ranges[i]] (clipped to [0, n]). Open the minimum number of taps so that the whole garden [0, n] is watered. Return -1 if it is impossible.",
+    "examples": [
+      {
+        "input": "n = 5, ranges = [3,4,1,1,0,0]",
+        "output": "1",
+        "explanation": "Open tap 1: it waters [0, 5], the whole garden."
+      },
+      {
+        "input": "n = 3, ranges = [0,0,0,0]",
+        "output": "-1",
+        "explanation": "No tap reaches beyond its own position."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 10^4",
+      "ranges.length == n + 1",
+      "0 <= ranges[i] <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minTaps",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        },
+        {
+          "name": "ranges",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minTaps(int n, int[] ranges) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "5\n[3, 4, 1, 1, 0, 0]",
+        "expected": "1"
+      },
+      {
+        "input": "3\n[0, 0, 0, 0]",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "0\n[0]",
+        "expected": "0"
+      },
+      {
+        "input": "7\n[1, 2, 1, 0, 2, 1, 0, 1]",
+        "expected": "3"
+      },
+      {
+        "input": "8\n[4, 0, 0, 0, 0, 0, 0, 0, 4]",
+        "expected": "2"
+      },
+      {
+        "input": "1\n[1, 0]",
+        "expected": "1"
+      },
+      {
+        "input": "2\n[0, 0, 0]",
+        "expected": "-1"
+      },
+      {
+        "input": "5\n[0, 5, 0, 0, 0, 5]",
+        "expected": "1"
+      },
+      {
+        "input": "4\n[2, 0, 0, 2, 0]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n + m log m)",
+    "spaceComplexity": "O(m)",
+    "hints": [
+      "Convert each tap into a watering interval and think of covering [0, n].",
+      "From your current coverage end, always pick the interval starting at or before it that reaches farthest."
+    ]
+  },
+  {
+    "id": "wiggle-subsequence",
+    "title": "Wiggle Subsequence",
+    "pattern": "greedy",
+    "difficulty": "Medium",
+    "description": "A wiggle sequence is a sequence where the differences between successive numbers strictly alternate between positive and negative. Given an integer array nums, return the length of the longest subsequence of nums that is a wiggle sequence. A subsequence is obtained by deleting some (or zero) elements without changing the order of the remaining elements.",
+    "examples": [
+      {
+        "input": "nums = [1,7,4,9,2,5]",
+        "output": "6",
+        "explanation": "The entire array is a wiggle sequence: differences 6, -3, 5, -7, 3 alternate in sign."
+      },
+      {
+        "input": "nums = [1,17,5,10,13,15,10,5,16,8]",
+        "output": "7",
+        "explanation": "One longest wiggle subsequence is [1,17,10,13,10,16,8]."
+      },
+      {
+        "input": "nums = [1,2,3,4,5,6,7,8,9]",
+        "output": "2",
+        "explanation": "Any two different elements form a wiggle sequence of length 2."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 1000",
+      "0 <= nums[i] <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "wiggleMaxLength",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int wiggleMaxLength(int[] nums) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 7, 4, 9, 2, 5]",
+        "expected": "6"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5, 6, 7, 8, 9]",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 7, 4, 9, 2, 5]",
+        "expected": "6"
+      },
+      {
+        "input": "[1, 17, 5, 10, 13, 15, 10, 5, 16, 8]",
+        "expected": "7"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5, 6, 7, 8, 9]",
+        "expected": "2"
+      },
+      {
+        "input": "[1]",
+        "expected": "1"
+      },
+      {
+        "input": "[1, 1, 1, 1]",
+        "expected": "1"
+      },
+      {
+        "input": "[3, 3, 3, 2, 5]",
+        "expected": "3"
+      },
+      {
+        "input": "[1, 7, 7, 7, 4, 9, 2, 5]",
+        "expected": "6"
+      },
+      {
+        "input": "[84]",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array",
+      "dynamic-programming"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Equal neighbours can never extend a wiggle sequence — only strict up/down moves matter.",
+      "Track the lengths of the best wiggle subsequences ending with an upward move and with a downward move.",
+      "When nums[i] > nums[i-1], the best 'up' subsequence extends the best 'down' one, and vice versa."
+    ]
+  },
+  {
+    "id": "can-place-flowers",
+    "title": "Can Place Flowers",
+    "pattern": "greedy",
+    "difficulty": "Easy",
+    "description": "You have a long flowerbed in which some plots are planted (1) and some are not (0). Flowers cannot be planted in adjacent plots. Given the flowerbed array and an integer n, return true if n new flowers can be planted without violating the no-adjacent-flowers rule, and false otherwise.",
+    "examples": [
+      {
+        "input": "flowerbed = [1,0,0,0,1], n = 1",
+        "output": "true",
+        "explanation": "Plant at index 2: [1,0,1,0,1]."
+      },
+      {
+        "input": "flowerbed = [1,0,0,0,1], n = 2",
+        "output": "false",
+        "explanation": "Only one valid empty plot exists."
+      },
+      {
+        "input": "flowerbed = [0,0,1,0,0], n = 1",
+        "output": "true",
+        "explanation": "Plant at index 0 or 4."
+      }
+    ],
+    "constraints": [
+      "1 <= flowerbed.length <= 2 * 10^4",
+      "flowerbed[i] is 0 or 1.",
+      "0 <= n <= flowerbed.length",
+      "No two planted flowers are adjacent in the input."
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "canPlaceFlowers",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "flowerbed",
+          "type": "int[]"
+        },
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean canPlaceFlowers(int[] flowerbed, int n) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[1, 0, 0, 0, 1]\n1",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 0, 0, 0, 1]\n2",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[1, 0, 0, 0, 1]\n1",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 0, 0, 0, 1]\n2",
+        "expected": "false"
+      },
+      {
+        "input": "[0, 0, 1, 0, 0]\n1",
+        "expected": "true"
+      },
+      {
+        "input": "[0]\n1",
+        "expected": "true"
+      },
+      {
+        "input": "[1]\n1",
+        "expected": "false"
+      },
+      {
+        "input": "[0, 0, 0, 0, 0]\n2",
+        "expected": "true"
+      },
+      {
+        "input": "[1, 0, 0, 0, 0, 1]\n2",
+        "expected": "false"
+      },
+      {
+        "input": "[0, 0, 0]\n2",
+        "expected": "true"
+      }
+    ],
+    "tags": [
+      "greedy",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Scan the flowerbed left to right, looking for empty plots.",
+      "A plot is plantable when it and both neighbours are empty (edges have only one neighbour).",
+      "Plant greedily at every plantable plot — skipping a plantable plot can never help."
+    ]
+  }
+]

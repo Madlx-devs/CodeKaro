@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "matrix-diagonal-sum",
+    "title": "Matrix Diagonal Sum",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given a square matrix mat, return the sum of the matrix diagonals: the primary diagonal (top-left to bottom-right) plus the secondary diagonal (top-right to bottom-left). Include only the elements on the two diagonals; if the matrix has odd size, the center element belongs to both diagonals but must be counted once.",
+    "examples": [
+      {
+        "input": "mat = [[1,2,3],[4,5,6],[7,8,9]]",
+        "output": "25",
+        "explanation": "Diagonals: 1+5+9+3+7 = 25 (5 counted once)."
+      },
+      {
+        "input": "mat = [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]",
+        "output": "8",
+        "explanation": "Each diagonal sums to 4; total 8."
+      }
+    ],
+    "constraints": [
+      "1 <= mat.length <= 100",
+      "mat is square"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "diagonalSum",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "mat",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int diagonalSum(int[][] mat) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "expected": "25"
+      },
+      {
+        "input": "[[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]",
+        "expected": "8"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[5]]",
+        "expected": "5"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "expected": "10"
+      },
+      {
+        "input": "[[7, 3, 1, 9], [3, 4, 6, 9], [6, 9, 6, 6], [9, 5, 8, 3]]",
+        "expected": "53"
+      },
+      {
+        "input": "[[1, 0], [0, 1]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[2, 2, 2], [2, 2, 2], [2, 2, 2]]",
+        "expected": "10"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Primary diagonal: mat[i][i].",
+      "Secondary diagonal: mat[i][n-1-i].",
+      "Subtract the center once when n is odd."
+    ]
+  },
+  {
+    "id": "transpose-matrix",
+    "title": "Transpose Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given a 2D integer array matrix, return its transpose: the matrix flipped over its main diagonal, so result[j][i] = matrix[i][j].",
+    "examples": [
+      {
+        "input": "matrix = [[1,2,3],[4,5,6],[7,8,9]]",
+        "output": "[[1, 4, 7], [2, 5, 8], [3, 6, 9]]",
+        "explanation": "Rows become columns."
+      },
+      {
+        "input": "matrix = [[1,2,3],[4,5,6]]",
+        "output": "[[1, 4], [2, 5], [3, 6]]",
+        "explanation": "A 2x3 matrix becomes 3x2."
+      }
+    ],
+    "constraints": [
+      "1 <= matrix.length <= 1000",
+      "1 <= matrix[i].length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "transpose",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] transpose(int[][] matrix) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "expected": "[[1, 4, 7], [2, 5, 8], [3, 6, 9]]"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "expected": "[[1, 4], [2, 5], [3, 6]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1]]",
+        "expected": "[[1]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4], [5, 6]]",
+        "expected": "[[1, 3, 5], [2, 4, 6]]"
+      },
+      {
+        "input": "[[-1, -2], [3, 4]]",
+        "expected": "[[-1, 3], [-2, 4]]"
+      },
+      {
+        "input": "[[5, 6]]",
+        "expected": "[[5], [6]]"
+      },
+      {
+        "input": "[[1, 2, 3, 4]]",
+        "expected": "[[1], [2], [3], [4]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "The result has dimensions n x m.",
+      "result[j][i] = matrix[i][j].",
+      "Build a new matrix; do not modify in place."
+    ]
+  },
+  {
+    "id": "reshape-the-matrix",
+    "title": "Reshape the Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given an m x n matrix mat and integers r and c, reshape it into an r x c matrix preserving the row-traversing order (read the original row by row, fill the new matrix row by row). If the reshape is impossible (m*n != r*c), return the original matrix.",
+    "examples": [
+      {
+        "input": "mat = [[1,2],[3,4]], r = 1, c = 4",
+        "output": "[[1, 2, 3, 4]]",
+        "explanation": "[[1,2,3,4]]."
+      },
+      {
+        "input": "mat = [[1,2],[3,4]], r = 2, c = 4",
+        "output": "[[1, 2], [3, 4]]",
+        "explanation": "2*2 != 2*4, so return the original matrix."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 100",
+      "1 <= r, c <= 300"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "matrixReshape",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "mat",
+          "type": "int[][]"
+        },
+        {
+          "name": "r",
+          "type": "int"
+        },
+        {
+          "name": "c",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] matrixReshape(int[][] mat, int r, int c) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2], [3, 4]]\n1\n4",
+        "expected": "[[1, 2, 3, 4]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]\n2\n4",
+        "expected": "[[1, 2], [3, 4]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]\n3\n2",
+        "expected": "[[1, 2], [3, 4], [5, 6]]"
+      },
+      {
+        "input": "[[1]]\n1\n1",
+        "expected": "[[1]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4], [5, 6]]\n2\n3",
+        "expected": "[[1, 2, 3], [4, 5, 6]]"
+      },
+      {
+        "input": "[[1, 2]]\n3\n1",
+        "expected": "[[1, 2]]"
+      },
+      {
+        "input": "[[1, 2, 3, 4]]\n2\n2",
+        "expected": "[[1, 2], [3, 4]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "First check whether m*n equals r*c.",
+      "Flatten the matrix into a list, then chunk it into rows of size c.",
+      "Index mapping: element k goes to new[k / c][k % c]."
+    ]
+  },
+  {
+    "id": "count-negative-numbers",
+    "title": "Count Negative Numbers in a Sorted Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given an m x n matrix grid sorted in non-increasing order both row-wise and column-wise, return the number of negative numbers in it.",
+    "examples": [
+      {
+        "input": "grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]",
+        "output": "8",
+        "explanation": "There are 8 negatives."
+      },
+      {
+        "input": "grid = [[3,2],[1,0]]",
+        "output": "0",
+        "explanation": "There are no negatives."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "countNegatives",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "grid",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int countNegatives(int[][] grid) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]",
+        "expected": "8"
+      },
+      {
+        "input": "[[3, 2], [1, 0]]",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[-1]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[5, 4, 3], [2, 1, 0], [-1, -2, -3]]",
+        "expected": "3"
+      },
+      {
+        "input": "[[-5, -4], [-3, -2]]",
+        "expected": "4"
+      },
+      {
+        "input": "[[3, 2, 1], [2, 1, 0], [1, 0, -1]]",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "binary-search"
+    ],
+    "timeComplexity": "O(m + n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "A simple scan counts negatives in O(m*n).",
+      "Use the sorted order: start at the top-right corner.",
+      "Moving left/down lets you count whole rows or columns at once."
+    ]
+  },
+  {
+    "id": "flipping-an-image",
+    "title": "Flipping an Image",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given an n x n binary matrix image, flip it horizontally (reverse each row), then invert it (0 becomes 1 and 1 becomes 0). Return the resulting matrix.",
+    "examples": [
+      {
+        "input": "image = [[1,1,0],[1,0,1],[0,0,0]]",
+        "output": "[[1, 0, 0], [0, 1, 0], [1, 1, 1]]",
+        "explanation": "Flip: [[0,1,1],[1,0,1],[0,0,0]]; invert: [[1,0,0],[0,1,0],[1,1,1]]."
+      },
+      {
+        "input": "image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]",
+        "output": "[[1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1], [1, 0, 1, 0]]",
+        "explanation": "Flip each row, then invert every bit."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 20",
+      "image[i][j] is 0 or 1"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "flipAndInvertImage",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "image",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] flipAndInvertImage(int[][] image) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 1, 0], [1, 0, 1], [0, 0, 0]]",
+        "expected": "[[1, 0, 0], [0, 1, 0], [1, 1, 1]]"
+      },
+      {
+        "input": "[[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]]",
+        "expected": "[[1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1], [1, 0, 1, 0]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[0]]",
+        "expected": "[[1]]"
+      },
+      {
+        "input": "[[1, 0]]",
+        "expected": "[[1, 0]]"
+      },
+      {
+        "input": "[[1, 1], [0, 0]]",
+        "expected": "[[0, 0], [1, 1]]"
+      },
+      {
+        "input": "[[1, 0, 1], [0, 1, 0]]",
+        "expected": "[[0, 1, 0], [1, 0, 1]]"
+      },
+      {
+        "input": "[[0, 1, 1, 0, 1]]",
+        "expected": "[[0, 1, 0, 0, 1]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(n^2)",
+    "spaceComplexity": "O(n^2)",
+    "hints": [
+      "Reversing a row and inverting can be done in one pass.",
+      "1 - x inverts a binary value.",
+      "Build the new row from the reversed old row."
+    ]
+  },
+  {
+    "id": "lucky-numbers-in-a-matrix",
+    "title": "Lucky Numbers in a Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given an m x n matrix of distinct numbers, a lucky number is an element that is the minimum in its row and the maximum in its column. Return all lucky numbers in any order.",
+    "examples": [
+      {
+        "input": "matrix = [[3,7,8],[9,11,13],[15,16,17]]",
+        "output": "[15]",
+        "explanation": "15 is the minimum of row 2 and the maximum of column 0."
+      },
+      {
+        "input": "matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]",
+        "output": "[12]",
+        "explanation": "12 is the minimum of row 2 and the maximum of column 3."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 50",
+      "All elements are distinct"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "luckyNumbers",
+      "returnType": "List<Integer>",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<Integer> luckyNumbers(int[][] matrix) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[3, 7, 8], [9, 11, 13], [15, 16, 17]]",
+        "expected": "[15]"
+      },
+      {
+        "input": "[[1, 10, 4, 2], [9, 3, 8, 7], [15, 16, 17, 12]]",
+        "expected": "[12]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[7, 8], [1, 2]]",
+        "expected": "[7]"
+      },
+      {
+        "input": "[[5]]",
+        "expected": "[5]"
+      },
+      {
+        "input": "[[3, 6], [7, 1], [5, 2], [4, 8]]",
+        "expected": "[]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "expected": "[3]"
+      },
+      {
+        "input": "[[10, 20, 30], [5, 25, 15]]",
+        "expected": "[10]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m + n)",
+    "hints": [
+      "Precompute the minimum of each row and the maximum of each column.",
+      "An element is lucky if it equals both its row min and column max.",
+      "Collect all such elements."
+    ]
+  },
+  {
+    "id": "toeplitz-matrix",
+    "title": "Toeplitz Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "Given an m x n matrix, return true if it is a Toeplitz matrix: every diagonal from top-left to bottom-right contains the same element (i.e. matrix[i][j] == matrix[i+1][j+1] for all valid i, j).",
+    "examples": [
+      {
+        "input": "matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]",
+        "output": "true",
+        "explanation": "All diagonals are constant."
+      },
+      {
+        "input": "matrix = [[1,2],[2,2]]",
+        "output": "false",
+        "explanation": "matrix[0][0] = 1 != 2 = matrix[1][1]."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 20"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "isToeplitzMatrix",
+      "returnType": "boolean",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean isToeplitzMatrix(int[][] matrix) {\n        return false;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1, 2], [2, 2]]",
+        "expected": "false"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1, 2, 3]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1], [2], [3]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 1, 2], [5, 4, 1], [6, 5, 4]]",
+        "expected": "true"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 2], [7, 8, 9]]",
+        "expected": "false"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Compare each element with its bottom-right neighbor.",
+      "A single mismatch means the answer is false.",
+      "Diagonals are identified by (i - j)."
+    ]
+  },
+  {
+    "id": "richest-customer-wealth",
+    "title": "Richest Customer Wealth",
+    "pattern": "matrix-simulation",
+    "difficulty": "Easy",
+    "description": "You are given accounts where accounts[i][j] is the money customer i has in bank j. A customer's wealth is the sum across all their banks. Return the maximum wealth among all customers.",
+    "examples": [
+      {
+        "input": "accounts = [[1,2,3],[3,2,1]]",
+        "output": "6",
+        "explanation": "Both customers have wealth 6."
+      },
+      {
+        "input": "accounts = [[1,5],[7,3],[3,5]]",
+        "output": "10",
+        "explanation": "The richest customer has wealth 10."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 50"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maximumWealth",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "accounts",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int maximumWealth(int[][] accounts) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [3, 2, 1]]",
+        "expected": "6"
+      },
+      {
+        "input": "[[1, 5], [7, 3], [3, 5]]",
+        "expected": "10"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[2, 8, 7], [7, 1, 3], [1, 9, 5]]",
+        "expected": "17"
+      },
+      {
+        "input": "[[5]]",
+        "expected": "5"
+      },
+      {
+        "input": "[[0, 0], [0, 0]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[10, 20], [5, 5], [1, 1]]",
+        "expected": "30"
+      },
+      {
+        "input": "[[3, 1, 4], [1, 5, 9], [2, 6, 5]]",
+        "expected": "15"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Sum each row.",
+      "Track the maximum row sum.",
+      "One pass is enough."
+    ]
+  },
+  {
+    "id": "spiral-matrix",
+    "title": "Spiral Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given an m x n matrix, return all elements of the matrix in spiral order: start at the top-left, go right along the top row, down the right column, left along the bottom row, up the left column, and repeat inward.",
+    "examples": [
+      {
+        "input": "matrix = [[1,2,3],[4,5,6],[7,8,9]]",
+        "output": "[1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "explanation": "Order: 1,2,3,6,9,8,7,4,5."
+      },
+      {
+        "input": "matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]",
+        "output": "[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]",
+        "explanation": "Order: 1,2,3,4,8,12,11,10,9,5,6,7."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 10"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "spiralOrder",
+      "returnType": "List<Integer>",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<Integer> spiralOrder(int[][] matrix) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "expected": "[1, 2, 3, 6, 9, 8, 7, 4, 5]"
+      },
+      {
+        "input": "[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]",
+        "expected": "[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1]]",
+        "expected": "[1]"
+      },
+      {
+        "input": "[[1, 2, 3]]",
+        "expected": "[1, 2, 3]"
+      },
+      {
+        "input": "[[1], [2], [3]]",
+        "expected": "[1, 2, 3]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "expected": "[1, 2, 4, 3]"
+      },
+      {
+        "input": "[[1, 2, 3, 4, 5]]",
+        "expected": "[1, 2, 3, 4, 5]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array",
+      "simulation"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(1) extra",
+    "hints": [
+      "Maintain top, bottom, left, right boundaries.",
+      "Traverse the four sides, then shrink the boundaries.",
+      "Stop when the boundaries cross."
+    ]
+  },
+  {
+    "id": "spiral-matrix-ii",
+    "title": "Spiral Matrix II",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given a positive integer n, generate an n x n matrix filled with the numbers 1 to n^2 in spiral order (starting at the top-left, going right, then down, then left, then up, repeating inward).",
+    "examples": [
+      {
+        "input": "n = 3",
+        "output": "[[1, 2, 3], [8, 9, 4], [7, 6, 5]]",
+        "explanation": "[[1,2,3],[8,9,4],[7,6,5]]."
+      },
+      {
+        "input": "n = 1",
+        "output": "[[1]]",
+        "explanation": "[[1]]."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 20"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "generateMatrix",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] generateMatrix(int n) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "3",
+        "expected": "[[1, 2, 3], [8, 9, 4], [7, 6, 5]]"
+      },
+      {
+        "input": "1",
+        "expected": "[[1]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "2",
+        "expected": "[[1, 2], [4, 3]]"
+      },
+      {
+        "input": "4",
+        "expected": "[[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]"
+      },
+      {
+        "input": "5",
+        "expected": "[[1, 2, 3, 4, 5], [16, 17, 18, 19, 6], [15, 24, 25, 20, 7], [14, 23, 22, 21, 8], [13, 12, 11, 10, 9]]"
+      },
+      {
+        "input": "6",
+        "expected": "[[1, 2, 3, 4, 5, 6], [20, 21, 22, 23, 24, 7], [19, 32, 33, 34, 25, 8], [18, 31, 36, 35, 26, 9], [17, 30, 29, 28, 27, 10], [16, 15, 14, 13, 12, 11]]"
+      },
+      {
+        "input": "7",
+        "expected": "[[1, 2, 3, 4, 5, 6, 7], [24, 25, 26, 27, 28, 29, 8], [23, 40, 41, 42, 43, 30, 9], [22, 39, 48, 49, 44, 31, 10], [21, 38, 47, 46, 45, 32, 11], [20, 37, 36, 35, 34, 33, 12], [19, 18, 17, 16, 15, 14, 13]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array",
+      "simulation"
+    ],
+    "timeComplexity": "O(n^2)",
+    "spaceComplexity": "O(n^2)",
+    "hints": [
+      "Walk the spiral with shrinking boundaries, writing 1, 2, 3, ...",
+      "Fill the four sides of each layer in order.",
+      "A direction array with turn-on-boundary also works."
+    ]
+  },
+  {
+    "id": "rotate-matrix-return",
+    "title": "Rotate Matrix 90 Degrees (Return New)",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given an m x n matrix, rotate it 90 degrees clockwise and return the resulting n x m matrix as a NEW matrix (do not modify the input). Element matrix[i][j] moves to position [j][m-1-i] in the result.",
+    "examples": [
+      {
+        "input": "matrix = [[1,2,3],[4,5,6],[7,8,9]]",
+        "output": "[[7, 4, 1], [8, 5, 2], [9, 6, 3]]",
+        "explanation": "Result: [[7,4,1],[8,5,2],[9,6,3]]."
+      },
+      {
+        "input": "matrix = [[1,2],[3,4]]",
+        "output": "[[3, 1], [4, 2]]",
+        "explanation": "Result: [[3,1],[4,2]]."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "rotateMatrix",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] rotateMatrix(int[][] matrix) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "expected": "[[7, 4, 1], [8, 5, 2], [9, 6, 3]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "expected": "[[3, 1], [4, 2]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[5]]",
+        "expected": "[[5]]"
+      },
+      {
+        "input": "[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]",
+        "expected": "[[13, 9, 5, 1], [14, 10, 6, 2], [15, 11, 7, 3], [16, 12, 8, 4]]"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "expected": "[[4, 1], [5, 2], [6, 3]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4], [5, 6]]",
+        "expected": "[[5, 3, 1], [6, 4, 2]]"
+      },
+      {
+        "input": "[[7, 8, 9], [1, 2, 3]]",
+        "expected": "[[1, 7], [2, 8], [3, 9]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "The result has n rows and m columns.",
+      "result[j][m-1-i] = matrix[i][j].",
+      "Equivalently: transpose, then reverse each row."
+    ]
+  },
+  {
+    "id": "game-of-life-next-state",
+    "title": "Game of Life (Next State)",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given a board of 0s (dead) and 1s (alive), compute the next state of Conway's Game of Life and return it as a NEW board: a live cell with 2-3 live neighbors survives; a dead cell with exactly 3 live neighbors becomes alive; all other cells die or stay dead. Neighbors are the 8 surrounding cells.",
+    "examples": [
+      {
+        "input": "board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]",
+        "output": "[[0, 0, 0], [1, 0, 1], [0, 1, 1], [0, 1, 0]]",
+        "explanation": "Next state: [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]."
+      },
+      {
+        "input": "board = [[1,1],[1,0]]",
+        "output": "[[1, 1], [1, 1]]",
+        "explanation": "Next state: [[1,1],[1,1]]."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 25"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "nextState",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "board",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] nextState(int[][] board) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]]",
+        "expected": "[[0, 0, 0], [1, 0, 1], [0, 1, 1], [0, 1, 0]]"
+      },
+      {
+        "input": "[[1, 1], [1, 0]]",
+        "expected": "[[1, 1], [1, 1]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[0]]",
+        "expected": "[[0]]"
+      },
+      {
+        "input": "[[1]]",
+        "expected": "[[0]]"
+      },
+      {
+        "input": "[[1, 1, 1]]",
+        "expected": "[[0, 1, 0]]"
+      },
+      {
+        "input": "[[1, 0, 1], [0, 1, 0], [1, 0, 1]]",
+        "expected": "[[0, 1, 0], [1, 0, 1], [0, 1, 0]]"
+      },
+      {
+        "input": "[[0, 0], [0, 0]]",
+        "expected": "[[0, 0], [0, 0]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array",
+      "simulation"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "Count live neighbors for every cell from the ORIGINAL board.",
+      "Apply the four rules to decide each cell's next state.",
+      "Write results into a new board so reads are not corrupted."
+    ]
+  },
+  {
+    "id": "set-matrix-zeroes-return",
+    "title": "Set Matrix Zeroes (Return New)",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given an m x n matrix, return a NEW matrix where, if any element is 0, its entire row and column are set to 0. Do not modify the input matrix.",
+    "examples": [
+      {
+        "input": "matrix = [[1,1,1],[1,0,1],[1,1,1]]",
+        "output": "[[1, 0, 1], [0, 0, 0], [1, 0, 1]]",
+        "explanation": "Row 1 and column 1 become all zeros."
+      },
+      {
+        "input": "matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]",
+        "output": "[[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]]",
+        "explanation": "Rows 0 and columns 0, 3 are zeroed."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 200"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "setZeroes",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] setZeroes(int[][] matrix) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 1, 1], [1, 0, 1], [1, 1, 1]]",
+        "expected": "[[1, 0, 1], [0, 0, 0], [1, 0, 1]]"
+      },
+      {
+        "input": "[[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]]",
+        "expected": "[[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1]]",
+        "expected": "[[1]]"
+      },
+      {
+        "input": "[[0]]",
+        "expected": "[[0]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "expected": "[[1, 2], [3, 4]]"
+      },
+      {
+        "input": "[[0, 1], [1, 1], [1, 1]]",
+        "expected": "[[0, 0], [0, 1], [0, 1]]"
+      },
+      {
+        "input": "[[1, 0, 3], [4, 5, 6]]",
+        "expected": "[[0, 0, 0], [4, 0, 6]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m + n)",
+    "hints": [
+      "First record which rows and columns contain a zero.",
+      "Then build the new matrix, zeroing marked rows/columns.",
+      "Two boolean arrays (or sets) are enough bookkeeping."
+    ]
+  },
+  {
+    "id": "matrix-block-sum",
+    "title": "Matrix Block Sum",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given an m x n matrix mat and an integer k, return a matrix answer of the same size where answer[i][j] is the sum of all elements mat[r][c] with r in [i-k, i+k] and c in [j-k, j+k], clamped to stay inside the matrix (out-of-range indices are simply skipped).",
+    "examples": [
+      {
+        "input": "mat = [[1,2,3],[4,5,6],[7,8,9]], k = 1",
+        "output": "[[12, 21, 16], [27, 45, 33], [24, 39, 28]]",
+        "explanation": "answer[0][0] = 1+2+4+5 = 12; answer[1][1] = sum of all 9 elements = 45."
+      },
+      {
+        "input": "mat = [[1,2,3],[4,5,6],[7,8,9]], k = 2",
+        "output": "[[45, 45, 45], [45, 45, 45], [45, 45, 45]]",
+        "explanation": "Every block covers the whole matrix, so every entry is 45."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 100",
+      "1 <= mat[i][j] <= 100",
+      "0 <= k <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "matrixBlockSum",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "mat",
+          "type": "int[][]"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] matrixBlockSum(int[][] mat, int k) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n1",
+        "expected": "[[12, 21, 16], [27, 45, 33], [24, 39, 28]]"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n2",
+        "expected": "[[45, 45, 45], [45, 45, 45], [45, 45, 45]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1]]\n0",
+        "expected": "[[1]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]\n1",
+        "expected": "[[10, 10], [10, 10]]"
+      },
+      {
+        "input": "[[5, 6], [7, 8]]\n0",
+        "expected": "[[5, 6], [7, 8]]"
+      },
+      {
+        "input": "[[1, 2, 3, 4]]\n1",
+        "expected": "[[3, 6, 9, 7]]"
+      },
+      {
+        "input": "[[2, 0, 1], [3, 4, 5]]\n1",
+        "expected": "[[9, 15, 10], [9, 15, 10]]"
+      },
+      {
+        "input": "[[1, 2], [3, 4], [5, 6]]\n2",
+        "expected": "[[21, 21], [21, 21], [21, 21]]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array",
+      "prefix-sums"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "A naive per-cell scan costs O(m*n*k^2); look for a faster range-sum trick.",
+      "Build a 2D prefix sum of mat first.",
+      "Each block sum is then one O(1) rectangle query with clamped corners."
+    ]
+  },
+  {
+    "id": "number-of-islands",
+    "title": "Number of Islands",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given a grid of '1's (land) and '0's (water), where each row is given as a string, count the number of islands. An island is a group of '1's connected horizontally or vertically, surrounded by water.",
+    "examples": [
+      {
+        "input": "grid = [\"11110\",\"11010\",\"11000\",\"00000\"]",
+        "output": "1",
+        "explanation": "There is one island."
+      },
+      {
+        "input": "grid = [\"11000\",\"11000\",\"00100\",\"00011\"]",
+        "output": "3",
+        "explanation": "There are three islands."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 300"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "numIslands",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "grid",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int numIslands(String[] grid) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"11110\", \"11010\", \"11000\", \"00000\"]",
+        "expected": "1"
+      },
+      {
+        "input": "[\"11000\", \"11000\", \"00100\", \"00011\"]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"1\"]",
+        "expected": "1"
+      },
+      {
+        "input": "[\"0\"]",
+        "expected": "0"
+      },
+      {
+        "input": "[\"111\", \"111\", \"111\"]",
+        "expected": "1"
+      },
+      {
+        "input": "[\"101\", \"010\", \"101\"]",
+        "expected": "5"
+      },
+      {
+        "input": "[\"110\", \"001\", \"100\"]",
+        "expected": "3"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "dfs",
+      "bfs",
+      "union-find"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "Scan the grid; when you find an unvisited '1', start a flood fill.",
+      "Each flood fill discovers exactly one island.",
+      "Mark visited cells so each is processed once."
+    ]
+  },
+  {
+    "id": "diagonal-traverse",
+    "title": "Diagonal Traverse",
+    "pattern": "matrix-simulation",
+    "difficulty": "Medium",
+    "description": "Given an m x n matrix mat, return its elements in diagonal order: traverse diagonals of constant (i + j), alternating direction \u2014 even diagonals go bottom-left to top-right, odd diagonals go top-right to bottom-left... precisely: diagonal s is listed upward (decreasing row) when s is even and downward when s is odd, matching the LeetCode 498 order.",
+    "examples": [
+      {
+        "input": "mat = [[1,2,3],[4,5,6],[7,8,9]]",
+        "output": "[1, 4, 2, 3, 5, 7, 8, 6, 9]",
+        "explanation": "Order: [1,2,4,7,5,3,6,8,9]."
+      },
+      {
+        "input": "mat = [[1,2],[3,4]]",
+        "output": "[1, 3, 2, 4]",
+        "explanation": "Order: [1,2,3,4]."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 10^4",
+      "m * n <= 10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "findDiagonalOrder",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "mat",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] findDiagonalOrder(int[][] mat) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "expected": "[1, 4, 2, 3, 5, 7, 8, 6, 9]"
+      },
+      {
+        "input": "[[1, 2], [3, 4]]",
+        "expected": "[1, 3, 2, 4]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1]]",
+        "expected": "[1]"
+      },
+      {
+        "input": "[[1, 2, 3, 4]]",
+        "expected": "[1, 2, 3, 4]"
+      },
+      {
+        "input": "[[1], [2], [3]]",
+        "expected": "[1, 2, 3]"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 6]]",
+        "expected": "[1, 4, 2, 3, 5, 6]"
+      },
+      {
+        "input": "[[7, 3, 1], [9, 5, 8]]",
+        "expected": "[7, 9, 3, 1, 5, 8]"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "array",
+      "simulation"
+    ],
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(1) extra",
+    "hints": [
+      "Group elements by the sum s = i + j.",
+      "Process s from 0 to m+n-2.",
+      "Reverse the group when s is odd."
+    ]
+  },
+  {
+    "id": "trapping-rain-water-ii",
+    "title": "Trapping Rain Water II",
+    "pattern": "matrix-simulation",
+    "difficulty": "Hard",
+    "description": "Given an m x n height map, compute how much water it can trap after raining. Water flows off the boundary; an interior cell holds water up to the minimum boundary height along the best escape path.",
+    "examples": [
+      {
+        "input": "heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]",
+        "output": "4",
+        "explanation": "4 units of water are trapped."
+      },
+      {
+        "input": "heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]",
+        "output": "10",
+        "explanation": "10 units of water are trapped."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 200"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "trapRainWater",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "heightMap",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int trapRainWater(int[][] heightMap) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 4, 3, 1, 3, 2], [3, 2, 1, 3, 2, 4], [2, 3, 3, 2, 3, 1]]",
+        "expected": "4"
+      },
+      {
+        "input": "[[3, 3, 3, 3, 3], [3, 2, 2, 2, 3], [3, 2, 1, 2, 3], [3, 2, 2, 2, 3], [3, 3, 3, 3, 3]]",
+        "expected": "10"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 1, 1], [1, 1, 1]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[5, 5, 5], [5, 1, 5], [5, 5, 5]]",
+        "expected": "4"
+      },
+      {
+        "input": "[[3, 3, 3], [3, 0, 3], [3, 3, 3]]",
+        "expected": "3"
+      },
+      {
+        "input": "[[12, 13, 1, 12], [13, 4, 13, 12], [13, 8, 10, 12], [12, 13, 12, 12], [13, 13, 13, 13]]",
+        "expected": "14"
+      },
+      {
+        "input": "[[2, 2, 2], [2, 2, 2]]",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "heap",
+      "bfs"
+    ],
+    "timeComplexity": "O(m * n log(m * n))",
+    "spaceComplexity": "O(m * n)",
+    "hints": [
+      "Push all boundary cells into a min-heap and expand inward.",
+      "The water level at a cell is max(0, currentLevel - height).",
+      "This is Dijkstra-like: always expand the lowest boundary first."
+    ]
+  },
+  {
+    "id": "sliding-puzzle",
+    "title": "Sliding Puzzle",
+    "pattern": "matrix-simulation",
+    "difficulty": "Hard",
+    "description": "On a 2x3 board there are 5 tiles numbered 1 to 5 and one empty space represented by 0. A move chooses the empty space and one of its 4-directionally adjacent tiles and swaps them. Given the initial board, return the minimum number of moves to reach the solved state [[1,2,3],[4,5,0]], or -1 if it is impossible.",
+    "examples": [
+      {
+        "input": "board = [[1,2,3],[4,0,5]]",
+        "output": "1",
+        "explanation": "Swap 0 and 5: one move reaches [[1,2,3],[4,5,0]]."
+      },
+      {
+        "input": "board = [[1,2,3],[5,4,0]]",
+        "output": "-1",
+        "explanation": "No sequence of swaps can reach the solved state."
+      }
+    ],
+    "constraints": [
+      "board.length = 2",
+      "board[i].length = 3",
+      "board contains each of 0..5 exactly once"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "slidingPuzzle",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "board",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int slidingPuzzle(int[][] board) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[1, 2, 3], [4, 0, 5]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[1, 2, 3], [5, 4, 0]]",
+        "expected": "-1"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[4, 1, 2], [5, 0, 3]]",
+        "expected": "5"
+      },
+      {
+        "input": "[[3, 2, 4], [1, 5, 0]]",
+        "expected": "14"
+      },
+      {
+        "input": "[[1, 2, 3], [4, 5, 0]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 0, 3], [4, 2, 5]]",
+        "expected": "2"
+      },
+      {
+        "input": "[[5, 4, 3], [2, 1, 0]]",
+        "expected": "14"
+      },
+      {
+        "input": "[[2, 3, 0], [1, 5, 4]]",
+        "expected": "-1"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "bfs",
+      "simulation"
+    ],
+    "timeComplexity": "O(6!)",
+    "spaceComplexity": "O(6!)",
+    "hints": [
+      "Treat each board configuration as a node in an unweighted graph.",
+      "BFS from the start state gives the minimum number of moves.",
+      "Flatten the board to a string or tuple so states are hashable."
+    ]
+  },
+  {
+    "id": "swim-in-rising-water",
+    "title": "Swim in Rising Water",
+    "pattern": "matrix-simulation",
+    "difficulty": "Hard",
+    "description": "You are given an n x n grid of distinct elevations from 0 to n^2 - 1. At time t, all cells with elevation <= t are submerged and you can swim through them (up/down/left/right). Starting at (0,0) at time 0, return the minimum time t needed to reach (n-1, n-1).",
+    "examples": [
+      {
+        "input": "grid = [[0,2],[1,3]]",
+        "output": "3",
+        "explanation": "At t=3 both (0,1) and (1,1) are submerged; path (0,0)->(0,1)->(1,1) works."
+      },
+      {
+        "input": "grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]",
+        "output": "16",
+        "explanation": "The optimal path needs max elevation 16."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 50",
+      "grid contains a permutation of 0..n^2-1"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "swimInWater",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "grid",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int swimInWater(int[][] grid) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[0, 2], [1, 3]]",
+        "expected": "3"
+      },
+      {
+        "input": "[[0, 1, 2, 3, 4], [24, 23, 22, 21, 5], [12, 13, 14, 15, 16], [11, 17, 18, 19, 20], [10, 9, 8, 7, 6]]",
+        "expected": "16"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[0]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[3, 2], [0, 1]]",
+        "expected": "3"
+      },
+      {
+        "input": "[[0, 1], [2, 3]]",
+        "expected": "3"
+      },
+      {
+        "input": "[[10, 12, 4], [6, 1, 11], [3, 9, 2]]",
+        "expected": "10"
+      },
+      {
+        "input": "[[0, 2, 1], [1, 3, 2], [2, 1, 0]]",
+        "expected": "2"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "heap",
+      "binary-search",
+      "union-find"
+    ],
+    "timeComplexity": "O(n^2 log n^2)",
+    "spaceComplexity": "O(n^2)",
+    "hints": [
+      "The cost of a path is the maximum elevation along it: minimize that.",
+      "Dijkstra with cost = max-so-far works.",
+      "Binary search on t plus BFS/DFS connectivity is an alternative."
+    ]
+  },
+  {
+    "id": "min-flips-binary-matrix",
+    "title": "Minimum Flips to Convert Binary Matrix to Zero Matrix",
+    "pattern": "matrix-simulation",
+    "difficulty": "Hard",
+    "description": "Given an m x n binary matrix mat, in one move you may choose a cell and flip it plus its (up to 4) orthogonal neighbors. Return the minimum number of moves to turn the whole matrix to zeros, or -1 if impossible.",
+    "examples": [
+      {
+        "input": "mat = [[0,0],[0,1]]",
+        "output": "3",
+        "explanation": "3 moves suffice."
+      },
+      {
+        "input": "mat = [[0]]",
+        "output": "0",
+        "explanation": "Already all zeros: 0 moves."
+      }
+    ],
+    "constraints": [
+      "1 <= m, n <= 3",
+      "m * n <= 9"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minFlips",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "mat",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minFlips(int[][] mat) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[[0, 0], [0, 1]]",
+        "expected": "3"
+      },
+      {
+        "input": "[[0]]",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[[1, 1, 1], [1, 0, 1], [0, 0, 0]]",
+        "expected": "6"
+      },
+      {
+        "input": "[[1, 0, 0], [1, 0, 0]]",
+        "expected": "-1"
+      },
+      {
+        "input": "[[1]]",
+        "expected": "1"
+      },
+      {
+        "input": "[[0, 0], [0, 0]]",
+        "expected": "0"
+      },
+      {
+        "input": "[[1, 1], [1, 1]]",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "matrix",
+      "bfs",
+      "bitmask"
+    ],
+    "timeComplexity": "O(2^(m*n) * m * n)",
+    "spaceComplexity": "O(2^(m*n))",
+    "hints": [
+      "Encode the board as a bitmask (at most 9 bits).",
+      "Precompute the flip mask for each cell.",
+      "BFS from the start state to the zero state."
+    ]
+  }
+]

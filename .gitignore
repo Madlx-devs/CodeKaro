@@ -1,0 +1,29 @@
+# Build outputs
+target/
+node_modules/
+dist/
+
+# Secrets / local config
+.env
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+*.iml
+.idea/
+.vscode/
+
+# Deploy artifacts (regenerated per release)
+dsa-deploy.zip
+work/
+
+# Scraper is separate work-in-progress, not part of this snapshot
+scraper/
+
+# Local dev runtime data (H2)
+backend/data/
+__pycache__/
+backend/src/main/resources/static/
+deploy/backend/src/main/resources/static/

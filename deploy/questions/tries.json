@@ -1,0 +1,1612 @@
+[
+  {
+    "id": "count-prefixes-of-a-given-string",
+    "title": "Count Prefixes of a Given String",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "You are given an array of strings words and a string s. Return the number of strings in words that are a prefix of s. Note that s itself counts if it appears in words.",
+    "examples": [
+      {
+        "input": "words = [\"a\",\"b\",\"c\",\"ab\",\"bc\",\"abc\"], s = \"abc\"",
+        "output": "3",
+        "explanation": "The prefixes of \"abc\" present in words are \"a\", \"ab\" and \"abc\"."
+      },
+      {
+        "input": "words = [\"a\",\"a\"], s = \"aa\"",
+        "output": "2",
+        "explanation": "Both copies of \"a\" are prefixes of \"aa\"."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 1000",
+      "1 <= words[i].length, s.length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "countPrefixes",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        },
+        {
+          "name": "s",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int countPrefixes(String[] words, String s) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"a\", \"b\", \"c\", \"ab\", \"bc\", \"abc\"]\nabc",
+        "expected": "3"
+      },
+      {
+        "input": "[\"a\", \"a\"]\naa",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\", \"b\"]\nc",
+        "expected": "0"
+      },
+      {
+        "input": "[\"abc\", \"def\"]\nabcdef",
+        "expected": "1"
+      },
+      {
+        "input": "[\"x\"]\nx",
+        "expected": "1"
+      },
+      {
+        "input": "[\"ab\", \"ab\", \"ab\"]\nabc",
+        "expected": "3"
+      },
+      {
+        "input": "[\"a\", \"aa\", \"aaa\"]\naaaa",
+        "expected": "3"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "A word w is a prefix of s iff s starts with w.",
+      "A trie of words lets you walk along s counting word-ends.",
+      "Even a simple loop over words passes the limits."
+    ]
+  },
+  {
+    "id": "longest-word-in-dictionary",
+    "title": "Longest Word in Dictionary",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "Given an array of strings words, find the longest word such that every prefix of it is also in words. If several words tie for the longest length, return the lexicographically smallest one.",
+    "examples": [
+      {
+        "input": "words = [\"w\",\"wo\",\"wor\",\"worl\",\"world\"]",
+        "output": "world",
+        "explanation": "\"world\" qualifies and is the longest."
+      },
+      {
+        "input": "words = [\"a\",\"banana\",\"app\",\"appl\",\"ap\",\"apply\",\"apple\"]",
+        "output": "apple",
+        "explanation": "Both \"apple\" and \"apply\" qualify; \"apple\" is lexicographically smaller."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 1000",
+      "1 <= words[i].length <= 30"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "longestWord",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String longestWord(String[] words) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"w\", \"wo\", \"wor\", \"worl\", \"world\"]",
+        "expected": "world"
+      },
+      {
+        "input": "[\"a\", \"banana\", \"app\", \"appl\", \"ap\", \"apply\", \"apple\"]",
+        "expected": "apple"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\", \"b\", \"c\"]",
+        "expected": "a"
+      },
+      {
+        "input": "[\"m\", \"mo\", \"moc\", \"moch\", \"mocha\", \"l\", \"la\", \"lat\", \"latt\", \"latte\"]",
+        "expected": "latte"
+      },
+      {
+        "input": "[\"t\"]",
+        "expected": "t"
+      },
+      {
+        "input": "[\"a\", \"ab\", \"abc\", \"abcd\", \"abcde\"]",
+        "expected": "abcde"
+      },
+      {
+        "input": "[\"b\", \"a\", \"ba\"]",
+        "expected": "ba"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string",
+      "hash-table"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Put all words in a hash set.",
+      "A word qualifies if all its prefixes are in the set.",
+      "Track the best by length, breaking ties lexicographically."
+    ]
+  },
+  {
+    "id": "count-trie-nodes",
+    "title": "Count Trie Nodes",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "Build a trie (prefix tree) from an array of lowercase words. Return the total number of nodes in the trie, counting the root node as well.",
+    "examples": [
+      {
+        "input": "words = [\"a\",\"ab\",\"abc\"]",
+        "output": "4",
+        "explanation": "Nodes: root, a, ab, abc = 4 nodes."
+      },
+      {
+        "input": "words = [\"a\",\"b\"]",
+        "output": "3",
+        "explanation": "Nodes: root, a, b = 3 nodes."
+      }
+    ],
+    "constraints": [
+      "0 <= words.length <= 1000",
+      "words[i] consists of lowercase letters"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "countTrieNodes",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int countTrieNodes(String[] words) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"a\", \"ab\", \"abc\"]",
+        "expected": "4"
+      },
+      {
+        "input": "[\"a\", \"b\"]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[]",
+        "expected": "1"
+      },
+      {
+        "input": "[\"hello\"]",
+        "expected": "6"
+      },
+      {
+        "input": "[\"abc\", \"abd\"]",
+        "expected": "5"
+      },
+      {
+        "input": "[\"a\", \"a\", \"a\"]",
+        "expected": "2"
+      },
+      {
+        "input": "[\"dog\", \"cat\", \"car\"]",
+        "expected": "8"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Insert each word character by character, creating nodes as needed.",
+      "Shared prefixes share nodes.",
+      "Count nodes with a DFS over the trie, including the root."
+    ]
+  },
+  {
+    "id": "prefix-count-queries",
+    "title": "Prefix Count Queries",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "You are given an array of words and an array of query strings. For each query, return how many words start with that query string.",
+    "examples": [
+      {
+        "input": "words = [\"apple\",\"app\",\"application\",\"banana\"], queries = [\"app\",\"ban\",\"a\"]",
+        "output": "[3, 1, 3]",
+        "explanation": "\"app\" matches 3 words, \"ban\" matches 1, \"a\" matches 3."
+      },
+      {
+        "input": "words = [\"a\",\"aa\",\"aaa\"], queries = [\"a\",\"aaaa\"]",
+        "output": "[3, 0]",
+        "explanation": "\"a\" matches 3 words; \"aaaa\" matches none."
+      }
+    ],
+    "constraints": [
+      "0 <= words.length, queries.length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "prefixCount",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        },
+        {
+          "name": "queries",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] prefixCount(String[] words, String[] queries) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"apple\", \"app\", \"application\", \"banana\"]\n[\"app\", \"ban\", \"a\"]",
+        "expected": "[3, 1, 3]"
+      },
+      {
+        "input": "[\"a\", \"aa\", \"aaa\"]\n[\"a\", \"aa\", \"aaa\", \"aaaa\"]",
+        "expected": "[3, 2, 1, 0]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[]\n[\"a\"]",
+        "expected": "[0]"
+      },
+      {
+        "input": "[\"test\", \"test\", \"test\"]\n[\"te\", \"test\", \"testing\"]",
+        "expected": "[3, 3, 0]"
+      },
+      {
+        "input": "[\"abc\", \"def\"]\n[\"z\", \"abc\"]",
+        "expected": "[0, 1]"
+      },
+      {
+        "input": "[\"hello\", \"hell\", \"he\", \"h\"]\n[\"h\", \"he\", \"hel\"]",
+        "expected": "[4, 3, 2]"
+      },
+      {
+        "input": "[\"cat\", \"car\", \"dog\"]\n[\"c\", \"ca\", \"d\", \"x\"]",
+        "expected": "[2, 2, 1, 0]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Build a trie and store at each node how many words pass through it.",
+      "Each query is a walk down the trie.",
+      "If the walk fails, the answer is 0."
+    ]
+  },
+  {
+    "id": "is-prefix-of-word",
+    "title": "Is Prefix of Word",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "Given a sentence (words separated by single spaces) and a searchWord, return the 1-based index of the first word that starts with searchWord, or -1 if no word does.",
+    "examples": [
+      {
+        "input": "sentence = \"i love eating burger\", searchWord = \"burg\"",
+        "output": "4",
+        "explanation": "\"burger\" is the 4th word and starts with \"burg\"."
+      },
+      {
+        "input": "sentence = \"this problem is an easy problem\", searchWord = \"pro\"",
+        "output": "2",
+        "explanation": "\"problem\" is the 2nd word and starts with \"pro\"."
+      }
+    ],
+    "constraints": [
+      "1 <= sentence.length <= 100",
+      "1 <= searchWord.length <= 10",
+      "sentence consists of lowercase letters and single spaces"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "isPrefixOfWord",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "sentence",
+          "type": "String"
+        },
+        {
+          "name": "searchWord",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int isPrefixOfWord(String sentence, String searchWord) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "i love eating burger\nburg",
+        "expected": "4"
+      },
+      {
+        "input": "this problem is an easy problem\npro",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "i am tired\nyou",
+        "expected": "-1"
+      },
+      {
+        "input": "hellohello hellohellohello\nell",
+        "expected": "-1"
+      },
+      {
+        "input": "a b c d\nb",
+        "expected": "2"
+      },
+      {
+        "input": "leetcode\nleet",
+        "expected": "1"
+      },
+      {
+        "input": "apple banana apple\napp",
+        "expected": "1"
+      }
+    ],
+    "tags": [
+      "string",
+      "trie"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Split the sentence into words.",
+      "Check each word with startsWith in order.",
+      "Return the 1-based position of the first match."
+    ]
+  },
+  {
+    "id": "smallest-word-with-prefix",
+    "title": "Smallest Word With Prefix",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "Given an array of words and a prefix string pref, return the lexicographically smallest word that starts with pref. Return an empty string if no word starts with pref.",
+    "examples": [
+      {
+        "input": "words = [\"apple\",\"app\",\"application\",\"banana\"], pref = \"app\"",
+        "output": "app",
+        "explanation": "Candidates are \"app\", \"apple\", \"application\"; the smallest is \"app\"."
+      },
+      {
+        "input": "words = [\"cat\",\"car\",\"dog\"], pref = \"ca\"",
+        "output": "car",
+        "explanation": "Candidates are \"car\" and \"cat\"; the smallest is \"car\"."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 1000",
+      "1 <= pref.length <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "smallestWithPrefix",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        },
+        {
+          "name": "pref",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String smallestWithPrefix(String[] words, String pref) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"apple\", \"app\", \"application\", \"banana\"]\napp",
+        "expected": "app"
+      },
+      {
+        "input": "[\"cat\", \"car\", \"dog\"]\nca",
+        "expected": "car"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\", \"b\"]\na",
+        "expected": "a"
+      },
+      {
+        "input": "[\"dog\", \"deer\", \"deal\"]\nde",
+        "expected": "deal"
+      },
+      {
+        "input": "[\"a\"]\na",
+        "expected": "a"
+      },
+      {
+        "input": "[\"abc\", \"abd\", \"b\"]\nab",
+        "expected": "abc"
+      },
+      {
+        "input": "[\"zoo\", \"apple\", \"app\"]\nap",
+        "expected": "app"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Filter the words to those starting with pref.",
+      "Take the minimum with lexicographic comparison.",
+      "A trie can find this by walking to pref then taking the leftmost path."
+    ]
+  },
+  {
+    "id": "shared-prefix-length",
+    "title": "Longest Shared Prefix Length",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "Given an array of strings words, return the length of the longest prefix shared by ALL the words. Return 0 if there is no common prefix or the array is empty.",
+    "examples": [
+      {
+        "input": "words = [\"flower\",\"flow\",\"flight\"]",
+        "output": "2",
+        "explanation": "The common prefix is \"fl\" with length 2."
+      },
+      {
+        "input": "words = [\"dog\",\"racecar\",\"car\"]",
+        "output": "0",
+        "explanation": "There is no common prefix."
+      }
+    ],
+    "constraints": [
+      "0 <= words.length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "sharedPrefixLength",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int sharedPrefixLength(String[] words) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"flower\", \"flow\", \"flight\"]",
+        "expected": "2"
+      },
+      {
+        "input": "[\"dog\", \"racecar\", \"car\"]",
+        "expected": "0"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\"]",
+        "expected": "1"
+      },
+      {
+        "input": "[]",
+        "expected": "0"
+      },
+      {
+        "input": "[\"abc\", \"abc\", \"abc\"]",
+        "expected": "3"
+      },
+      {
+        "input": "[\"interspecies\", \"interstellar\", \"interstate\"]",
+        "expected": "6"
+      },
+      {
+        "input": "[\"throne\", \"throne\"]",
+        "expected": "6"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Compare characters position by position across all words.",
+      "Stop at the first mismatch or the end of the shortest word.",
+      "The answer is the number of matching positions."
+    ]
+  },
+  {
+    "id": "distinct-prefixes-count",
+    "title": "Count Distinct Prefixes",
+    "pattern": "tries",
+    "difficulty": "Easy",
+    "description": "Given an array of strings words, return the number of distinct non-empty prefixes among all the words. (Duplicate words contribute their prefixes only once.)",
+    "examples": [
+      {
+        "input": "words = [\"a\",\"ab\",\"abc\"]",
+        "output": "3",
+        "explanation": "Distinct prefixes: \"a\", \"ab\", \"abc\"."
+      },
+      {
+        "input": "words = [\"a\",\"b\",\"c\"]",
+        "output": "3",
+        "explanation": "Each word contributes only itself."
+      }
+    ],
+    "constraints": [
+      "0 <= words.length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "distinctPrefixes",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int distinctPrefixes(String[] words) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"a\", \"ab\", \"abc\"]",
+        "expected": "3"
+      },
+      {
+        "input": "[\"a\", \"b\", \"c\"]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[]",
+        "expected": "0"
+      },
+      {
+        "input": "[\"aaa\", \"aaa\"]",
+        "expected": "3"
+      },
+      {
+        "input": "[\"ab\", \"bc\"]",
+        "expected": "4"
+      },
+      {
+        "input": "[\"hello\", \"world\"]",
+        "expected": "10"
+      },
+      {
+        "input": "[\"a\", \"ab\", \"b\", \"bc\"]",
+        "expected": "4"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string",
+      "hash-table"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Collect every prefix of every word into a set.",
+      "The answer is the size of the set.",
+      "A trie node's count (excluding root) gives the same answer."
+    ]
+  },
+  {
+    "id": "replace-words",
+    "title": "Replace Words",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given a dictionary of root words and a sentence, replace each word in the sentence with the shortest root from the dictionary that is a prefix of it. If no root is a prefix, keep the word unchanged. Words are separated by single spaces.",
+    "examples": [
+      {
+        "input": "dictionary = [\"cat\",\"bat\",\"rat\"], sentence = \"the cattle was rattled by the battery\"",
+        "output": "the cat was rat by the bat",
+        "explanation": "\"cattle\" -> \"cat\", \"rattled\" -> \"rat\", \"battery\" -> \"bat\"."
+      },
+      {
+        "input": "dictionary = [\"a\",\"b\",\"c\"], sentence = \"aadsfasf absbs bbab cadsfafs\"",
+        "output": "a a b c",
+        "explanation": "Each word is replaced by its single-letter root."
+      }
+    ],
+    "constraints": [
+      "1 <= dictionary.length <= 1000",
+      "1 <= sentence.length <= 10^6"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "replaceWords",
+      "returnType": "String",
+      "params": [
+        {
+          "name": "dictionary",
+          "type": "String[]"
+        },
+        {
+          "name": "sentence",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String replaceWords(String[] dictionary, String sentence) {\n        return \"\";\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"cat\", \"bat\", \"rat\"]\nthe cattle was rattled by the battery",
+        "expected": "the cat was rat by the bat"
+      },
+      {
+        "input": "[\"a\", \"b\", \"c\"]\naadsfasf absbs bbab cadsfafs",
+        "expected": "a a b c"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\", \"aa\", \"aaa\", \"aaaa\"]\na aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa",
+        "expected": "a a a a a a a a bbb baba a"
+      },
+      {
+        "input": "[\"catt\", \"cat\", \"bat\", \"rat\"]\nthe cattle was rattled by the battery",
+        "expected": "the cat was rat by the bat"
+      },
+      {
+        "input": "[\"abc\"]\ndef ghi",
+        "expected": "def ghi"
+      },
+      {
+        "input": "[\"e\", \"k\", \"c\", \"har\", \"q\", \"h\", \"t\", \"r\", \"p\", \"d\", \"w\"]\nthe cattle",
+        "expected": "t c"
+      },
+      {
+        "input": "[\"ab\", \"a\"]\nabc abcd",
+        "expected": "a a"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string",
+      "hash-table"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Put the roots in a hash set or trie.",
+      "For each word, try its prefixes from shortest to longest.",
+      "The first prefix found in the dictionary is the replacement."
+    ]
+  },
+  {
+    "id": "search-suggestions-system",
+    "title": "Search Suggestions System",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given products and a searchWord typed one character at a time, after each character return the (up to 3) product names that have the current prefix, in lexicographic order. Return a String array with one entry per typed character; each entry contains the suggestions joined by commas (an empty string if there are none).",
+    "examples": [
+      {
+        "input": "products = [\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"], searchWord = \"mouse\"",
+        "output": "[mobile,moneypot,monitor, mobile,moneypot,monitor, mouse,mousepad, mouse,mousepad, mouse,mousepad]",
+        "explanation": "After \"m\": [mobile, moneypot, monitor]; after \"mo\": same; after \"mou\": [mouse, mousepad]; and so on."
+      },
+      {
+        "input": "products = [\"havana\"], searchWord = \"havana\"",
+        "output": "[havana, havana, havana, havana, havana, havana]",
+        "explanation": "Only \"havana\" matches every prefix."
+      }
+    ],
+    "constraints": [
+      "1 <= products.length <= 1000",
+      "1 <= searchWord.length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "suggestedProducts",
+      "returnType": "String[]",
+      "params": [
+        {
+          "name": "products",
+          "type": "String[]"
+        },
+        {
+          "name": "searchWord",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String[] suggestedProducts(String[] products, String searchWord) {\n        return new String[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"mobile\", \"mouse\", \"moneypot\", \"monitor\", \"mousepad\"]\nmouse",
+        "expected": "[mobile,moneypot,monitor, mobile,moneypot,monitor, mouse,mousepad, mouse,mousepad, mouse,mousepad]"
+      },
+      {
+        "input": "[\"havana\"]\nhavana",
+        "expected": "[havana, havana, havana, havana, havana, havana]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"bags\", \"baggage\", \"banner\", \"box\", \"cloths\"]\nbags",
+        "expected": "[baggage,bags,banner, baggage,bags,banner, baggage,bags, bags]"
+      },
+      {
+        "input": "[\"abc\", \"bcd\"]\nabcd",
+        "expected": "[abc, abc, abc, ]"
+      },
+      {
+        "input": "[\"a\", \"aa\", \"aaa\", \"aaaa\"]\naa",
+        "expected": "[a,aa,aaa, aa,aaa,aaaa]"
+      },
+      {
+        "input": "[\"code\", \"coffee\", \"cold\", \"combine\"]\nco",
+        "expected": "[code,coffee,cold, code,coffee,cold]"
+      },
+      {
+        "input": "[\"zebra\"]\nabc",
+        "expected": "[, , ]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string",
+      "sorting"
+    ],
+    "timeComplexity": "O(n log n + m * n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Sort the products once.",
+      "For each prefix of searchWord, collect matching products.",
+      "Take at most the first 3 lexicographic matches."
+    ]
+  },
+  {
+    "id": "shortest-unique-prefixes",
+    "title": "Shortest Unique Prefixes",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given an array of distinct words, for each word (in input order) find its shortest prefix that is not a prefix of any other word in the array. If no such prefix exists, use the whole word. Return the prefixes in input order.",
+    "examples": [
+      {
+        "input": "words = [\"zebra\",\"dog\",\"duck\",\"dove\"]",
+        "output": "[z, dog, du, dov]",
+        "explanation": "\"z\" identifies zebra; \"dog\" needs all 3 letters; \"du\" identifies duck; \"dov\" identifies dove."
+      },
+      {
+        "input": "words = [\"a\",\"ab\",\"abc\"]",
+        "output": "[a, ab, abc]",
+        "explanation": "No prefix of \"a\" or \"ab\" is unique, so the whole words are used."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 1000",
+      "All words are distinct"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "shortestUniquePrefixes",
+      "returnType": "String[]",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public String[] shortestUniquePrefixes(String[] words) {\n        return new String[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"zebra\", \"dog\", \"duck\", \"dove\"]",
+        "expected": "[z, dog, du, dov]"
+      },
+      {
+        "input": "[\"a\", \"ab\", \"abc\"]",
+        "expected": "[a, ab, abc]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"car\", \"cat\"]",
+        "expected": "[car, cat]"
+      },
+      {
+        "input": "[\"dog\"]",
+        "expected": "[d]"
+      },
+      {
+        "input": "[\"aa\", \"ab\", \"ac\"]",
+        "expected": "[aa, ab, ac]"
+      },
+      {
+        "input": "[\"hello\", \"hell\", \"heaven\", \"heavy\"]",
+        "expected": "[hello, hell, heave, heavy]"
+      },
+      {
+        "input": "[\"a\", \"b\", \"c\"]",
+        "expected": "[a, b, c]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Count how many words pass through each trie node.",
+      "For a word, the first prefix with count 1 is the answer.",
+      "If every prefix has count > 1, the whole word is the answer."
+    ]
+  },
+  {
+    "id": "camelcase-matching",
+    "title": "Camelcase Matching",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given queries and a pattern, a query matches if inserting lowercase letters into the pattern can produce the query. Equivalently: scanning the query left to right, the uppercase letters must equal the pattern in order, and every pattern character must be matched. Return a boolean array of match results.",
+    "examples": [
+      {
+        "input": "queries = [\"FooBar\",\"FooBarTest\",\"FootBall\",\"FrameBuffer\",\"ForceFeedBack\"], pattern = \"FB\"",
+        "output": "[true, false, true, true, false]",
+        "explanation": "\"FooBar\": match; \"FooBarTest\": extra uppercase T; \"FootBall\": match; \"FrameBuffer\": match; \"ForceFeedBack\": extra uppercase F."
+      },
+      {
+        "input": "queries = [\"Force\",\"force\"], pattern = \"F\"",
+        "output": "[true, false]",
+        "explanation": "\"Force\" matches; \"force\" has no uppercase F."
+      }
+    ],
+    "constraints": [
+      "1 <= queries.length <= 100",
+      "1 <= pattern.length <= 100"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "camelMatch",
+      "returnType": "boolean[]",
+      "params": [
+        {
+          "name": "queries",
+          "type": "String[]"
+        },
+        {
+          "name": "pattern",
+          "type": "String"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public boolean[] camelMatch(String[] queries, String pattern) {\n        return new boolean[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"FooBar\", \"FooBarTest\", \"FootBall\", \"FrameBuffer\", \"ForceFeedBack\"]\nFB",
+        "expected": "[true, false, true, true, false]"
+      },
+      {
+        "input": "[\"a\", \"aa\", \"aaa\"]\na",
+        "expected": "[true, true, true]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"FooBar\", \"FooBarTest\"]\nFoBa",
+        "expected": "[true, false]"
+      },
+      {
+        "input": "[\"abc\", \"abcd\"]\nabc",
+        "expected": "[true, true]"
+      },
+      {
+        "input": "[\"CompetitiveProgramming\", \"CounterPick\", \"ControlPanel\"]\nCooP",
+        "expected": "[false, false, true]"
+      },
+      {
+        "input": "[\"a\", \"aa\", \"aaa\"]\na",
+        "expected": "[true, true, true]"
+      },
+      {
+        "input": "[\"Force\", \"force\", \"FORCe\"]\nF",
+        "expected": "[true, false, false]"
+      }
+    ],
+    "tags": [
+      "string",
+      "trie",
+      "two-pointers"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(1)",
+    "hints": [
+      "Walk through the query, advancing the pattern pointer on matches.",
+      "An uppercase letter that does not match the pattern fails the query.",
+      "Lowercase letters are always skippable."
+    ]
+  },
+  {
+    "id": "index-pairs-of-a-string",
+    "title": "Index Pairs of a String",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given a text string and an array of words, find all [start, end] index pairs such that the substring text[start..end] equals one of the words. Return the pairs sorted by start index, then by end index.",
+    "examples": [
+      {
+        "input": "text = \"thestoryofleetcodeandme\", words = [\"story\",\"fleet\",\"leetcode\"]",
+        "output": "[[3, 7], [9, 13], [10, 17]]",
+        "explanation": "\"story\" at [3,7], \"fleet\" at [9,13], \"leetcode\" at [10,17]."
+      },
+      {
+        "input": "text = \"ababa\", words = [\"aba\",\"ab\"]",
+        "output": "[[0, 1], [0, 2], [2, 3], [2, 4]]",
+        "explanation": "\"ab\" at [0,1] and [2,3]; \"aba\" at [0,2] and [2,4]."
+      }
+    ],
+    "constraints": [
+      "1 <= text.length <= 100",
+      "1 <= words.length <= 20"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "indexPairs",
+      "returnType": "int[][]",
+      "params": [
+        {
+          "name": "text",
+          "type": "String"
+        },
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[][] indexPairs(String text, String[] words) {\n        return new int[0][0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "thestoryofleetcodeandme\n[\"story\", \"fleet\", \"leetcode\"]",
+        "expected": "[[3, 7], [9, 13], [10, 17]]"
+      },
+      {
+        "input": "ababa\n[\"aba\", \"ab\"]",
+        "expected": "[[0, 1], [0, 2], [2, 3], [2, 4]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "abc\n[\"d\"]",
+        "expected": "[]"
+      },
+      {
+        "input": "aaaa\n[\"aa\"]",
+        "expected": "[[0, 1], [1, 2], [2, 3]]"
+      },
+      {
+        "input": "mississippi\n[\"is\", \"ppi\", \"si\"]",
+        "expected": "[[1, 2], [3, 4], [4, 5], [6, 7], [8, 10]]"
+      },
+      {
+        "input": "abcabc\n[\"abc\"]",
+        "expected": "[[0, 2], [3, 5]]"
+      },
+      {
+        "input": "hello\n[\"he\", \"ell\", \"llo\", \"lo\"]",
+        "expected": "[[0, 1], [1, 3], [2, 4], [3, 4]]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(n * m * L)",
+    "spaceComplexity": "O(k)",
+    "hints": [
+      "For each word, find all its occurrences (including overlapping ones).",
+      "Record [start, start + len - 1] for each occurrence.",
+      "Sort the collected pairs at the end."
+    ]
+  },
+  {
+    "id": "lexicographical-numbers",
+    "title": "Lexicographical Numbers",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given an integer n, return all numbers from 1 to n in lexicographical (dictionary) order as strings would be ordered: 1, 10, 11, ..., 2, 20, ....",
+    "examples": [
+      {
+        "input": "n = 13",
+        "output": "[1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]",
+        "explanation": "[1,10,11,12,13,2,3,4,5,6,7,8,9]."
+      },
+      {
+        "input": "n = 2",
+        "output": "[1, 2]",
+        "explanation": "[1,2]."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 5*10^4"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "lexicalOrder",
+      "returnType": "List<Integer>",
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<Integer> lexicalOrder(int n) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "13",
+        "expected": "[1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]"
+      },
+      {
+        "input": "2",
+        "expected": "[1, 2]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "1",
+        "expected": "[1]"
+      },
+      {
+        "input": "9",
+        "expected": "[1, 2, 3, 4, 5, 6, 7, 8, 9]"
+      },
+      {
+        "input": "25",
+        "expected": "[1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 20, 21, 22, 23, 24, 25, 3, 4, 5, 6, 7, 8, 9]"
+      },
+      {
+        "input": "100",
+        "expected": "[1, 10, 100, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 3, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 4, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 5, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 6, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 7, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 8, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 9, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]"
+      },
+      {
+        "input": "21",
+        "expected": "[1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 20, 21, 3, 4, 5, 6, 7, 8, 9]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "dfs"
+    ],
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "Think of numbers as paths in a 10-ary trie.",
+      "DFS from 1..9, appending x then recursing into x*10..x*10+9.",
+      "This visits numbers in lexicographic order naturally."
+    ]
+  },
+  {
+    "id": "extra-characters-in-a-string",
+    "title": "Extra Characters in a String",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given a string s and a dictionary of words, break s into substrings to minimize the number of leftover characters (characters not covered by dictionary words). Return that minimum number of extra characters.",
+    "examples": [
+      {
+        "input": "s = \"leetscode\", dictionary = [\"leet\",\"code\",\"leetcode\"]",
+        "output": "1",
+        "explanation": "Break as \"leet\" + \"s\" + \"code\": 1 extra character."
+      },
+      {
+        "input": "s = \"sayhelloworld\", dictionary = [\"hello\",\"world\"]",
+        "output": "3",
+        "explanation": "\"say\" contributes 3 extra characters."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 50",
+      "1 <= dictionary.length <= 50"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minExtraChar",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "s",
+          "type": "String"
+        },
+        {
+          "name": "dictionary",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minExtraChar(String s, String[] dictionary) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "leetscode\n[\"leet\", \"code\", \"leetcode\"]",
+        "expected": "1"
+      },
+      {
+        "input": "sayhelloworld\n[\"hello\", \"world\"]",
+        "expected": "3"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "a\n[\"a\"]",
+        "expected": "0"
+      },
+      {
+        "input": "abc\n[\"d\"]",
+        "expected": "3"
+      },
+      {
+        "input": "dwmodizxvvbosxxw\n[\"ox\", \"lb\", \"diz\", \"gu\", \"v\", \"ksv\", \"o\", \"nuq\", \"r\", \"txhe\", \"e\", \"wmo\", \"cehy\", \"tskz\", \"ds\", \"kzbu\"]",
+        "expected": "7"
+      },
+      {
+        "input": "abcdef\n[\"ab\", \"cd\", \"ef\"]",
+        "expected": "0"
+      },
+      {
+        "input": "aaaa\n[\"a\", \"aa\"]",
+        "expected": "0"
+      }
+    ],
+    "tags": [
+      "dynamic-programming",
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(n^2)",
+    "spaceComplexity": "O(n)",
+    "hints": [
+      "dp[i] = min extra chars for the suffix starting at i.",
+      "Either skip s[i] (1 + dp[i+1]) or take a dictionary word s[i:j] (dp[j]).",
+      "A trie speeds up finding words starting at i."
+    ]
+  },
+  {
+    "id": "minimum-length-encoding",
+    "title": "Short Reference String Encoding",
+    "pattern": "tries",
+    "difficulty": "Medium",
+    "description": "Given an array of words, encode them into a single reference string s of the form word1#word2#... such that every word appears as a substring ending just before a '#'. A word that is a suffix of another word needs no separate entry. Return the minimum possible length of s.",
+    "examples": [
+      {
+        "input": "words = [\"time\",\"me\",\"bell\"]",
+        "output": "10",
+        "explanation": "\"time#bell#\" has length 10; \"me\" is a suffix of \"time\"."
+      },
+      {
+        "input": "words = [\"t\"]",
+        "output": "2",
+        "explanation": "\"t#\" has length 2."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 2000",
+      "1 <= words[i].length <= 7"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "minimumLengthEncoding",
+      "returnType": "int",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int minimumLengthEncoding(String[] words) {\n        return 0;\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"time\", \"me\", \"bell\"]",
+        "expected": "10"
+      },
+      {
+        "input": "[\"t\"]",
+        "expected": "2"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"me\", \"time\"]",
+        "expected": "5"
+      },
+      {
+        "input": "[\"abc\", \"def\"]",
+        "expected": "8"
+      },
+      {
+        "input": "[\"a\", \"b\", \"c\"]",
+        "expected": "6"
+      },
+      {
+        "input": "[\"time\", \"time\", \"time\"]",
+        "expected": "5"
+      },
+      {
+        "input": "[\"fe\", \"leetcode\"]",
+        "expected": "12"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string",
+      "hash-table"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Only words that are NOT a suffix of another word need an entry.",
+      "Insert reversed words into a trie to detect suffix relationships.",
+      "Answer = sum of (len(word) + 1) over needed words."
+    ]
+  },
+  {
+    "id": "sum-of-prefix-scores",
+    "title": "Sum of Prefix Scores of Strings",
+    "pattern": "tries",
+    "difficulty": "Hard",
+    "description": "You are given an array words. For each word, its score is the sum, over all its prefixes, of the number of words in the array having that prefix. Return the scores in input order.",
+    "examples": [
+      {
+        "input": "words = [\"abc\",\"ab\",\"bc\",\"b\"]",
+        "output": "[5, 4, 3, 2]",
+        "explanation": "Scores: abc -> 2+2+1 = 5; ab -> 2+2 = 4; bc -> 2+1 = 3; b -> 2."
+      },
+      {
+        "input": "words = [\"a\",\"a\",\"a\"]",
+        "output": "[3, 3, 3]",
+        "explanation": "Each \"a\" has score 3."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 1000",
+      "1 <= words[i].length <= 1000"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "sumPrefixScores",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] sumPrefixScores(String[] words) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"abc\", \"ab\", \"bc\", \"b\"]",
+        "expected": "[5, 4, 3, 2]"
+      },
+      {
+        "input": "[\"a\", \"a\", \"a\"]",
+        "expected": "[3, 3, 3]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\"]",
+        "expected": "[1]"
+      },
+      {
+        "input": "[\"abc\", \"abd\", \"abe\"]",
+        "expected": "[7, 7, 7]"
+      },
+      {
+        "input": "[\"zz\", \"zzz\", \"zzzz\"]",
+        "expected": "[6, 8, 9]"
+      },
+      {
+        "input": "[\"abcd\"]",
+        "expected": "[4]"
+      },
+      {
+        "input": "[\"ab\", \"ba\", \"ab\", \"ba\"]",
+        "expected": "[4, 4, 4, 4]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string"
+    ],
+    "timeComplexity": "O(total length)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "Build a trie counting how many words pass each node.",
+      "A word's score is the sum of counts along its path.",
+      "Two passes: one to build counts, one to score."
+    ]
+  },
+  {
+    "id": "concatenated-words",
+    "title": "Concatenated Words",
+    "pattern": "tries",
+    "difficulty": "Hard",
+    "description": "Given an array of strings words (no duplicates), return all words that are concatenations of at least two shorter words from the array. Return them sorted lexicographically.",
+    "examples": [
+      {
+        "input": "words = [\"cat\",\"cats\",\"catsdogcats\",\"dog\",\"dogcatsdog\",\"hippopotamuses\",\"rat\",\"ratcatdogcat\"]",
+        "output": "[catsdogcats, dogcatsdog, ratcatdogcat]",
+        "explanation": "The concatenated words are \"catsdogcats\", \"dogcatsdog\" and \"ratcatdogcat\"."
+      },
+      {
+        "input": "words = [\"a\",\"b\",\"ab\"]",
+        "output": "[ab]",
+        "explanation": "\"ab\" = \"a\" + \"b\"."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 10^4",
+      "0 <= words[i].length <= 30",
+      "words[i] consists of lowercase letters"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "findAllConcatenatedWordsInADict",
+      "returnType": "List<String>",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<String> findAllConcatenatedWordsInADict(String[] words) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"cat\", \"cats\", \"catsdogcats\", \"dog\", \"dogcatsdog\", \"hippopotamuses\", \"rat\", \"ratcatdogcat\"]",
+        "expected": "[catsdogcats, dogcatsdog, ratcatdogcat]"
+      },
+      {
+        "input": "[\"a\", \"b\", \"ab\"]",
+        "expected": "[ab]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"a\", \"aa\", \"aaa\"]",
+        "expected": "[aa, aaa]"
+      },
+      {
+        "input": "[\"hello\", \"world\"]",
+        "expected": "[]"
+      },
+      {
+        "input": "[\"cat\", \"dog\"]",
+        "expected": "[]"
+      },
+      {
+        "input": "[\"a\", \"b\", \"c\", \"abc\"]",
+        "expected": "[abc]"
+      },
+      {
+        "input": "[\"ab\", \"cd\", \"abcd\", \"abcdab\"]",
+        "expected": "[abcd, abcdab]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "dynamic-programming",
+      "string"
+    ],
+    "timeComplexity": "O(n * L^2)",
+    "spaceComplexity": "O(total length)",
+    "hints": [
+      "For each word, check if it can be segmented using the other words.",
+      "This is word-break with the word itself excluded from the dictionary.",
+      "Sort the results lexicographically."
+    ]
+  },
+  {
+    "id": "maximum-genetic-difference-query",
+    "title": "Maximum Genetic Difference Query",
+    "pattern": "tries",
+    "difficulty": "Hard",
+    "description": "A rooted tree has n nodes labeled 0 to n-1; parents[i] is the parent of node i (parents[root] = -1). Each query [node, val] asks for the maximum XOR of val with any node value on the path from the root to node (inclusive). Return the answers in query order.",
+    "examples": [
+      {
+        "input": "parents = [-1,0,1,1], queries = [[0,3],[2,2],[2,3]]",
+        "output": "[3, 3, 3]",
+        "explanation": "Path to 0 is {0}: 3^0 = 3. Path to 2 is {0,1,2}: max XOR with 2 is 3, with 3 is 3."
+      },
+      {
+        "input": "parents = [-1], queries = [[0,5]]",
+        "output": "[5]",
+        "explanation": "Path to 0 is {0}: 5^0 = 5."
+      }
+    ],
+    "constraints": [
+      "1 <= parents.length <= 10^5",
+      "1 <= queries.length <= 3*10^4",
+      "0 <= node value < 2^18"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "maxGeneticDifference",
+      "returnType": "int[]",
+      "params": [
+        {
+          "name": "parents",
+          "type": "int[]"
+        },
+        {
+          "name": "queries",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public int[] maxGeneticDifference(int[] parents, int[][] queries) {\n        return new int[0];\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[-1, 0, 1, 1]\n[[0, 3], [2, 2], [2, 3]]",
+        "expected": "[3, 3, 3]"
+      },
+      {
+        "input": "[-1]\n[[0, 5]]",
+        "expected": "[5]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[-1, 0, 0, 1, 1, 2, 2]\n[[3, 4], [5, 7], [6, 1]]",
+        "expected": "[7, 7, 7]"
+      },
+      {
+        "input": "[-1, 0, 1, 2, 3]\n[[4, 10], [2, 5]]",
+        "expected": "[14, 7]"
+      },
+      {
+        "input": "[-1, 0]\n[[1, 0], [0, 0]]",
+        "expected": "[1, 0]"
+      },
+      {
+        "input": "[-1, 0, 0, 0]\n[[1, 8], [2, 8], [3, 8]]",
+        "expected": "[9, 10, 11]"
+      },
+      {
+        "input": "[-1, 0, 0, 0, 1, 1]\n[[4, 6], [5, 6], [2, 3]]",
+        "expected": "[7, 7, 3]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "dfs",
+      "bit-manipulation"
+    ],
+    "timeComplexity": "O((n + q) * 18)",
+    "spaceComplexity": "O(n * 18)",
+    "hints": [
+      "DFS the tree while maintaining a binary trie of the current root path.",
+      "Add the node value on entry, remove it on exit.",
+      "Each query is a max-XOR lookup in the path trie."
+    ]
+  },
+  {
+    "id": "palindrome-pairs",
+    "title": "Palindrome Pairs",
+    "pattern": "tries",
+    "difficulty": "Hard",
+    "description": "Given an array of unique strings words, return all pairs [i, j] with i != j such that words[i] + words[j] is a palindrome. Return the pairs sorted lexicographically (by i, then j).",
+    "examples": [
+      {
+        "input": "words = [\"abcd\",\"dcba\",\"lls\",\"s\",\"sssll\"]",
+        "output": "[[0, 1], [1, 0], [2, 4], [3, 2]]",
+        "explanation": "Pairs: [0,1], [1,0], [3,2], [2,4]."
+      },
+      {
+        "input": "words = [\"bat\",\"tab\",\"cat\"]",
+        "output": "[[0, 1], [1, 0]]",
+        "explanation": "Pairs: [0,1], [1,0]."
+      }
+    ],
+    "constraints": [
+      "1 <= words.length <= 5000",
+      "0 <= words[i].length <= 300",
+      "All words are unique"
+    ],
+    "signature": {
+      "className": "Solution",
+      "methodName": "palindromePairs",
+      "returnType": "List<List<Integer>>",
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "starterCode": "class Solution {\n    public List<List<Integer>> palindromePairs(String[] words) {\n        return new java.util.ArrayList<>();\n    }\n}",
+    "sampleTests": [
+      {
+        "input": "[\"abcd\", \"dcba\", \"lls\", \"s\", \"sssll\"]",
+        "expected": "[[0, 1], [1, 0], [2, 4], [3, 2]]"
+      },
+      {
+        "input": "[\"bat\", \"tab\", \"cat\"]",
+        "expected": "[[0, 1], [1, 0]]"
+      }
+    ],
+    "hiddenTests": [
+      {
+        "input": "[\"abc\", \"cba\"]",
+        "expected": "[[0, 1], [1, 0]]"
+      },
+      {
+        "input": "[\"a\", \"b\", \"c\"]",
+        "expected": "[]"
+      },
+      {
+        "input": "[\"abcd\", \"dcba\"]",
+        "expected": "[[0, 1], [1, 0]]"
+      },
+      {
+        "input": "[\"lls\", \"s\"]",
+        "expected": "[[1, 0]]"
+      },
+      {
+        "input": "[\"a\", \"aa\", \"aaa\"]",
+        "expected": "[[0, 1], [0, 2], [1, 0], [1, 2], [2, 0], [2, 1]]"
+      }
+    ],
+    "tags": [
+      "trie",
+      "string",
+      "hash-table"
+    ],
+    "timeComplexity": "O(n * L^2)",
+    "spaceComplexity": "O(n * L)",
+    "hints": [
+      "For each word, try every split into prefix and suffix.",
+      "If the prefix is a palindrome, the reversed suffix can come first.",
+      "If the suffix is a palindrome, the reversed prefix can come second."
+    ]
+  }
+]
